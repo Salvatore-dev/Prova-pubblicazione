@@ -57,7 +57,7 @@ export default function Correction() {
                 <input
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
-                    className=' h-11 border-violet-400 focus:outline-none focus:border-violet-600 bg-violet-100 border-2 rounded-xl' id='input'
+                    className=' h-11 border-violet-400 focus:outline-none text-black focus:border-violet-600 bg-violet-100 border-2 rounded-xl' id='input'
                     type="text"
                     placeholder='type your message!' />
 
