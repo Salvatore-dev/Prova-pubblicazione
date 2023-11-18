@@ -1,0 +1,11 @@
+.box {
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+    margin-bottom: 10px;
+  }
+  
+  .box-animate {
+    opacity: 0;
+    transform: rotate(360deg);
+  }
