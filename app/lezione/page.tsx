@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import './motion.css';
 import Link from 'next/link';
 
-export default function () {
+export default function Lezione () {
   const [showDiv, setShowDiv] = useState(true);
 
   return (
