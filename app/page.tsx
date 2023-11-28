@@ -11,6 +11,7 @@ export default function Home() {
         <Link className=' bg-slate-700 text-yellow-200 text-lg font-medium p-2 border rounded-md' href={`/lezione`}>Lezione Main</Link>
         <Link className=' bg-slate-700 text-yellow-200 text-lg font-medium p-2 border rounded-md' href={`/lezione/m1`}>Lezione Step2</Link>
         <Link className=' bg-slate-700 text-yellow-200 text-lg font-medium p-2 border rounded-md' href={`/correzione`}>Correzione Esercizio</Link>
+        <Link className=' bg-slate-700 text-yellow-200 text-lg font-medium p-2 border rounded-md' href={`/memory-game`}>Memory Game</Link>
       </div>
       <AnimatePresence>
         <div className='flex justify-between py-4 px-8'>
