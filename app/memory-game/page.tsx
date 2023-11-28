@@ -11,18 +11,24 @@ import { backSideCards } from '../lib/memory-games/data'
 import { ActionReducerMemoryGames, Decks, MemoryGamesActionType, ReducerFunctionMemoryGames } from "@/app/lib/memory-games/definitions";
 import { makeDecks } from '../lib/memory-games/docs'
 
-
+//import src from '@/public/memory-game/sounds/start.mp3'
 const limitTurns = 8;
 
 const difficulty = 2
 
-
+const src = '@/public/memory-game/sounds/start.mp3'
  function Page() {
+  //const audio = new Audio("/assets/audio.mp3");
+const [audio] = useState(new Audio(src));
   
 const defaultDecks = makeDecks(difficulty)
 console.log(defaultDecks);
 
-
+const playAudio = () => {
+  console.log(audio);
+  
+  audio.play();
+};
   const [counter, setCounter] = useState<number| null>(null);
   const [clickAlternate, setClickAlternate] = useState<boolean>(false);
   const [countMatched, setCountMatched] = useState<number>(defaultDecks.one.length) //firstHalf.length
@@ -77,6 +83,7 @@ console.log(defaultDecks);
         setCountMatched(newDecks.one.length)// ripristino i valori di partenza
         return newDecks; // ripristino i valori di partenza
       case "start":
+        playAudio()
         setCounter(limitTurns); // inizio il gioco dando il valore di partenza a Counter 
 
         return { ...state };
@@ -179,6 +186,7 @@ console.log(defaultDecks);
           Un altra partita...
         </button>
         )}
+        <button onClick={playAudio}>play</button>
         <Link className="p-2 w-40 rounded-md bg-green-700 text-center text-gray-200 text-2xl italic" href={`/`}>Home</Link>
       </div>
     </>
