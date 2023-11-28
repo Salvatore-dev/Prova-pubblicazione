@@ -3,7 +3,8 @@
 import React from 'react'
 import Header from '../ui/memory-game/header'
 import Link from 'next/link'
-import { useState, useReducer, useMemo } from 'react'
+import { useState, useReducer} from 'react'
+import { memo } from 'react'
 import Card from '../ui/memory-game/cards'
 import { backSideCards } from '../lib/memory-games/data'
 //import SidePanelControl from '../ui/memory-game/sidePanelControl'
@@ -92,7 +93,7 @@ console.log(defaultDecks);
     <>
         <Header />
         {/* <SidePanelControl counter={counter} setCards={setCards} countMatched={countMatched} /> */}
-        <div className={`h-[650px] py-4 ${!counter && "hidden"} bg-sky-200`}>
+        <div className={`h-[650px] py-4 ${!counter && "hidden"} bg-violet-400`}>
         
         <div className="grid grid-cols-12 gap-2 mb-3 justify-center">
           {cards?.one.map((el) => (
@@ -107,7 +108,7 @@ console.log(defaultDecks);
             </div>
           ))}
         </div>
-        <div className="h-5 bg-sky-300 grid"></div>
+        <div className="h-5 bg-gray-800 grid"></div>
         <div className="grid grid-cols-12 gap-2 mt-3">
           {cards.two.map((el) => (
             <div className="col-span-2 flex justify-center" key={el.name}>
@@ -122,10 +123,10 @@ console.log(defaultDecks);
           ))}
         </div>
       </div>
-      <div className="bg-sky-300 flex flex-row justify-around items-center py-2">
+      <div className="bg-purple-900 flex flex-row justify-around items-center py-2">
         {counter === null && (
           <button
-          className="p-2 w-40 rounded-md bg-sky-800 text-white text-2xl italic"
+          className="p-2 w-40 rounded-md bg-green-700 text-gray-200 text-2xl italic"
             onClick={() => {
               setCards({ type: "start" });
             }}
@@ -135,10 +136,10 @@ console.log(defaultDecks);
         )}
         {counter !== null && counter > 0 && countMatched != 0 && (
           <>
-            <div className=" text-sky-950 text-2xl font-medium">{`Tentativi ancora rimasti: ${counter}`}</div>
+            <div className=" text-gray-200 text-2xl font-medium">{`Tentativi ancora rimasti: ${counter}`}</div>
             <div>
               <button
-                className="bg-red-500 text-center w-24 text-lg font-semibold p-2 border rounded-lg"
+                className="p-2 w-40 rounded-md bg-red-700 text-center text-gray-200 text-2xl italic"
                 onClick={() =>
                   setCards({
                     type: "reload",
@@ -152,7 +153,7 @@ console.log(defaultDecks);
         )}
         {counter == 0 && (
           <button
-          className="bg-sky-800 w-48  text-center text-2xl text-white font-semibold p-2 border rounded-lg"
+          className="p-2 w-40 rounded-md bg-green-700 text-center text-gray-200 text-2xl italic"
           onClick={() =>
             setCards({
               type: "reload",
@@ -166,7 +167,7 @@ console.log(defaultDecks);
         )}
         {countMatched ===0 &&(
           <button
-          className="bg-green-700 w-58  text-center text-2xl text-white font-semibold p-2 border rounded-lg"
+          className="p-2 w-40 rounded-md bg-green-700 text-center text-gray-200 text-2xl italic"
           onClick={() =>
             setCards({
               type: "reload",
@@ -178,10 +179,10 @@ console.log(defaultDecks);
           Un altra partita...
         </button>
         )}
-        <Link className="bg-green-700 w-58  text-center text-2xl text-white font-semibold p-2 border rounded-lg" href={`/`}>Home</Link>
+        <Link className="p-2 w-40 rounded-md bg-green-700 text-center text-gray-200 text-2xl italic" href={`/`}>Home</Link>
       </div>
     </>
   )
 }
 
-export default Page
+export default memo(Page)
