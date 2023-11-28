@@ -13,7 +13,7 @@ import { makeDecks } from '../lib/memory-games/docs'
 
 const limitTurns = 16;
 
-const difficulty = 2.3
+const difficulty = 2
 
 
  function Page() {
@@ -24,7 +24,7 @@ console.log(defaultDecks);
 
   const [counter, setCounter] = useState<number| null>(null);
   const [clickAlternate, setClickAlternate] = useState<boolean>(false);
-  const [countMatched, setCountMatched] = useState<number>(defaultDecks.one.length * 2) //firstHalf.length
+  const [countMatched, setCountMatched] = useState<number>(defaultDecks.one.length) //firstHalf.length
   
   const actionFunction  = (state: Decks, action: ActionReducerMemoryGames) : Decks => {
     switch (action.type) {
@@ -73,7 +73,7 @@ console.log(defaultDecks);
       case "reload":
         setCounter(limitTurns); // ripristino i valori di partenza
         const newDecks = makeDecks(difficulty)
-        setCountMatched(newDecks.one.length * 2)// ripristino i valori di partenza
+        setCountMatched(newDecks.one.length)// ripristino i valori di partenza
         return newDecks; // ripristino i valori di partenza
       case "start":
         setCounter(limitTurns); // inizio il gioco dando il valore di partenza a Counter 
