@@ -1,15 +1,16 @@
 "use client"
 import React from 'react'
 import Link from 'next/link'
+import { Dispatch } from "react"
 import { ActionReducerMemoryGames, Decks, MemoryGamesActionType } from "@/app/lib/memory-games/definitions";
 
 function SidePanelControl({ counter = 1, setCards, countMatched = 1 }: {
     counter?: number | null;
-    setCards?: (action: ActionReducerMemoryGames) => Decks;
+    setCards: Dispatch<any>
     countMatched?: number
 }) {
     return (
-        <section id="separator-sidebar" className="top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+        <div id="separator-sidebar" className="top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
             <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
                 <ul className="space-y-2 font-medium">
                     <li>
@@ -55,7 +56,7 @@ function SidePanelControl({ counter = 1, setCards, countMatched = 1 }: {
                         <button
                             className="p-2 w-40 rounded-md bg-sky-800 text-white text-2xl italic"
                             onClick={() => {
-                               // setCards({ type: "start" });
+                                setCards({ type: "start" });
                             }}
                         >
                             Start...
@@ -63,12 +64,12 @@ function SidePanelControl({ counter = 1, setCards, countMatched = 1 }: {
                     )}
                     {counter !== null && counter > 0 && countMatched != 0 && (
                         <>
-                            <div className=" text-sky-950 text-2xl font-medium">{`Tentativi ancora rimasti: ${counter}`}</div>
+                            <div className=" text-gray-200 text-2xl font-medium">{`Tentativi ancora rimasti: ${counter}`}</div>
                             <div>
                                 <button
                                     className="bg-red-500 text-center w-24 text-lg font-semibold p-2 border rounded-lg"
                                     onClick={() =>
-                                       // setCards({type: "reload" })
+                                       setCards({type: "reload" })
                                     }
                                 >
                                     Riprova
@@ -80,7 +81,7 @@ function SidePanelControl({ counter = 1, setCards, countMatched = 1 }: {
                         <button
                             className="bg-sky-800 w-48  text-center text-2xl text-white font-semibold p-2 border rounded-lg"
                             onClick={() =>
-                              //  setCards({type: "reload",})
+                               setCards({type: "reload",})
                             }
                         >
                             Hai Fallito!!!!
@@ -92,7 +93,7 @@ function SidePanelControl({ counter = 1, setCards, countMatched = 1 }: {
                         <button
                             className="bg-green-700 w-58  text-center text-2xl text-white font-semibold p-2 border rounded-lg"
                             onClick={() =>
-                               // setCards({type: "reload", })
+                                setCards({type: "reload", })
                             }
                         >
                             Hai Vinto!!!!
@@ -102,7 +103,7 @@ function SidePanelControl({ counter = 1, setCards, countMatched = 1 }: {
                     )}
                 </div>
             </div>
-        </section>
+        </div>
     )
 }
 
