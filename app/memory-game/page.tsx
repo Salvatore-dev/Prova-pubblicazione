@@ -178,6 +178,7 @@ console.log(defaultDecks);
           Un altra partita...
         </button>
         )}
+        <Link className="bg-green-700 w-58  text-center text-2xl text-white font-semibold p-2 border rounded-lg" href={`/`}>Home</Link>
       </div>
     </>
   )
