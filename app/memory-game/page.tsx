@@ -6,28 +6,27 @@ import Link from 'next/link'
 import { useState, useReducer} from 'react'
 import { memo } from 'react'
 import Card from '../ui/memory-game/cards'
+import { Howl } from 'howler';
 import { backSideCards } from '../lib/memory-games/data'
 //import SidePanelControl from '../ui/memory-game/sidePanelControl'
 import { ActionReducerMemoryGames, Decks, MemoryGamesActionType, ReducerFunctionMemoryGames } from "@/app/lib/memory-games/definitions";
 import { makeDecks } from '../lib/memory-games/docs'
 
-//import src from '@/public/memory-game/sounds/start.mp3'
 const limitTurns = 8;
 
 const difficulty = 2
 
-const src = '@/public/memory-game/sounds/start.mp3'
  function Page() {
-  //const audio = new Audio("/assets/audio.mp3");
-const [audio] = useState(new Audio(src));
+  const audioSource = 'memory-game/sounds/start.mp3'
   
 const defaultDecks = makeDecks(difficulty)
 console.log(defaultDecks);
 
+const sound = new Howl({
+  src: [audioSource],
+});
 const playAudio = () => {
-  console.log(audio);
-  
-  audio.play();
+  sound.play();
 };
   const [counter, setCounter] = useState<number| null>(null);
   const [clickAlternate, setClickAlternate] = useState<boolean>(false);
