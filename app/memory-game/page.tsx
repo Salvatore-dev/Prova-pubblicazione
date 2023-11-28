@@ -11,7 +11,7 @@ import { ActionReducerMemoryGames, Decks, MemoryGamesActionType, ReducerFunction
 import { makeDecks } from '../lib/memory-games/docs'
 
 
-const limitTurns = 16;
+const limitTurns = 8;
 
 const difficulty = 2
 
@@ -135,7 +135,7 @@ console.log(defaultDecks);
         )}
         {counter !== null && counter > 0 && countMatched != 0 && (
           <>
-            <div className=" text-sky-950 text-2xl font-medium">{`Tentativi ancora rimasti: ${counter / 2}`}</div>
+            <div className=" text-sky-950 text-2xl font-medium">{`Tentativi ancora rimasti: ${counter}`}</div>
             <div>
               <button
                 className="bg-red-500 text-center w-24 text-lg font-semibold p-2 border rounded-lg"
