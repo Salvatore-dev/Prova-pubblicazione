@@ -1,6 +1,9 @@
 import { MemoryGamesCard, Decks } from "./definitions";
 import { totalCards } from "./data";
 import { unstable_noStore as noStore } from "next/cache";
+import { Howl } from 'howler';
+
+
 
 const shuffleArray = (array: MemoryGamesCard[]): MemoryGamesCard[] => { // funzione che riordina in modo casuale l'array
     const shuffledArray = array.slice(); //copia array
@@ -23,4 +26,55 @@ export const makeDecks = (n : number) : Decks => {
 
     return decks
 
+}
+
+export function errorAudioMemoryGame() {
+    const errorSource = 'memory-game/sounds/error.mp3'
+    const sound = new Howl({
+        src: [errorSource],
+      });
+ return sound
+}
+export function startAudioMemoryGame() {
+    const startSource = 'memory-game/sounds/start.mp3'
+    const sound = new Howl({
+        src: [startSource],
+      });
+ return sound
+}
+
+export function successAudioMemoryGame() {
+    const successSource = 'memory-game/sounds/success.mp3'
+    const sound = new Howl({
+        src: [successSource],
+      });
+ return sound
+}
+export function goodAudioMemoryGame() {
+    const goodSource = 'memory-game/sounds/good.mp3'
+    const sound = new Howl({
+        src: [goodSource],
+      });
+ return sound
+}
+export function gameOverAudioMemoryGame() {
+    const gameOverSource = 'memory-game/sounds/game-over.mp3'
+    const sound = new Howl({
+        src: [gameOverSource],
+      });
+ return sound
+}
+export function restartAudioMemoryGame() {
+    const restartAudio = 'memory-game/sounds/restart.mp3'
+    const sound = new Howl({
+        src: [restartAudio],
+      });
+ return sound
+}
+export function suspenseAudioMemoryGame() {
+    const suspenseSource = 'memory-game/sounds/suspense.mp3'
+    const sound = new Howl({
+        src: [suspenseSource],
+      });
+ return sound
 }

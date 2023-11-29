@@ -3,36 +3,58 @@
 import React from 'react'
 import Header from '../ui/memory-game/header'
 import Link from 'next/link'
-import { useState, useReducer} from 'react'
+import { useState, useReducer, useEffect } from 'react'
 import { memo } from 'react'
 import Card from '../ui/memory-game/cards'
-import { Howl } from 'howler';
 import { backSideCards } from '../lib/memory-games/data'
 //import SidePanelControl from '../ui/memory-game/sidePanelControl'
 import { ActionReducerMemoryGames, Decks, MemoryGamesActionType, ReducerFunctionMemoryGames } from "@/app/lib/memory-games/definitions";
-import { makeDecks } from '../lib/memory-games/docs'
+import { makeDecks, suspenseAudioMemoryGame, restartAudioMemoryGame, gameOverAudioMemoryGame, goodAudioMemoryGame, errorAudioMemoryGame, successAudioMemoryGame, startAudioMemoryGame } from '../lib/memory-games/docs'
 
-const limitTurns = 8;
 
 const difficulty = 2
+const limitTurns = 8;
 
- function Page() {
-  const audioSource = 'memory-game/sounds/start.mp3'
-  
-const defaultDecks = makeDecks(difficulty)
-console.log(defaultDecks);
+const startAudio = startAudioMemoryGame()
+const errorAudio = errorAudioMemoryGame()
+const successAudio = successAudioMemoryGame()
+const goodAudio = goodAudioMemoryGame()
+const gameOverAudio = gameOverAudioMemoryGame()
+const restartAudio = restartAudioMemoryGame()
+const suspanseAudio = suspenseAudioMemoryGame()
 
-const sound = new Howl({
-  src: [audioSource],
-});
-const playAudio = () => {
-  sound.play();
-};
-  const [counter, setCounter] = useState<number| null>(null);
+function Page() {
+
+  const defaultDecks = makeDecks(difficulty)
+  //console.log(defaultDecks);
+
+  const [counter, setCounter] = useState<number | null>(null);
   const [clickAlternate, setClickAlternate] = useState<boolean>(false);
   const [countMatched, setCountMatched] = useState<number>(defaultDecks.one.length) //firstHalf.length
-  
-  const actionFunction  = (state: Decks, action: ActionReducerMemoryGames) : Decks => {
+
+  useEffect(() => {
+    if (counter === 0) {
+      //suspanseAudio.stop()
+      setTimeout(() => {
+        gameOverAudio.play()
+      }, 1000)
+      setTimeout(() => {
+        suspanseAudio.stop()
+      }, 2001)
+
+    }
+    if (countMatched === 0) {
+      //suspanseAudio.stop()
+      setTimeout(() => {
+        successAudio.play()
+      }, 1000)
+      setTimeout(() => {
+        suspanseAudio.stop()
+      }, 2201)
+    }
+
+  }, [counter, countMatched])
+  const actionFunction = (state: Decks, action: ActionReducerMemoryGames): Decks => {
     switch (action.type) {
       case "one":
         setClickAlternate(true);
@@ -48,10 +70,16 @@ const playAudio = () => {
         return { ...state, one: [...deck1], latestChoise: action.cardId }; // restituisco la modifica del mazzo1 relativa alla spunta true della carta cliccata
       case "two":
         setClickAlternate(false);
+        suspanseAudio.stop()
         const card1 = state.one?.filter((el) => el.id === action.cardId)[0]; // prendo la carta nel mazzo uno che ha lo stesso id della carta del mazzo due
         let deck2;
         if (card1.isMatched) {
-          setCountMatched((prev)=> --prev) // se entro allora la carte e' stata trovata, quindi diminuisco di una unita partendo dalla lunghezza dell'array, fino a 0
+          goodAudio.play()
+          setCountMatched((prev) => --prev)
+          setTimeout(() => {
+            suspanseAudio.play()
+          }, 2000)
+          // se entro allora la carte e' stata trovata, quindi diminuisco di una unita partendo dalla lunghezza dell'array, fino a 0
           deck2 = state.two?.map((el) => { // cerco la carda con lo stesso id e spunto in true il valore isMatched
             if (el.id === action.cardId) {
               return { ...el, isMatched: true };
@@ -61,12 +89,17 @@ const playAudio = () => {
           //const card2 = deck2?.filter((el) => el.id === action.cardId)[0]; // prendo la carta del mazzo due che risulta metchata nel mazzo due gia con spunta true
           return { ...state, two: [...deck2], latestChoise: 0 };
         } else {// se entro qui vuol dire che la carta non e' stata abbinata
+          errorAudio.play()
+
           setCounter(prev => {
             if (prev) {
-              return prev -1
+              return prev - 1
             } else return prev
-            
           }); // diminusco il numero di tentativi
+
+          setTimeout(() => {
+            suspanseAudio.play()
+          }, 2000)
           const deck1 = state?.one.map((el) => {
             //cerco la carta cliccata nel mazzo 1  e modifico la spunta in false
             if (el.id === state.latestChoise) {
@@ -78,29 +111,37 @@ const playAudio = () => {
         }
       case "reload":
         setCounter(limitTurns); // ripristino i valori di partenza
+        restartAudio.play()
+        setTimeout(() => {
+          suspanseAudio.play()
+        }, 2000)
+
         const newDecks = makeDecks(difficulty)
         setCountMatched(newDecks.one.length)// ripristino i valori di partenza
         return newDecks; // ripristino i valori di partenza
       case "start":
-        playAudio()
+        startAudio.play()
+        setTimeout(() => {
+          suspanseAudio.play()
+        }, 2000)
         setCounter(limitTurns); // inizio il gioco dando il valore di partenza a Counter 
 
         return { ...state };
-      default: 
+      default:
         return { ...state };
     }
   }
   const [cards, setCards] = useReducer(actionFunction, defaultDecks)
-  
-  
 
-  
+
+
+
   return (
     <>
-        <Header />
-        {/* <SidePanelControl counter={counter} setCards={setCards} countMatched={countMatched} /> */}
-        <div className={`h-[650px] py-4 ${!counter && "hidden"} bg-violet-400`}>
-        
+      <Header />
+      {/* <SidePanelControl counter={counter} setCards={setCards} countMatched={countMatched} /> */}
+      <div className={`h-[650px] py-4 ${!counter && "hidden"} bg-violet-400`}>
+
         <div className="grid grid-cols-12 gap-2 mb-3 justify-center">
           {cards?.one.map((el) => (
             <div className="col-span-2 flex justify-center" key={el.name}>
@@ -132,7 +173,7 @@ const playAudio = () => {
       <div className="bg-purple-900 flex flex-row justify-around items-center py-2">
         {counter === null && (
           <button
-          className="p-2 w-40 rounded-md bg-green-700 text-gray-200 text-2xl italic"
+            className="p-2 w-40 rounded-md bg-green-700 text-gray-200 text-2xl italic"
             onClick={() => {
               setCards({ type: "start" });
             }}
@@ -159,33 +200,32 @@ const playAudio = () => {
         )}
         {counter == 0 && (
           <button
-          className="p-2 w-40 rounded-md bg-green-700 text-center text-gray-200 text-2xl italic"
-          onClick={() =>
-            setCards({
-              type: "reload",
-            })
-          }
-        >
-          Hai Fallito!!!! 
-          <br></br>
-          Riprova...
-        </button>
+            className="p-2 w-40 rounded-md bg-green-700 text-center text-gray-200 text-2xl italic"
+            onClick={() =>
+              setCards({
+                type: "reload",
+              })
+            }
+          >
+            Hai Fallito!!!!
+            <br></br>
+            Riprova...
+          </button>
         )}
-        {countMatched ===0 &&(
+        {countMatched === 0 && (
           <button
-          className="p-2 w-40 rounded-md bg-green-700 text-center text-gray-200 text-2xl italic"
-          onClick={() =>
-            setCards({
-              type: "reload",
-            })
-          }
-        >
-          Hai Vinto!!!! 
-          <br></br>
-          Un altra partita...
-        </button>
+            className="p-2 w-40 rounded-md bg-green-700 text-center text-gray-200 text-2xl italic"
+            onClick={() =>
+              setCards({
+                type: "reload",
+              })
+            }
+          >
+            Hai Vinto!!!!
+            <br></br>
+            Un altra partita...
+          </button>
         )}
-        <button onClick={playAudio}>play</button>
         <Link className="p-2 w-40 rounded-md bg-green-700 text-center text-gray-200 text-2xl italic" href={`/`}>Home</Link>
       </div>
     </>
