@@ -137,10 +137,10 @@ function Page() {
 
 
   return (
-    <>
+    <div className='max-h-screen max-w-screen'>
       <Header />
       {/* <SidePanelControl counter={counter} setCards={setCards} countMatched={countMatched} /> */}
-      <div className={`h-[650px] py-4 ${!counter && "hidden"} bg-violet-400`}>
+      <div className={`h-full py-4 ${!counter && "hidden"} bg-violet-400`}>
 
         <div className="grid grid-cols-12 gap-2 mb-3 justify-center">
           {cards?.one.map((el) => (
@@ -170,7 +170,7 @@ function Page() {
           ))}
         </div>
       </div>
-      <div className="bg-purple-900 flex flex-row justify-around items-center py-2">
+      <div className="bg-purple-900 flex flex-col gap-2 md:flex-row justify-around items-center py-2">
         {counter === null && (
           <button
             className="p-2 w-40 rounded-md bg-green-700 text-gray-200 text-2xl italic"
@@ -183,10 +183,10 @@ function Page() {
         )}
         {counter !== null && counter > 0 && countMatched != 0 && (
           <>
-            <div className=" text-gray-200 text-2xl font-medium">{`Tentativi ancora rimasti: ${counter}`}</div>
+            <div className=" text-gray-200 text-lg md:text-2xl font-medium">{`Tentativi ancora rimasti: ${counter}`}</div>
             <div>
               <button
-                className="p-2 w-40 rounded-md bg-red-700 text-center text-gray-200 text-2xl italic"
+                className="p-2 w-20 md:w-40 rounded-md bg-red-700 text-center text-gray-200 text-base md:text-2xl italic"
                 onClick={() =>
                   setCards({
                     type: "reload",
@@ -200,7 +200,7 @@ function Page() {
         )}
         {counter == 0 && (
           <button
-            className="p-2 w-40 rounded-md bg-green-700 text-center text-gray-200 text-2xl italic"
+            className="p-2 w-20 md:w-40 rounded-md bg-green-700 text-center text-gray-200 text-base md:text-2xl italic"
             onClick={() =>
               setCards({
                 type: "reload",
@@ -214,7 +214,7 @@ function Page() {
         )}
         {countMatched === 0 && (
           <button
-            className="p-2 w-40 rounded-md bg-green-700 text-center text-gray-200 text-2xl italic"
+            className="p-2 w-20 md:w-40 rounded-md bg-green-700 text-center text-gray-200 text-base md:text-2xl italic"
             onClick={() =>
               setCards({
                 type: "reload",
@@ -226,9 +226,9 @@ function Page() {
             Un altra partita...
           </button>
         )}
-        <Link className="p-2 w-40 rounded-md bg-green-700 text-center text-gray-200 text-2xl italic" href={`/`}>Home</Link>
+        <Link className="p-2 w-20 md:w-40 rounded-md bg-green-700 text-center text-gray-200 text-base md:text-2xl italic" href={`/`}>Home</Link>
       </div>
-    </>
+    </div>
   )
 }
 

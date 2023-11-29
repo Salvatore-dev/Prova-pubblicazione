@@ -42,7 +42,7 @@ function Card({card, backside, getCard, deck, alternate} : {
       };
     
     return (
-        <div className={`${(card.isMatched || Alternate(alternate, deck)) && 'pointer-events-none'} w-40 h-56 rounded-lg overflow-hidden my-1 border ${card.isMatched? "border-green-600" : "border-black"} border-3`} onClick={flipping} key={card.name}>
+        <div className={`${(card.isMatched || Alternate(alternate, deck)) && 'pointer-events-none'} w-12 h-16  sm:w-24 sm:h-32 lg:w-40 lg:h-56 rounded-lg overflow-hidden my-1 border ${card.isMatched? "border-green-600" : "border-black"} border-3`} onClick={flipping} key={card.name}>
             <Image src={card.isMatched || isFlipped ? card.url: backside.url} alt={isFlipped? card.name: backside.name} className="w-full h-full object-cover"></Image>
         </div>
     )

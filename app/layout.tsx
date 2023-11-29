@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Footer from './ui/footer';
 
 import { inter, lusitana, roboto } from '@/app/ui/fonts';
 
@@ -17,7 +18,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={roboto.className}>{children}</body>
+      <body className={roboto.className}>
+      <main>{children}</main>
+      <Footer />
+      </body>
     </html>
   )
 }
