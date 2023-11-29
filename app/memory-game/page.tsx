@@ -50,7 +50,7 @@ function Page() {
       }, 1000)
       setTimeout(() => {
         suspanseAudio.stop()
-      }, 2201)
+      }, 2001)
     }
 
   }, [counter, countMatched])
