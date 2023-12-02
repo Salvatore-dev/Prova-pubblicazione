@@ -11,6 +11,8 @@
   "dependencies": {
     "@vercel/postgres": "^0.5.1",
     "clsx": "^2.0.0",
+    "flowbite": "^2.2.0",
+    "flowbite-react": "^0.7.0",
     "framer-motion": "^10.16.5",
     "howler": "^2.2.4",
     "next": "14.0.2",
