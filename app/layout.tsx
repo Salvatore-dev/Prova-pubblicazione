@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Footer from './ui/footer';
-
+import Header from './ui/header';
 import { inter, lusitana, roboto } from '@/app/ui/fonts';
 
 import './globals.css'
@@ -18,7 +18,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      
       <body className={roboto.className}>
+      <Header />
       <main>{children}</main>
       <Footer />
       </body>
