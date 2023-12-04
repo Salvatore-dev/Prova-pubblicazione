@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Footer from './ui/footer';
 import Header from './ui/header';
 import { inter, lusitana, roboto } from '@/app/ui/fonts';
+import logo from '@/app/icon.jpg'
 
 import './globals.css'
 
@@ -18,6 +19,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+      <link
+  rel="icon"
+  href="/icon.png"
+  type="image/png"
+  sizes="32x32"
+/>
+      </head>
+    
       
       <body className={roboto.className}>
       <Header />

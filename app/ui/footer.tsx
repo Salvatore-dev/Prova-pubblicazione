@@ -1,5 +1,5 @@
 import React from 'react'
-import profile from '@/public/image/profile.jpg'
+import profile from '@/public/Salvatore-Tosich-logo.png'
 import Image from 'next/image'
 function Footer() {
     return (
@@ -15,7 +15,7 @@ function Footer() {
                                 alt="Profile Logo"
                                 width={50} // Imposta la larghezza desiderata dell'immagine
                                 height={50} // Imposta l'altezza desiderata dell'immagine
-                                className="h-8 me-3 border rounded-lg" // Classi CSS aggiuntive
+                                className="w-12 h-12 sm:w-14 sm:h-14 me-3 border rounded-full" // Classi CSS aggiuntive
                             />
                             <span className="self-center text-2xl text-gray-800 font-semibold whitespace-nowrap">Prova inserisci dati definitivi</span>
                         </a>

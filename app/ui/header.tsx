@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
-import { Button } from 'flowbite-react';
+import logo from '@/public/Salvatore-Tosich-logo.png'
 
 
 function Header() {
@@ -9,10 +9,10 @@ function Header() {
     <header>
     <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 ">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-            <Link href="https://flowbite.com" className="flex items-center">
-                <img src="https://flowbite.com/docs/images/logo.svg" className="mr-3 h-6 sm:h-9" alt="Flowbite Logo" />
-                <span className="self-center text-xl font-semibold whitespace-nowrap text-gray-700">Flowbite</span>
-            </Link>
+            <span className="flex items-center">
+                <Image src={logo} width={70} height={70} className="mr-3 w-12 h-12 sm:w-14 sm:h-14" alt="Flowbite Logo" />
+                <span className="self-center text-xl font-semibold whitespace-nowrap text-gray-700">Salvatore Tosich Web Developer</span>
+            </span>
             <div className="flex items-center lg:order-2">
                 <a href="#" className="text-gray-100 bg-gray-700 hover:bg-gray-500 focus:ring-4 focus:ring-gray-700 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2  focus:outline-none">Log in</a>
                 <a href="#" className="text-gray-100 bg-gray-700 hover:bg-gray-500 focus:ring-4 focus:ring-gray-700 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2  focus:outline-none">Da assegnare eventualmente</a>
@@ -39,9 +39,6 @@ function Header() {
                     </li>
                     <li>
                         <a href="#" className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-gray-300 lg:p-0">Contact</a>
-                    </li>
-                    <li>
-                        <Button href='/'>Home</Button>
                     </li>
                 </ul>
             </div>
