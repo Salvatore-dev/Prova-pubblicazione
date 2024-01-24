@@ -4,7 +4,6 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import { useFormState } from 'react-dom'
 import Image from 'next/image'
-
 import { PhotosWithTotalResults, ErrorResponse } from 'pexels'
 
 //import client_Pexel from '../utils/connectPexel';
@@ -110,14 +109,26 @@ function FormRequestPhotos() {
         }
 
         console.log(dataToSend);
-        getPhotos(dataToSend)
-        .then(data => {
+        const DatatoSend2 = 'sa'
+        const r = fetch(`/api/pexel/`, {
+          method: "POST",
+          body: JSON.stringify(dataToSend), // must match 'Content-Type' header
+          headers: {'Content-Type': 'application/json'}
+        })
+        .then(response=> response.json())
+        .then(data=> { 
           console.log(data)
           const response = data as PhotosWithTotalResults
-          if (response.photos) {
-            setResponse(response)
-          }
+          setResponse(response)
         })
+        // getPhotos(dataToSend)
+        // .then(data => {
+        //   console.log(data)
+        //   const response = data as PhotosWithTotalResults
+        //   if (response.photos) {
+        //     setResponse(response)
+        //   }
+        // })
       }
     }
   }, [photo])

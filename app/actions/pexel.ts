@@ -36,13 +36,15 @@ export async function getPhotos(request: Query_Photos) {
     //   }
     // })
     const response = await client_Pexel.photos.search({ query: query, per_page: per_page, page: page, orientation: orientation, size: size, locale: locale })
-    console.log(response);
+    //console.log(response);
     if (response) {
       return response
     } else {
       return null
     }
   } catch (error) {
+    console.log('Failed pext actions');
+    
     return null
   }
 
