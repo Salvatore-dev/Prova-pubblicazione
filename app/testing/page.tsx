@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react'
 import { useFormState } from 'react-dom'
 import Image from 'next/image'
 
+import { PhotosWithTotalResults, ErrorResponse } from 'pexels'
+
 //import client_Pexel from '../utils/connectPexel';
 import { getPhotos } from '../actions/pexel'
 import { Carousel } from 'flowbite-react';
@@ -86,7 +88,7 @@ function FormRequestPhotos() {
   const [photo, setPhoto] = useState<FormData | null>(null)
 
 
-  const [response, setResponse] = useState<Response_Photos | null>(null)
+  const [response, setResponse] = useState<PhotosWithTotalResults | null>(null)
 
 
   useEffect(() => {
@@ -111,8 +113,8 @@ function FormRequestPhotos() {
         getPhotos(dataToSend)
         .then(data => {
           console.log(data)
-          if (data) {
-            const response: Response_Photos = data
+          const response = data as PhotosWithTotalResults
+          if (response.photos) {
             setResponse(response)
           }
         })
@@ -171,13 +173,13 @@ function FormRequestPhotos() {
       <div className='flex flex-col gap-3 bg-slate-600 py-6'>
         <div className=' bg-slate-600 text-yellow-300 py-2 flex items-center justify-around'>
           <h1>Risultato immagini</h1>
-          <h2>Sono state trovate {response?.total_results} foto</h2>
+          <h2>Sono state trovate {response?.total_results && response?.total_results} foto</h2>
         </div>
         <div className="h-[200px] sm:h-[300px] xl:h-[500px] 2xl:h-[600px] w-[90%] m-auto">
         {response && <Carousel slide={false}>
             {
               response?.photos.map((el, i) => (
-                  <img key={el.id} src={el.src.original} width={el.width} height={el.height} alt={el.alt} />
+                  <img key={el.id} src={el.src.original} width={el.width} height={el.height} alt={'immagine generica, ' +el.alt} />
                 
           ))}
 
