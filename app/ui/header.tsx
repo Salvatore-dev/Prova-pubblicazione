@@ -32,10 +32,10 @@ function Header() {
                         <a href="#" className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-gray-300 lg:p-0">Skills</a>
                     </li>
                     <li>
-                        <Link href={`/memory-game`} className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-gray-300 lg:p-0">Progetti personali</Link>
+                        <Link href={`/memory-game`} className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-gray-300 lg:p-0">Memory Game</Link>
                     </li>
                     <li>
-                        <a href="#" className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-gray-300 lg:p-0">Certificazioni</a>
+                        <a href={`/testing`} className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-gray-300 lg:p-0">Testing</a>
                     </li>
                     <li>
                         <a href="#" className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-gray-300 lg:p-0">Contact</a>
