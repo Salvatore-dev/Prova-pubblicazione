@@ -129,7 +129,7 @@ function FormRequestPhotos() {
 
   }]
   return InitForm.map((el, i) => (
-    <div className=''>
+    <div className='' key={'query:' +el.query}>
       <form key={'query_form' + i} action={el.typeReserch} className='flex flex-row gap-1 py-4 bg-slate-400 justify-around'>
         <div>
           <label htmlFor='query'>Cerca le foto che desideri: </label>
