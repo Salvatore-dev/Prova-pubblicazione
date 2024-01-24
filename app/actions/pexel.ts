@@ -36,18 +36,12 @@ export async function getPhotos(request: Query_Photos) {
     //const response = await client_Pexel.photos.search({ query: query, per_page: per_page, page: page, orientation: orientation, size: size, locale: locale })
     console.log(response.data);
     if (response.data) {
-      return response.data
+      
+      return new NextResponse(JSON.stringify(response.data))
     } else {
-      return null
+      return new NextResponse(JSON.stringify(null))
     }
-
-
-
   } catch (error) {
-    return null
+    return new NextResponse(JSON.stringify(null))
   }
-
-
-
-
 }

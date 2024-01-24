@@ -108,7 +108,9 @@ function FormRequestPhotos() {
         }
 
         console.log(dataToSend);
-        getPhotos(dataToSend).then(data => {
+        getPhotos(dataToSend)
+        .then(response=> response?.json() )
+        .then(data => {
           console.log(data)
           if (data) {
             const response: Response_Photos = data
