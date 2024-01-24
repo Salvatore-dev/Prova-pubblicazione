@@ -113,14 +113,17 @@ function FormRequestPhotos() {
         const r = fetch(`/api/pexel/`, {
           method: "POST",
           body: JSON.stringify(dataToSend), // must match 'Content-Type' header
-          headers: {'Content-Type': 'application/json'}
+          headers: { 'Content-Type': 'application/json' }
         })
-        .then(response=> response.json())
-        .then(data=> { 
-          console.log(data)
-          const response = data as PhotosWithTotalResults
-          setResponse(response)
-        })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data)
+            if (data) {
+              const response = data as PhotosWithTotalResults
+              setResponse(response)
+            }
+
+          })
         // getPhotos(dataToSend)
         // .then(data => {
         //   console.log(data)
@@ -143,7 +146,7 @@ function FormRequestPhotos() {
 
   }]
   return InitForm.map((el, i) => (
-    <div className='' key={'query:' +el.query}>
+    <div className='' key={'query:' + el.query}>
       <form key={'query_form' + i} action={el.typeReserch} className='flex flex-row gap-1 py-4 bg-slate-400 justify-around'>
         <div>
           <label htmlFor='query'>Cerca le foto che desideri: </label>
@@ -187,23 +190,23 @@ function FormRequestPhotos() {
           <h2>Sono state trovate {response?.total_results && response?.total_results} foto</h2>
         </div>
         <div className="h-[200px] sm:h-[300px] xl:h-[500px] 2xl:h-[600px] w-[90%] m-auto">
-        {response && <Carousel slide={false}>
+          {response && <Carousel slide={false}>
             {
               response?.photos.map((el, i) => (
-                  <img key={el.id} src={el.src.original} width={el.width} height={el.height} alt={'immagine generica, ' +el.alt} />
-                
-          ))}
+                <img key={el.id} src={el.src.original} width={el.width} height={el.height} alt={'immagine generica, ' + el.alt} />
+
+              ))}
 
           </Carousel>}
           {!response && <Carousel pauseOnHover>
             <Image src={esempio_1} alt="foto inerente alla programmazione generica" />
-                <Image src={esempio_2} alt="foto inerente alla programmazione generica" />
-                <Image src={esempio_3} alt="foto inerente alla programmazione generica" />
-                <Image src={esempio_4} alt="foto inerente alla programmazione generica" />
-                <Image src={esempio_6} alt="foto inerente alla programmazione generica" />
-            </Carousel>}
+            <Image src={esempio_2} alt="foto inerente alla programmazione generica" />
+            <Image src={esempio_3} alt="foto inerente alla programmazione generica" />
+            <Image src={esempio_4} alt="foto inerente alla programmazione generica" />
+            <Image src={esempio_6} alt="foto inerente alla programmazione generica" />
+          </Carousel>}
           <div className='text-center'>
-          <a className=' text-lg text-orange-500 hover:cursor-pointer hover:underline' href="https://www.pexels.com" target='_blank'>Photos provided by Pexels</a>
+            <a className=' text-lg text-orange-500 hover:cursor-pointer hover:underline' href="https://www.pexels.com" target='_blank'>Photos provided by Pexels</a>
           </div>
         </div>
       </div>
@@ -217,7 +220,7 @@ function Page() {
 
   return (
     <div>
-        <FormRequestPhotos />
+      <FormRequestPhotos />
     </div>
   )
 }
