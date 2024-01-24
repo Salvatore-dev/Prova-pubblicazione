@@ -109,7 +109,6 @@ function FormRequestPhotos() {
 
         console.log(dataToSend);
         getPhotos(dataToSend)
-        .then(response=> response?.json() )
         .then(data => {
           console.log(data)
           if (data) {
