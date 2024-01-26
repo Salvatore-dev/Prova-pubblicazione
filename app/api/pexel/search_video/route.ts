@@ -3,20 +3,19 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 import { unstable_noStore as noStore } from 'next/cache';
-import { PhotosWithTotalResults, ErrorResponse } from 'pexels';
+import { Videos, ErrorResponse } from 'pexels';
 
-import client_Pexel from "../../utils/connectPexel"
-import { log } from 'console';
+import client_Pexel from "../../../utils/connectPexel"
 
 export async function POST(request: NextRequest): Promise<NextResponse> { // esempio
     noStore()
     const data = await request.json()
-    console.log('controlla route', data);
+    console.log('controlla route_video', data);
 
     const locale = 'it-IT'
     const { query, page, per_page, orientation, size } = data
     try {
-        const response = await client_Pexel.photos.search({ query: query, per_page: per_page, page: page, orientation: orientation, size: size, locale: locale })
+        const response = await client_Pexel.videos.search({ query: query, per_page: per_page, page: page, orientation: orientation, size: size, locale: locale })
         const error = response as ErrorResponse
         if (error.error) {
             console.log('errore nella ricerca pexel', error.error);
@@ -24,7 +23,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> { // ese
             return new NextResponse(JSON.stringify(null))
         } else {
             console.log(response);
-            const photos = response as PhotosWithTotalResults
+            const photos = response as Videos
             return new NextResponse(JSON.stringify(photos))
         }
     } catch (error) {
