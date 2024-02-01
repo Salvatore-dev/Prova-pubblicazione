@@ -1,20 +1,12 @@
 import React from 'react'
-import VideoResearch from '../ui/pexel/video-research'
-import PhotoResearch from '../ui/pexel/photo-research'
-
-import MediaControlCard from '../ui/Ui_Material/exemple'
-
-
-
+import NavBarBootstap from '../ui/test/esempio'
 
 
 function Page() {
 
   return (
     <div>
-      {/* <PhotoResearch /> */}
-        <VideoResearch />
-        {/* <MediaControlCard /> */}
+      <NavBarBootstap />
     </div>
   )
 }
