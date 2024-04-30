@@ -1,40 +1,26 @@
-"use client"
-import { useState } from 'react';
-import { Alert, Button } from 'react-bootstrap';
-
-import NewHeader from '../newHeader';
+import cover from '@/public/image/pexel/pexels-photo-4792728.jpeg'
+import Image from 'next/image';
+import rapidita from '@/public/image/nova_aetas/rapidita.jpg'
 
 function NavBarBootstap() {
-    const [show, setShow] = useState(false)
   return (
-    <>
-    <style type="text/css">
-        {`
-    .btn-flat {
-      background-color: purple;
-      color: white;
-    }
-
-    .btn-xxl {
-      padding: 1rem 1.5rem;
-      font-size: 1.5rem;
-    }
-    `}
-      </style>
-     <Alert show={show} dismissible variant="success">
-      <Alert.Heading>Il mio avviso</Alert.Heading>
-      <p>La casa e morbida, non conviene piangere, a meno che non si tratti diuna piccola compagnia aerea, ne ha bisogno</p>
-        <hr />
-        <div className="d-flex justify-content-end">
-          <Button onClick={() => setShow(false)} variant="outline-success">
-            Close me
-          </Button>
+    <section className='relative min-h-screen '>
+      <Image  src={cover} 
+       placeholder="blur"
+       quality={100}
+       fill
+      sizes="100vw"
+      alt="Navbar image" className=' object-cover bg-center '/>
+      <div className='absolute top-0 left-1 right-1'>
+        <div className='text-white bg-slate-200 bg-transparent'>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas commodi nisi voluptatem! Eum distinctio eos, voluptate repellat odio commodi quisquam, enim tempore nemo necessitatibus harum dolorum minus iste tenetur magni.
         </div>
-    
-    </Alert>
-    {!show && <Button size='lg' variant='flat' onClick={() => setShow(true)}>Show Alert</Button>}
-    <NewHeader/>
-    </>
+      </div>
+      <div className='absolute top-6 text-red'>
+        ciaosasasas
+        <Image src={rapidita} alt='icona' width={20} height={20}></Image>
+      </div>
+    </section>
   )
 }
 

@@ -22,7 +22,7 @@ function NewHeader() {
     return (
         <>
             {['sm'].map((expand) => (
-                <Navbar key={expand} expand={expand} className=" bg-amber-100 mb-3">
+                <Navbar key={expand} expand={expand} className=" bg-amber-100">
                     <Container fluid>
                         <Navbar.Brand
                             className='flex md:flex-row gap-2 font-bold flex-col justify-center items-center'

@@ -41,7 +41,9 @@ const SeveralLinks: LinksColumsContent = {
     links: [
         { name: 'MongoDb', url: 'https://www.mongodb.com/it-it/cloud/atlas/register' },
         {name: 'ElephantSQL' , url:'https://customer.elephantsql.com/instance'},
-        {name: 'Bootstrap per React',  url: 'https://react-bootstrap.github.io/docs/getting-started/introduction'}
+        {name: 'Bootstrap per React',  url: 'https://react-bootstrap.github.io/docs/getting-started/introduction'},
+        {name: 'Krea (genaratore immagini)', url: 'https://www.krea.ai/home'},
+        {name: 'Imagine Art (generatore immagini)', url: 'https://www.imagine.art'}
     ]
 }
 
