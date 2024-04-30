@@ -99,7 +99,10 @@ function Hero_strengthenings({ strengthenings, id_hero }: { strengthenings: stri
         <section className=' flex items-center gap-4 justify-center flex-wrap'>
             {
                hero_strengthenings && hero_strengthenings.map((el, i) => (
+                <div key={`potenziamento_${i}`} className='m-0 p-0'>
                     <Single_strength source={el} index={i} funx_value={sendValue} />
+                </div>
+                    
                 ))
             }
         </section>
