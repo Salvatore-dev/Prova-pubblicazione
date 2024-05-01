@@ -45,7 +45,7 @@ function New_campaign({addCampaign}: {addCampaign: Dispatch<SetStateAction<Campa
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <Button variant="success" className='text-black bg-green-600' onClick={handleShow}>
         Crea Nuova  Campagna
       </Button>
 
@@ -61,10 +61,10 @@ function New_campaign({addCampaign}: {addCampaign: Dispatch<SetStateAction<Campa
             </Form.Group>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
+            <Button className='text-black bg-red-600' variant="secondary" onClick={handleClose}>
               Chiudi
             </Button>
-            <Button type="submit" variant="primary">
+            <Button type="submit" variant="success" className='text-black bg-green-600'>
               Salva
             </Button>
           </Modal.Footer>

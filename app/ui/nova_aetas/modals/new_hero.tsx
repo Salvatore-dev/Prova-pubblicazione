@@ -26,72 +26,72 @@ function New_hero({ addHero, id_campaign }: { addHero: Dispatch<SetStateAction<H
         //console.log(formData.get(`campaign_name`)); qui accedo al valore ma senza errore
         async function fetchData() {
             const Campaign_id = id_campaign as number
-              const response = await axios.post(`api/nova_aetas/heroes`, {
+            const response = await axios.post(`api/nova_aetas/heroes`, {
                 name: name,
                 player: player,
                 classe: hero_class,
                 destiny: 1,
                 campaign_id: Campaign_id,
                 headers: {
-                  "Content-Type": "application/json",
+                    "Content-Type": "application/json",
                 }
-              })
-              if(response.data){
+            })
+            if (response.data) {
                 const data = response.data as Hero[]
-                
-                const new_hero = data.map((el, i)=> {
-                    return{
-                        ...el,  injuries: [], skills: []
+
+                const new_hero = data.map((el, i) => {
+                    return {
+                        ...el, injuries: [], skills: []
                     }
                 }) as HERO[]
-              console.log("nuovo eroe",data[0])
-              addHero(prev=> [...prev, new_hero[0]])
-              }
-              
+                console.log("nuovo eroe", data[0])
+                addHero(prev => [...prev, new_hero[0]])
             }
-            fetchData()
 
-            setShow(false);
-        };
-        return (
-            <>
-                <Button variant="success" className='bg-green-500 text-black' onClick={handleShow}>
-                    Crea Eroe
-                </Button>
+        }
+        fetchData()
 
-                <Modal show={show} onHide={handleClose}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Crea Eroe</Modal.Title>
-                    </Modal.Header>
-                    <Form onSubmit={send_Data}>
-                        <Modal.Body>
-                            <Form.Group className="mb-3" controlId="hero_name">
-                                <Form.Label>Inserisci nome eroe</Form.Label>
-                                <Form.Control type="text" placeholder="Nuovo eroe" name='hero_name' autoFocus />
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="hero_player">
-                                <Form.Label>Inserisci giocatore</Form.Label>
-                                <Form.Control type="text" placeholder="Nome giocatore" name='hero_player' autoFocus />
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="hero_class">
-                                <Form.Label>Inserisci classe</Form.Label>
-                                <Form.Control type="text" placeholder="Classe..." name='hero_class' autoFocus />
-                            </Form.Group>
-                        </Modal.Body>
-                        <Modal.Footer>
-                            <Button variant="danger" className='text-black bg-red-600' onClick={handleClose}>
-                                Chiudi
-                            </Button>
-                            <Button type="submit" variant="success" 
+        setShow(false);
+    };
+    return (
+        <>
+            <Button variant="success" className='bg-green-500 text-black' onClick={handleShow}>
+                Crea Eroe
+            </Button>
+
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Crea Eroe</Modal.Title>
+                </Modal.Header>
+                <Form onSubmit={send_Data}>
+                    <Modal.Body>
+                        <Form.Group className="mb-3" controlId="hero_name">
+                            <Form.Label>Inserisci nome eroe</Form.Label>
+                            <Form.Control type="text" placeholder="Nuovo eroe" name='hero_name' autoFocus />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="hero_player">
+                            <Form.Label>Inserisci giocatore</Form.Label>
+                            <Form.Control type="text" placeholder="Nome giocatore" name='hero_player' autoFocus />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="hero_class">
+                            <Form.Label>Inserisci classe</Form.Label>
+                            <Form.Control type="text" placeholder="Classe..." name='hero_class' autoFocus />
+                        </Form.Group>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="danger" className='text-black bg-red-600' onClick={handleClose}>
+                            Chiudi
+                        </Button>
+                        <Button type="submit" variant="success"
                             className='text-black bg-green-500'
-                            >
-                                Salva
-                            </Button>
-                        </Modal.Footer>
-                    </Form>
-                </Modal>
-            </>
-        )
-    }
+                        >
+                            Salva
+                        </Button>
+                    </Modal.Footer>
+                </Form>
+            </Modal>
+        </>
+    )
+}
 
 export default New_hero

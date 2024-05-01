@@ -9,7 +9,6 @@ import { Campaign } from '@/app/lib/Nova_aetas/definitions';
 
 import ListGroup from 'react-bootstrap/ListGroup';
 import { Button } from 'react-bootstrap';
-import Form from 'react-bootstrap/Form';
 // https://react-bootstrap.github.io/docs/forms/select/
 function Select_campaign({SetId_campaign}: {SetId_campaign: Dispatch<SetStateAction<number>>}) {
     const [campaigns, setCampaigns] = useState<Campaign[]>([])
@@ -43,7 +42,7 @@ function Select_campaign({SetId_campaign}: {SetId_campaign: Dispatch<SetStateAct
     }
     return (
             <section>
-                <div className='flex justify-around items-center bg-slate-400 h-16'>
+                <div className='flex justify-around items-center bg-slate-400 h-16 px-2'>
                     <p className='m-0 text-2xl font-medium'>Seleziona Campagna</p>
                     <New_campaign addCampaign={setCampaigns} />
                 </div>
