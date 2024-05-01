@@ -55,7 +55,7 @@ function New_hero({ addHero, id_campaign }: { addHero: Dispatch<SetStateAction<H
         };
         return (
             <>
-                <Button variant="primary" onClick={handleShow}>
+                <Button variant="success" onClick={handleShow}>
                     Crea Eroe
                 </Button>
 
@@ -79,10 +79,12 @@ function New_hero({ addHero, id_campaign }: { addHero: Dispatch<SetStateAction<H
                             </Form.Group>
                         </Modal.Body>
                         <Modal.Footer>
-                            <Button variant="secondary" onClick={handleClose}>
+                            <Button variant="danger" onClick={handleClose}>
                                 Chiudi
                             </Button>
-                            <Button type="submit" variant="primary">
+                            <Button type="submit" variant="success" 
+                            className='text-black bg-orange-500'
+                            >
                                 Salva
                             </Button>
                         </Modal.Footer>
