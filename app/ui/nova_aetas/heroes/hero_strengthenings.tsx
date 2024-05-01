@@ -66,7 +66,7 @@ function Hero_strengthenings({ strengthenings, id_hero }: { strengthenings: stri
                 }
             }).join()
             console.log('strtinga da spedire', string_to_send);
-            const response = await axios.patch(`http://localhost:3000/api/nova_aetas/heroes/${id_hero}/campaign/${Case_modify_Hero.strengthenings}`, {
+            const response = await axios.patch(`api/nova_aetas/heroes/${id_hero}/campaign/${Case_modify_Hero.strengthenings}`, {
                 headers: {
                     "Content-Type": "application/json",
                 },

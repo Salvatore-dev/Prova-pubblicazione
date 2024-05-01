@@ -62,12 +62,14 @@ function Select_campaign({SetId_campaign}: {SetId_campaign: Dispatch<SetStateAct
                                 <p>{el.name}</p>
                                 <div className=' flex items-center gap-2'>
                                     <Button
+                                    className='text-black bg-green-500'
                                     variant='success'
                                     onClick={()=> {
                                         send_id_campaign(el.campaign_id)
                                     }}
                                     >Seleziona</Button>
                                     <Button
+                                    className='text-black bg-red-600'
                                     onClick={()=> delete_campaign(el.campaign_id)}
                                     variant='danger'
                                     >Cancella</Button>

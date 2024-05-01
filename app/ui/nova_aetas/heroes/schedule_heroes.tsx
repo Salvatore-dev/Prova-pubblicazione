@@ -41,7 +41,7 @@ return (
       <div className=' flex items-center gap-4 justify-center py-4 bg-gray-300'>
         <p className='m-0 p-0 text-xl md:text-2xl lg:text-4xl text-center font-bold'>Schede Eroi</p>
         <New_hero addHero={setHeroes} id_campaign={id_campaign} />
-        <Button onClick={()=> setShow_heroes(prev=> !prev)}>{show_heroes ? 'Nascondi eroi disponibili': 'Vedi eroi diponibili'}</Button>
+        <Button className='text-black bg-blue-600 ' variant='ligth' onClick={()=> setShow_heroes(prev=> !prev)}>{show_heroes ? 'Nascondi eroi disponibili': 'Vedi eroi diponibili'}</Button>
       </div>
       <div>
         <All_heroes_Select data={hero_to_select} id_campaign={id_campaign} addHero={setHeroes} setShow_heroes={setShow_heroes} />

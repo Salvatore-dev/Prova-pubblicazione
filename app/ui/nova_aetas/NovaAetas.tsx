@@ -37,7 +37,7 @@ function NovaAetas() {
             <p className="m-0 text-lg font-medium">
               Campagna: {data?.campaign_schedule?.campaign?.name}
             </p>
-            <Button variant="warning"
+            <Button className="text-black bg-amber-600" variant="warning"
               onClick={() => setData(null)}
             >Esci</Button>
 

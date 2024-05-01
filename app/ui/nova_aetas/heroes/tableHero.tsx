@@ -144,7 +144,7 @@ function TableHero({ data }: { data: HERO | null }) {
     if (hero) {
       console.log('valorin ingresso tabella hero', value_string, case_value);
       
-      const response = await axios.patch(`http://localhost:3000/api/nova_aetas/heroes/${hero.id}/campaign/${case_value}`, {
+      const response = await axios.patch(`api/nova_aetas/heroes/${hero.id}/campaign/${case_value}`, {
         headers: {
           "Content-Type": "application/json",
         },

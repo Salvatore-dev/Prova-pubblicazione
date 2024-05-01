@@ -64,7 +64,7 @@ const handleSubmit = useDebouncedCallback(async (value: string ,index:  number)=
     }).join()
     console.log("vedi arrai pronto per modifica", string);
     
-    const response = await axios.patch(`http://localhost:3000/api/nova_aetas/heroes/${hero_id}/campaign/${Case_modify_Hero.conquests}`, {
+    const response = await axios.patch(`api/nova_aetas/heroes/${hero_id}/campaign/${Case_modify_Hero.conquests}`, {
                 headers: {
                     "Content-Type": "application/json",
                 },
