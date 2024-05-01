@@ -142,7 +142,7 @@ function TableHero({ data }: { data: HERO | null }) {
   }
   const handleChangeValue = useDebouncedCallback(async (value_string: string, case_value: string) => {
     if (hero) {
-      console.log('valorin ingresso', value_string, case_value);
+      console.log('valorin ingresso tabella hero', value_string, case_value);
       
       const response = await axios.patch(`http://localhost:3000/api/nova_aetas/heroes/${hero.id}/campaign/${case_value}`, {
         headers: {
@@ -151,7 +151,7 @@ function TableHero({ data }: { data: HERO | null }) {
         value: value_string
       })
       if (response.data) {
-        console.log('controllo risposta', response.data[0]);
+        console.log('controllo risposta tabella hero', response.data[0]);
         if (case_value === Case_modify_Hero.liaison) {
           const Hero_liaison = response.data[0].liaison as string
           const r: Hero_data = { ...hero }

@@ -71,7 +71,7 @@ const handleSubmit = useDebouncedCallback(async (value: string ,index:  number)=
                 value: string
             })
             if (response.data) {
-              console.log('controllo risposta' , response.data[0]);
+              console.log('controllo risposta conquista' , response.data[0]);
             const Hero_conquests = response.data[0].hero_conquests as string
             const g : Changing_data_hero_connquest[] = conquests.map((el, i)=>{
               if (i === index) {
