@@ -249,7 +249,7 @@ function TableHero({ data }: { data: HERO | null }) {
               <Hero_conquests hero_conquests={hero && hero.hero_conquests} hero_id={hero && hero.id} />
             </td>
           </tr>
-          <Hero_injuries data={data?.injuries} id_hero={data?.id} />
+          <Hero_injuries data={data?.injuries} id_hero={hero && hero.id} />
           <tr>
             <td>Note</td>
             <td>{(hero && !hero.note.changing)? <p onClick={()=> changing(Case_modify_Hero.note, true)}>{hero.note.value}</p>: <textarea defaultValue={hero?.note.value || 'vuoto'} onChange={(e)=> handleChangeValue(e.currentTarget.value, Case_modify_Hero.note)} />}</td>
@@ -274,7 +274,7 @@ function TableHero({ data }: { data: HERO | null }) {
             <td className=' font-bold'>Potenziamento</td>
             <td><Hero_strengthenings strengthenings={hero && hero.strengthenings} id_hero={hero && hero.id} /></td>
           </tr>
-          <Hero_skills data={data?.skills} hero_id={data?.id} />
+          <Hero_skills data={data?.skills} hero_id={hero && hero.id} />
           <tr>
             <td>
               <Hero_icon_title title='Spesi' />

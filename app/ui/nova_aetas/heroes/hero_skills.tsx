@@ -122,7 +122,7 @@ function Hero_skills({ data, hero_id }: { data: Skill[] | null | undefined, hero
                 setSkills([...r, ...new_items])
             }
         }
-    }, [data])
+    }, [data, hero_id])
 
 function lastSkill(skills : Skills_hero[], length_array: number, item_empty: Skills_hero) : Skills_hero[] {
     const y = skills.filter(el => el.id !== 0);

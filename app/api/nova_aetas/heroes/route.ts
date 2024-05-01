@@ -4,9 +4,10 @@ import sql_Elephant from "@/app/lib/test/connectpostgre";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(Request: NextRequest): Promise<NextResponse> {
-    const req = Request
-    console.log(req);
+   
     const data = await Request.json()
+    console.log('controlla richiesta nuovo eroe', data);
+    
     const { name, player, classe, destiny, campaign_id } = data
     console.log(name, player, classe, destiny, campaign_id);
     try {
@@ -21,7 +22,7 @@ export async function POST(Request: NextRequest): Promise<NextResponse> {
         
         return new NextResponse(JSON.stringify(new_hero))
     } catch (error) {
-        console.log(error);
+        console.log("controlla errore creazione hero",error);
         return new NextResponse(JSON.stringify(null))
     }
 }

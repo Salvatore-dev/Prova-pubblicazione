@@ -40,6 +40,7 @@ type Injury_hero ={
 function Hero_injuries({data, id_hero}: {data: Injury[] | null | undefined, id_hero: number | undefined | null }) {
   
     const [injuries, setInjuries] = useState<Injury_hero[]|null>(null)
+  console.log('controllo ferite nuovo eroe', data, id_hero);
   
     useEffect(()=>{
         if (data && id_hero) {
@@ -77,7 +78,7 @@ function Hero_injuries({data, id_hero}: {data: Injury[] | null | undefined, id_h
                 setInjuries([...r, ...new_items])
             }
         }
-    }, [data])
+    }, [data, id_hero])
 
     function changing(index: number, type_value: string, set: boolean) {
         if (injuries) {

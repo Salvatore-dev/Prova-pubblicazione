@@ -41,10 +41,10 @@ function New_hero({ addHero, id_campaign }: { addHero: Dispatch<SetStateAction<H
                 
                 const new_hero = data.map((el, i)=> {
                     return{
-                        ...el,  injuries: null, skills: null, upgrades: null
+                        ...el,  injuries: [], skills: []
                     }
                 }) as HERO[]
-              console.log(data[0])
+              console.log("nuovo eroe",data[0])
               addHero(prev=> [...prev, new_hero[0]])
               }
               
