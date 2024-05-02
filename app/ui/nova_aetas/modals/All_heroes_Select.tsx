@@ -48,6 +48,14 @@ function All_heroes_Select({ data, id_campaign, addHero, setShow_heroes }: { dat
             setShow_heroes(false)
         }
     }
+    async function delete_hero(id_hero: number) {
+        if (id_hero) {
+            const response = await axios.delete(`api/nova_aetas/heroes/${id_hero}`);
+            if (response.data[0]) {
+                setShow_heroes(false)
+            }
+        }
+    }
     return (
         hero && <section className='w-[80%] m-auto'>
             <Table
@@ -70,8 +78,8 @@ function All_heroes_Select({ data, id_campaign, addHero, setShow_heroes }: { dat
                             <td>{el.name}</td>
                             <td>{el.players}</td>
                             <td>{el.class}</td>
-                            <td>{el.campaign_id ? 'Impegnato' : 'Disponibile'}</td>
-                            <td className='flex justify-between px-2 items-center gap-2'>{!el.campaign_id ? <Button onClick={() => add_Campaign(el.id)} variant='success' className='text-black bg-green-600' size='sm'>Ingaggia</Button> : el.campaign_id === id_campaign ? <Button onClick={() => No_Campaign(el.id)} className='text-black bg-amber-600' variant='outline-warning' size='sm'>Congeda</Button> : <Button variant='warning' className='text-black bg-amber-600' onClick={() => add_Campaign(el.id)} size='sm'>Richiama e ingaggia</Button>} <Button size='sm' className='text-black bg-red-600' variant='outline-danger'>Cancella</Button></td>
+                            <td > <p className={`${el.campaign_id? 'text-amber-600': 'text-green-600'}`}>{el.campaign_id ? 'Impegnato' : 'Disponibile'}</p> </td>
+                            <td className='flex justify-between px-2 items-center gap-2'>{!el.campaign_id ? <Button onClick={() => add_Campaign(el.id)} variant='success' className='text-black bg-green-600' size='sm'>Ingaggia</Button> : el.campaign_id === id_campaign ? <Button onClick={() => No_Campaign(el.id)} className='text-black bg-amber-600' variant='outline-warning' size='sm'>Congeda</Button> : <Button variant='warning' className='text-black bg-yellow-300' onClick={() => add_Campaign(el.id)} size='sm'>Richiama e ingaggia</Button>} <Button size='sm' disabled={id_campaign=== el.campaign_id && true} className='text-black bg-red-600' variant='outline-danger' onClick={()=> delete_hero(el.id)}>Cancella</Button></td>
                         </tr>
                     ))}
                 </tbody>

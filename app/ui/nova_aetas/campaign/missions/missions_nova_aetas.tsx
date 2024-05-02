@@ -46,13 +46,14 @@ function default_missions(
     return arr.map(el => { return { ...el, changing_name: false, changing_detail: false } })
   }
 
+  const default_value = 'vuoto'
   const default_item: Mission = {
     id: 0,
     campaign_id: id_campaign,
-    name: 'vuoto',
+    name: default_value,
     type: type,
     complete: false,
-    detail: 'vuoto'
+    detail: default_value
   }
   if (all_missions) {
     const one_type_mission = all_missions.filter(mission => mission.type?.toLowerCase() === type.toLowerCase())
@@ -369,11 +370,11 @@ function Missions_nova_aetas({ data, Campaign_id }: { data: Mission[] | null, Ca
           }
         })
         if (response.data) {
-          const item = response.data[0] as  Mission;
+          const item = response.data[0] as Mission;
           if (type_mission === Missions_type.campaign) {
-            const new_items = new_data.campaign.map((el, i)=> {
-              if(i === index){
-                return{...item, changing_detail: false, changing_name : false};
+            const new_items = new_data.campaign.map((el, i) => {
+              if (i === index) {
+                return { ...item, changing_detail: false, changing_name: false };
               }
               return el
             }) as Set_missions[]
@@ -381,9 +382,9 @@ function Missions_nova_aetas({ data, Campaign_id }: { data: Mission[] | null, Ca
             setMissions(new_data)
           }
           if (type_mission === Missions_type.encounter) {
-            const new_items = new_data.encounter.map((el, i)=> {
-              if(i === index){
-                return{...item, changing_detail: false, changing_name : false};
+            const new_items = new_data.encounter.map((el, i) => {
+              if (i === index) {
+                return { ...item, changing_detail: false, changing_name: false };
               }
               return el
             }) as Set_missions[]
@@ -391,9 +392,9 @@ function Missions_nova_aetas({ data, Campaign_id }: { data: Mission[] | null, Ca
             setMissions(new_data)
           }
           if (type_mission === Missions_type.exploration) {
-            const new_items = new_data.exploration.map((el, i)=> {
-              if(i === index){
-                return{...item, changing_detail: false, changing_name : false};
+            const new_items = new_data.exploration.map((el, i) => {
+              if (i === index) {
+                return { ...item, changing_detail: false, changing_name: false };
               }
               return el
             }) as Set_missions[]
@@ -401,9 +402,9 @@ function Missions_nova_aetas({ data, Campaign_id }: { data: Mission[] | null, Ca
             setMissions(new_data)
           }
           if (type_mission === Missions_type.hunt) {
-            const new_items = new_data.hunt.map((el, i)=> {
-              if(i === index){
-                return{...item, changing_detail: false, changing_name : false};
+            const new_items = new_data.hunt.map((el, i) => {
+              if (i === index) {
+                return { ...item, changing_detail: false, changing_name: false };
               }
               return el
             }) as Set_missions[]
@@ -448,7 +449,7 @@ function Missions_nova_aetas({ data, Campaign_id }: { data: Mission[] | null, Ca
           if (type_value === 'name' && typeof value === 'string') {
             patch_item(value.trim(), detail, complete, id, campaign_id)
           }
-          if(type_value === 'detail' && typeof value === 'string') {
+          if (type_value === 'detail' && typeof value === 'string') {
             patch_item(name, value.trim(), complete, id, campaign_id)
           }
           if (type_value === 'complete' && typeof value === 'boolean') {
@@ -468,11 +469,11 @@ function Missions_nova_aetas({ data, Campaign_id }: { data: Mission[] | null, Ca
         }
       } else {
         console.log('annullamento modifica');
-        const new_data = {...missions} as Data_Missions
+        const new_data = { ...missions } as Data_Missions
         if (type_mission === Missions_type.campaign) {
-          const arr = new_data.campaign.map((el, i)=>{
+          const arr = new_data.campaign.map((el, i) => {
             if (i === index) {
-              return{
+              return {
                 ...el, changing_detail: false, changing_name: false
               }
             }
@@ -482,9 +483,9 @@ function Missions_nova_aetas({ data, Campaign_id }: { data: Mission[] | null, Ca
           setMissions(new_data)
         }
         if (type_mission === Missions_type.encounter) {
-          const arr = new_data.encounter.map((el, i)=>{
+          const arr = new_data.encounter.map((el, i) => {
             if (i === index) {
-              return{
+              return {
                 ...el, changing_detail: false, changing_name: false
               }
             }
@@ -494,9 +495,9 @@ function Missions_nova_aetas({ data, Campaign_id }: { data: Mission[] | null, Ca
           setMissions(new_data)
         }
         if (type_mission === Missions_type.exploration) {
-          const arr = new_data.exploration.map((el, i)=>{
+          const arr = new_data.exploration.map((el, i) => {
             if (i === index) {
-              return{
+              return {
                 ...el, changing_detail: false, changing_name: false
               }
             }
@@ -506,9 +507,9 @@ function Missions_nova_aetas({ data, Campaign_id }: { data: Mission[] | null, Ca
           setMissions(new_data)
         }
         if (type_mission === Missions_type.hunt) {
-          const arr = new_data.hunt.map((el, i)=>{
+          const arr = new_data.hunt.map((el, i) => {
             if (i === index) {
-              return{
+              return {
                 ...el, changing_detail: false, changing_name: false
               }
             }
@@ -539,10 +540,10 @@ function Missions_nova_aetas({ data, Campaign_id }: { data: Mission[] | null, Ca
                   defaultChecked={el.complete}
                   type={`checkbox`}
                 /></td>
-                <td className=' hover:cursor-pointer' onClick={() => changing(i, 'campaign', 'name')}>{el.changing_name ? <input type='text' className=' text-xs md:text-xl w-[100px] md:w-auto' onChange={(event) => handleSubmit(event.currentTarget.value, 'name', el.campaign_id, el.id, i, Missions_type.campaign)
-                } defaultValue={el.name}></input> : el.name}</td>
-                <td className=' hover:cursor-pointer' onClick={() => changing(i, 'campaign', 'detail')}>{el.changing_detail ? <input className=' text-xs md:text-xl w-[100px] md:w-auto' type='text' onChange={(event) => handleSubmit(event.currentTarget.value, 'detail', el.campaign_id, el.id, i, Missions_type.campaign)
-                } defaultValue={el.detail}></input> : el.detail}</td>
+                <td className={`hover:cursor-pointer`} onClick={() => changing(i, 'campaign', 'name')}>{el.changing_name ? <input type='text' className=' text-xs md:text-xl w-[100px] md:w-auto' onChange={(event) => handleSubmit(event.currentTarget.value, 'name', el.campaign_id, el.id, i, Missions_type.campaign)
+                } defaultValue={el.name}></input> : <p className={`${el.name === 'vuoto' && 'text-amber-600'}`}>{el.name}</p>}</td>
+                <td className={`hover:cursor-pointer`} onClick={() => changing(i, 'campaign', 'detail')}>{el.changing_detail ? <input className=' text-xs md:text-xl w-[100px] md:w-auto' type='text' onChange={(event) => handleSubmit(event.currentTarget.value, 'detail', el.campaign_id, el.id, i, Missions_type.campaign)
+                } defaultValue={el.detail}></input> : <p className={`${el.detail === 'vuoto' && 'text-amber-600'}`}>{el.detail}</p>}</td>
               </tr>
 
             ))}
@@ -563,10 +564,10 @@ function Missions_nova_aetas({ data, Campaign_id }: { data: Mission[] | null, Ca
                   defaultChecked={el.complete}
                   type={`checkbox`}
                 /></td>
-                <td className=' hover:cursor-pointer' onClick={() => changing(i, 'hunt', 'name')}>{el.changing_name ? <input className=' text-xs md:text-xl w-[100px] md:w-auto' type='text' onChange={(event) => handleSubmit(event.currentTarget.value, 'name', el.campaign_id, el.id, i, Missions_type.hunt)
-                } defaultValue={el.name}></input> : el.name}</td>
-                <td className=' hover:cursor-pointer' onClick={() => changing(i, 'hunt', 'detail')}>{el.changing_detail ? <input className=' text-xs md:text-xl w-[100px] md:w-auto' type='text' onChange={(event) => handleSubmit(event.currentTarget.value, 'detail', el.campaign_id, el.id, i, Missions_type.hunt)
-                } defaultValue={el.detail}></input> : el.detail}</td>
+                <td className={`hover:cursor-pointer`} onClick={() => changing(i, 'hunt', 'name')}>{el.changing_name ? <input className=' text-xs md:text-xl w-[100px] md:w-auto' type='text' onChange={(event) => handleSubmit(event.currentTarget.value, 'name', el.campaign_id, el.id, i, Missions_type.hunt)
+                } defaultValue={el.name}></input> : <p className={`${el.name === 'vuoto' && 'text-amber-600'}`}>{el.name}</p>}</td>
+                <td className={`hover:cursor-pointer`} onClick={() => changing(i, 'hunt', 'detail')}>{el.changing_detail ? <input className=' text-xs md:text-xl w-[100px] md:w-auto' type='text' onChange={(event) => handleSubmit(event.currentTarget.value, 'detail', el.campaign_id, el.id, i, Missions_type.hunt)
+                } defaultValue={el.detail}></input> : <p className={`${el.detail === 'vuoto' && 'text-amber-600'}`}>{el.detail}</p>}</td>
               </tr>
 
             ))}
@@ -589,10 +590,10 @@ function Missions_nova_aetas({ data, Campaign_id }: { data: Mission[] | null, Ca
                   onChange={(event) => handleSubmit(event.target.checked, 'complete', el.campaign_id, el.id, i, Missions_type.encounter)}
                   defaultChecked={el.complete}
                 /></td>
-                <td className=' hover:cursor-pointer' onClick={() => changing(i, 'encounter', 'name')}>{el.changing_name ? <input className=' text-xs md:text-xl w-[100px] md:w-auto' type='text' onChange={(event) => handleSubmit(event.currentTarget.value, 'name', el.campaign_id, el.id, i, Missions_type.encounter)
-                } defaultValue={el.name}></input> : el.name}</td>
-                <td className=' hover:cursor-pointer' onClick={() => changing(i, 'encounter', 'detail')}>{el.changing_detail ? <input className=' text-xs md:text-xl w-[100px] md:w-auto' type='text' onChange={(event) => handleSubmit(event.currentTarget.value, 'detail', el.campaign_id, el.id, i, Missions_type.encounter)
-                } defaultValue={el.detail}></input> : el.detail}</td>
+                <td className={`hover:cursor-pointer`} onClick={() => changing(i, 'encounter', 'name')}>{el.changing_name ? <input className=' text-xs md:text-xl w-[100px] md:w-auto' type='text' onChange={(event) => handleSubmit(event.currentTarget.value, 'name', el.campaign_id, el.id, i, Missions_type.encounter)
+                } defaultValue={el.name}></input> : <p className={`${el.name === 'vuoto' && 'text-amber-600'}`}>{el.name}</p>}</td>
+                <td className={`hover:cursor-pointer`} onClick={() => changing(i, 'encounter', 'detail')}>{el.changing_detail ? <input className=' text-xs md:text-xl w-[100px] md:w-auto' type='text' onChange={(event) => handleSubmit(event.currentTarget.value, 'detail', el.campaign_id, el.id, i, Missions_type.encounter)
+                } defaultValue={el.detail}></input> : <p className={`${el.detail === 'vuoto' && 'text-amber-600'}`}>{el.detail}</p>}</td>
               </tr>
 
             ))}
@@ -613,10 +614,10 @@ function Missions_nova_aetas({ data, Campaign_id }: { data: Mission[] | null, Ca
                   defaultChecked={el.complete}
                   type={`checkbox`}
                 /></td>
-                <td className=' hover:cursor-pointer' onClick={() => changing(i, 'exploration', 'name')}>{el.changing_name ? <input className=' text-xs md:text-xl w-[100px] md:w-auto' type='text' onChange={(event) => handleSubmit(event.currentTarget.value, 'name', el.campaign_id, el.id, i, Missions_type.exploration)
-                } defaultValue={el.name}></input> : el.name}</td>
-                <td className=' hover:cursor-pointer' onClick={() => changing(i, 'exploration', 'detail')}>{el.changing_detail ? <input className=' text-xs md:text-xl w-[100px] md:w-auto' type='text' onChange={(event) => handleSubmit(event.currentTarget.value, 'detail', el.campaign_id, el.id, i, Missions_type.exploration)
-                } defaultValue={el.detail}></input> : el.detail}</td>
+                <td className={`hover:cursor-pointer`} onClick={() => changing(i, 'exploration', 'name')}>{el.changing_name ? <input className=' text-xs md:text-xl w-[100px] md:w-auto' type='text' onChange={(event) => handleSubmit(event.currentTarget.value, 'name', el.campaign_id, el.id, i, Missions_type.exploration)
+                } defaultValue={el.name}></input> : <p className={`${el.name === 'vuoto' && 'text-amber-600'}`}>{el.name}</p>}</td>
+                <td className={`hover:cursor-pointer`} onClick={() => changing(i, 'exploration', 'detail')}>{el.changing_detail ? <input className=' text-xs md:text-xl w-[100px] md:w-auto' type='text' onChange={(event) => handleSubmit(event.currentTarget.value, 'detail', el.campaign_id, el.id, i, Missions_type.exploration)
+                } defaultValue={el.detail}></input> : <p className={`${el.detail === 'vuoto' && 'text-amber-600'}`}>{el.detail}</p>}</td>
               </tr>
 
             ))}

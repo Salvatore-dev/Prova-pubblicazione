@@ -79,5 +79,4 @@ export async function PATCH(Request: NextRequest, params: { params: { id: string
         return new NextResponse(JSON.stringify(null))
     }
     
-    return new NextResponse(JSON.stringify(null))
 }
