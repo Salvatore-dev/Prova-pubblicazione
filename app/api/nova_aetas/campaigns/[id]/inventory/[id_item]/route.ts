@@ -2,11 +2,19 @@
 
 import sql_Elephant from "@/app/lib/test/connectpostgre";
 import { NextRequest, NextResponse } from "next/server";
-
+import { verifySession } from "@/app/lib/dal";
 import { isConvertibleToNumber } from "@/app/lib/Nova_aetas/data";
 
 
 export async function DELETE(request: NextRequest, params: { params: { id: string, id_item: string } }): Promise<NextResponse> {
+    // User authentication and role verification
+    const session = await verifySession()
+
+    // Check if the user is authenticated
+    if (!session.isAuth) {
+        // User is not authenticated
+        return new NextResponse(null, { status: 401 })
+    }
     const { id, id_item } = params.params
     console.log(id, id_item);
     if (!isConvertibleToNumber(id)) {
@@ -37,6 +45,14 @@ export async function DELETE(request: NextRequest, params: { params: { id: strin
 }
 
 export async function PATCH(request: NextRequest, params: { params: { id: string, id_item: string } }): Promise<NextResponse> {
+    // User authentication and role verification
+    const session = await verifySession()
+
+    // Check if the user is authenticated
+    if (!session.isAuth) {
+        // User is not authenticated
+        return new NextResponse(null, { status: 401 })
+    }
     const { id, id_item } = params.params
     console.log(id, id_item);
     const data = await request.json()

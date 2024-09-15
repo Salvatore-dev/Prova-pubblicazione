@@ -1,3 +1,4 @@
+"use client"
 import React, { Dispatch, SetStateAction } from 'react'
 
 import New_campaign from './modals/new_campaign'

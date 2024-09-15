@@ -2,11 +2,18 @@
 
 import sql_Elephant from "@/app/lib/test/connectpostgre";
 import { NextRequest, NextResponse } from "next/server";
-
+import { verifySession } from "@/app/lib/dal";
 import { isConvertibleToNumber } from "@/app/lib/Nova_aetas/data";
 
 export async function PUT(request: NextRequest, params: { params: { id: string } }): Promise<NextResponse> {
+    // User authentication and role verification
+    const session = await verifySession()
 
+    // Check if the user is authenticated
+    if (!session.isAuth) {
+        // User is not authenticated
+        return new NextResponse(null, { status: 401 })
+    }
     const id = params.params.id.trim()
     if (!isConvertibleToNumber(id)) {
         console.log('hero_id is not valid number');
@@ -34,7 +41,18 @@ export async function PUT(request: NextRequest, params: { params: { id: string }
         return new NextResponse(JSON.stringify(null))
     }
 }
+
+
 export async function DELETE(request: NextRequest, params: { params: { id: string } }) {
+    // User authentication and role verification
+    const session = await verifySession()
+
+    // Check if the user is authenticated
+    if (!session.isAuth) {
+        // User is not authenticated
+        return new NextResponse(null, { status: 401 })
+    }
+
     const id = params.params.id.trim()
     if (!isConvertibleToNumber(id)) {
         console.log('hero_id is not valid number');

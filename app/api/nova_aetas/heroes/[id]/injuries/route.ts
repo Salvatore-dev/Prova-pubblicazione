@@ -4,9 +4,18 @@ import sql_Elephant from "@/app/lib/test/connectpostgre";
 import { NextRequest, NextResponse } from "next/server";
 import { isConvertibleToNumber } from "@/app/lib/Nova_aetas/data";
 
+import { verifySession } from "@/app/lib/dal";
 
+export async function POST(request: NextRequest, params: { params: { id: string } }): Promise<NextResponse> {
+    // User authentication and role verification
+    const session = await verifySession()
 
-export async function POST(request: NextRequest, params: { params: { id: string } }) : Promise<NextResponse> {
+    // Check if the user is authenticated
+    if (!session.isAuth) {
+        // User is not authenticated
+        return new NextResponse(null, { status: 401 })
+    }
+
     const id = params.params.id.trim()
     if (!isConvertibleToNumber(id)) {
         console.log('hero_id is not valid number');
@@ -17,7 +26,7 @@ export async function POST(request: NextRequest, params: { params: { id: string 
     const query: { name: string, popolini: string } = await request.json()
     const { name, popolini } = query
     console.log("controllo richiesta creazione injuriy", name, popolini);
-    
+
     try {
         const response = await sql_Elephant`
         INSERT INTO serious_injuries (name, popolini, hero_id)
@@ -25,11 +34,11 @@ export async function POST(request: NextRequest, params: { params: { id: string 
         (${name}, ${popolini}, ${id_hero})
         RETURNING*;
         `
-        console.log(response);  
-            return new NextResponse(JSON.stringify(response)) 
+        console.log(response);
+        return new NextResponse(JSON.stringify(response))
     } catch (error) {
         console.log(error);
         return new NextResponse(JSON.stringify(null))
     }
-    
+
 }

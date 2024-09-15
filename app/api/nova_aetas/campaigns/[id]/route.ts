@@ -3,12 +3,19 @@
 import sql_Elephant from "@/app/lib/test/connectpostgre";
 import { NextRequest, NextResponse } from "next/server";
 import { isConvertibleToNumber } from "@/app/lib/Nova_aetas/data";
-import { Result_campaign, Inventory, HERO, Injury, Skill,  Conquest, Hero, Treasury, Mission, Campaign_data } from "@/app/lib/Nova_aetas/definitions";
-
+import { Result_campaign, Inventory, HERO, Injury, Skill, Conquest, Hero, Treasury, Mission, Campaign_data } from "@/app/lib/Nova_aetas/definitions";
+import { verifySession } from "@/app/lib/dal"
 import { unstable_noStore as noStore } from 'next/cache';
 
-export async function GET(Request: NextRequest, params: { params: { id: string, item: string }}): Promise<NextResponse> { // esempio di get funzionanate
-   noStore()
+export async function GET(Request: NextRequest, params: { params: { id: string, item: string } }): Promise<NextResponse> { // esempio di get funzionanate
+    const session = await verifySession()
+
+    // Check if the user is authenticated
+    if (!session.isAuth) {
+        // User is not authenticated
+        return new NextResponse(null, { status: 401 })
+    }
+    noStore()
     const id = params.params.id.trim()
     if (!isConvertibleToNumber(id)) {
         console.log('campaing_id not valid number');
@@ -55,12 +62,12 @@ export async function GET(Request: NextRequest, params: { params: { id: string, 
             conquests: null
         }
         console.log(campaign_results);
-        if (campaign_results.length<=0) {
+        if (campaign_results.length <= 0) {
             console.log('campagna inesistente');
-            
+
             return new NextResponse(JSON.stringify(null))
         }
-        
+
         if (campaign_results && campaign_results[0].campaign_id) {
             const campaign = {
                 name: campaign_results[0].name,
@@ -137,9 +144,9 @@ export async function GET(Request: NextRequest, params: { params: { id: string, 
         `
         console.log(heroes_campaign);
 
-        const heroes : HERO[] = await Promise.all(
+        const heroes: HERO[] = await Promise.all(
             heroes_campaign.map(async (el) => {
-                const injuries : Injury[] = await sql_Elephant`
+                const injuries: Injury[] = await sql_Elephant`
                 SELECT*
                 FROM serious_injuries
                 WHERE serious_injuries.hero_id = ${el.id};
@@ -162,7 +169,7 @@ export async function GET(Request: NextRequest, params: { params: { id: string, 
                 };
             })
         )
-        const dataToSend ={
+        const dataToSend = {
             campaign_schedule,
             heroes
         }
@@ -177,7 +184,15 @@ export async function GET(Request: NextRequest, params: { params: { id: string, 
     }
 }
 
-export async function DELETE(request: NextRequest, params : {params: {id: string}}) : Promise<NextResponse> {
+export async function DELETE(request: NextRequest, params: { params: { id: string } }): Promise<NextResponse> {
+    const session = await verifySession()
+
+    // Check if the user is authenticated
+    if (!session.isAuth) {
+        // User is not authenticated
+        return new NextResponse(null, { status: 401 })
+    }
+
     const id = params.params.id.trim()
     if (!isConvertibleToNumber(id)) {
         console.log('campaing_id not valid number');
@@ -185,7 +200,7 @@ export async function DELETE(request: NextRequest, params : {params: {id: string
     }
     const id_campaign = parseFloat(id)
     console.log(id_campaign);
-    
+
     try {
 
         const response = await sql_Elephant`
@@ -198,7 +213,7 @@ export async function DELETE(request: NextRequest, params : {params: {id: string
     } catch (error) {
         console.log(error);
         return new NextResponse(JSON.stringify(null))
-        
+
     }
 }
 

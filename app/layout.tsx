@@ -5,7 +5,6 @@ import { inter, lusitana, roboto } from '@/app/ui/fonts';
 import logo from '@/app/icon.jpg'
 
 
-
 import './globals.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 export const metadata: Metadata = {
@@ -21,24 +20,24 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-      <link
-  rel="icon"
-  href="/icon.png"
-  type="image/png"
-  sizes="32x32"
-/>
+        <link
+          rel="icon"
+          href="/icon.png"
+          type="image/png"
+          sizes="32x32"
+        />
       </head>
+
     
-      
       <body className={roboto.className + ''}>
         <header className=' sticky top-0 w-full z-[999] overflow-hidden'>
           <NewHeader />
         </header>
-      
-      
-      <main className=''>{children}
-      </main>
-      <Footer />
+
+
+        <main className=''>{children}
+        </main>
+        <Footer />
       </body>
     </html>
   )

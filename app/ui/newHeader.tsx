@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react'
+import * as React from 'react'
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav';
@@ -15,7 +15,11 @@ type LinksContent = {
 const linksHeader: LinksContent[] = [
     { name: "Home", url: "/" },
     { name: "Testing", url: "/testing" },
-    { name: "Ricerca foto", url: "/photo_research" }
+    { name: "Ricerca foto", url: "/photo_research" },
+    { name: "ReD", url: "/blog"},
+    {name : `Nova Aetas`, url: `/nova_aetas`},
+    {name : "Signup", url : "/signup"},
+    {name : "Login", url : "/login"},
 ]
 
 function NewHeader() {

@@ -13,7 +13,7 @@ import Schedule_heroes from "./heroes/schedule_heroes";
 import Campaign_schedule from "./campaign/Campaign_schedule";
 
 
-function NovaAetas() {
+function NovaAetas({user}: {user:string | null}) {
   const [data, setData] = useState<{ campaign_schedule: Campaign_data, heroes: HERO[] } | null>(null)
   const [id_campaign, setId_campaing] = useState<number>(0)
   useEffect(() => {
@@ -29,7 +29,7 @@ function NovaAetas() {
   }, [id_campaign])
   return (
     <>
-      <Header_application />
+      <Header_application user={user} />
       {!data && <Select_campaign SetId_campaign={setId_campaing} />}
       {data &&
         <section>

@@ -21,14 +21,26 @@
 // console.log(getLink(prova));
 
 
-const a = 2
-const b = "2"
-const  c = "2rt"
-const d = "sdsds"
+const a = {
+    name: 'John',
+}
 
-console.log(parseInt(a) , typeof parseInt(a));
+const b = {
+    id: '233232'
+}
 
-console.log(Number.isInteger(c), Number.isNaN(c));
+const c ={a,b}
 
-console.log('CIOA2sO'.toLocaleLowerCase(), 'ciao'.toUpperCase(), "12asa".toUpperCase());
+console.log(c);
 
+// function addDate(): string {
+//     return new Date().toLocaleString("it-IT", {
+//       day: "2-digit",
+//       month: "2-digit",
+//       year: "numeric",
+//       hour: "numeric",
+//       minute: "2-digit",
+//       second: "2-digit",
+//       timeZone: "Europe/Rome",
+//     });
+//   }

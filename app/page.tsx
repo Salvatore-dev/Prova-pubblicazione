@@ -8,7 +8,7 @@ import NovaAetas from "./ui/nova_aetas/NovaAetas"
 export default function Home() {
   return (
     <>
-      {/* <div className=' bg-slate-800 flex items-center justify-around gap-2'>
+      <div className=' bg-slate-800 flex items-center justify-around gap-2'>
         <Link className=' bg-slate-700 text-yellow-200 text-lg font-medium p-2 border rounded-md' href={`/lezione`}>Lezione Main</Link>
         <Link className=' bg-slate-700 text-yellow-200 text-lg font-medium p-2 border rounded-md' href={`/lezione/m1`}>Lezione Step2</Link>
         <Link className=' bg-slate-700 text-yellow-200 text-lg font-medium p-2 border rounded-md' href={`/correzione`}>Correzione Esercizio</Link>
@@ -43,8 +43,7 @@ export default function Home() {
 
       <StepOne />
       <div className=" bg-slate-700 h-3"></div>
-      <StepTwo /> */}
-      <NovaAetas />
+      <StepTwo />
     </>
   )
 }
