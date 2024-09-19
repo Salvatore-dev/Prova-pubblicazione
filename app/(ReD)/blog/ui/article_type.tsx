@@ -7,7 +7,7 @@ function Article_type_tag_esempi() {
         <article className='w-[90%] m-auto'>
             <h1>Modello html articolo</h1>
             <div className=' bg-neutral-200'>
-                <p>Per un aside all'interno di una articolo:</p>
+                <p>Per un aside all&apos;interno di una articolo:</p>
                 <p>
                     Salamanders are a group of amphibians with a lizard-like appearance, including short legs and a tail in both larval
                     and adult forms.
@@ -64,7 +64,7 @@ function Article_type_tag_esempi() {
                 <p className={style.article_abbr}>
                     You can use <abbr title='Cascading Style Sheets'>CSS</abbr> to style your <abbr>HTML</abbr> (HyperText Markup Language).
                     Using style sheets, you can keep your <abbr>CSS</abbr> presentation layer and <abbr>HTML</abbr> content layer
-                    separate. This is called "separation of concerns."
+                    separate. This is called &quot;separation of concerns.&quot;
                 </p>
             </div>
             <div className=' bg-neutral-200'>
