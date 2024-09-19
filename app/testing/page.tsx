@@ -1,11 +1,10 @@
 import React from 'react'
 
-
 function Page() {
 
   return (
     <div>
-      Testing
+      <h1>Testing...</h1>
     </div>
   )
 }

@@ -1,0 +1,47 @@
+/* modulo css per article */
+
+/* aside -  si applica allaside stesso e fa a fianco del elemtno successivo*/
+/* blockquote  -  qui si applica al genitore */
+
+.article_red {
+    width: 90%;
+}
+
+.aside_article {
+    width: 40%;
+    padding-left: 0.5rem;
+    margin-left: 0.5rem;
+    float: right;
+    box-shadow: inset 5px 0 5px -5px #29627e;
+    font-style: italic;
+    color: #29627e;
+}
+
+.aside_article>p {
+    margin: 0.5rem;
+}
+
+.article_blockquote:has(> blockquote) {
+    background-color: #ededed;
+    margin: 10px auto;
+    padding: 15px;
+    border-radius: 5px;
+    font-style: italic;
+}
+
+.article_blockquote>blockquote p::before {
+    content: '\201C';
+}
+
+.article_blockquote>blockquote p::after {
+    content: '\201D';
+}
+
+.article_blockquote>blockquote+p {
+    text-align: right;
+}
+
+.article_abbr>abbr {
+    font-style: italic;
+    color: chocolate;
+}
