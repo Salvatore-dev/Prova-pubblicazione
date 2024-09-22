@@ -1,3 +1,4 @@
+"use server"
 import React from 'react'
 
 const regex_note = new RegExp(/\[\^\d+\].$/);

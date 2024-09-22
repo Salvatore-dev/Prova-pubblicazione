@@ -5,7 +5,7 @@ import Elaborate_paragraph from './ui_red/elaborate_paragraph'
 import fs from 'fs'
 const matter = require('gray-matter');
 import image_head from '@/public/image/napoli_citta.jpeg'
-
+import Article_body from './ui_red/article_body'
 function Page() {
   const fileContents = fs.readFileSync('./app/testing/article/aticle_1.md', 'utf8');
 
@@ -13,6 +13,8 @@ function Page() {
   const { content, data } = matter(fileContents);
 
   //console.log(data);
+  //console.log(content, typeof content);
+  
   const contentArray = content.split(/\r\n/) as string[]
   //console.log(contentArray);
   
@@ -21,12 +23,9 @@ function Page() {
       <h1>Testing...</h1>
       <Article_FT>
         <Article_head image_head={image_head} />
+        <Article_body content={contentArray} />
       </Article_FT>
-      <div className='flex flex-col gap-1'>
-        {contentArray.map((el, index)=>(
-          <Elaborate_paragraph key={index} data_text={el}/>
-        ))}
-      </div>
+      
       
     </div>
   )
