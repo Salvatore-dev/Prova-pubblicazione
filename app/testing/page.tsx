@@ -17,9 +17,11 @@ export default async function Page() {
   
   // Usa gray-matter per estrarre il frontmatter e il contenuto
   const { content } = matter(fileContents);
+
+  // Divide il contenuto in paragrafi basati su diversi tipi di fine riga (Windows, Unix, ecc.)
+  const contentArray = content.split(/\r\n|\r|\n/).filter(line => line.trim() !== '');
+  console.log(contentArray);
   
-  // Divide il contenuto del markdown in un array di stringhe, eliminando righe vuote
-  const contentArray = content.split(/\r\n/).filter(line => line.trim() !== '');
 
   return (
     <div>
@@ -31,3 +33,4 @@ export default async function Page() {
     </div>
   );
 }
+
