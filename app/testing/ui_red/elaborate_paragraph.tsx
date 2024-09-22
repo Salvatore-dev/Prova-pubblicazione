@@ -1,8 +1,10 @@
+"use client"
 import React from 'react'
 
 const regex_note = /\[\^\d+\].$/;
 
 function Elaborate_paragraph({text}: {text: string}) {
+    
     const text_to_elaborate = text.trim()
     
     if (text_to_elaborate.startsWith('>')) {
@@ -29,7 +31,7 @@ function Elaborate_paragraph({text}: {text: string}) {
         )
     }
   return (
-    <p>{text}</p>
+    <p className='bg-neutral-200'>{text}</p>
   )
 }
 
