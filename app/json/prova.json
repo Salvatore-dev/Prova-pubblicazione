@@ -1,0 +1,212 @@
+[
+    {
+        "id": 1,
+        "name": "Bulbasaur",
+        "evolution": "Ivysaur",
+        "image": "https://example.com/bulbasaur.png",
+        "typePokemon": 1
+    },
+    {
+        "id": 2,
+        "name": "Ivysaur",
+        "evolution": "Venusaur",
+        "image": "https://example.com/ivysaur.png",
+        "typePokemon": 1
+    },
+    {
+        "id": 3,
+        "name": "Venusaur",
+        "evolution": null,
+        "image": "https://example.com/venusaur.png",
+        "typePokemon": 1
+    },
+    {
+        "id": 4,
+        "name": "Charmander",
+        "evolution": "Charmeleon",
+        "image": "https://example.com/charmander.png",
+        "typePokemon": 2
+    },
+    {
+        "id": 5,
+        "name": "Charmeleon",
+        "evolution": "Charizard",
+        "image": "https://example.com/charmeleon.png",
+        "typePokemon": 2
+    },
+    {
+        "id": 6,
+        "name": "Charizard",
+        "evolution": null,
+        "image": "https://example.com/charizard.png",
+        "typePokemon": 2
+    },
+    {
+        "id": 7,
+        "name": "Squirtle",
+        "evolution": "Wartortle",
+        "image": "https://example.com/squirtle.png",
+        "typePokemon": 3
+    },
+    {
+        "id": 8,
+        "name": "Wartortle",
+        "evolution": "Blastoise",
+        "image": "https://example.com/wartortle.png",
+        "typePokemon": 3
+    },
+    {
+        "id": 9,
+        "name": "Blastoise",
+        "evolution": null,
+        "image": "https://example.com/blastoise.png",
+        "typePokemon": 3
+    },
+    {
+        "id": 10,
+        "name": "Caterpie",
+        "evolution": "Metapod",
+        "image": "https://example.com/caterpie.png",
+        "typePokemon": 4
+    },
+    {
+        "id": 11,
+        "name": "Metapod",
+        "evolution": "Butterfree",
+        "image": "https://example.com/metapod.png",
+        "typePokemon": 4
+    },
+    {
+        "id": 12,
+        "name": "Butterfree",
+        "evolution": null,
+        "image": "https://example.com/butterfree.png",
+        "typePokemon": 10
+    },
+    {
+        "id": 13,
+        "name": "Weedle",
+        "evolution": "Kakuna",
+        "image": "https://example.com/weedle.png",
+        "typePokemon": 4
+    },
+    {
+        "id": 14,
+        "name": "Kakuna",
+        "evolution": "Beedrill",
+        "image": "https://example.com/kakuna.png",
+        "typePokemon": 4
+    },
+    {
+        "id": 15,
+        "name": "Beedrill",
+        "evolution": null,
+        "image": "https://example.com/beedrill.png",
+        "typePokemon": 4
+    },
+    {
+        "id": 16,
+        "name": "Pidgey",
+        "evolution": "Pidgeotto",
+        "image": "https://example.com/pidgey.png",
+        "typePokemon": 9
+    },
+    {
+        "id": 17,
+        "name": "Pidgeotto",
+        "evolution": "Pidgeot",
+        "image": "https://example.com/pidgeotto.png",
+        "typePokemon": 9
+    },
+    {
+        "id": 18,
+        "name": "Pidgeot",
+        "evolution": null,
+        "image": "https://example.com/pidgeot.png",
+        "typePokemon": 9
+    },
+    {
+        "id": 19,
+        "name": "Rattata",
+        "evolution": "Raticate",
+        "image": "https://example.com/rattata.png",
+        "typePokemon": 5
+    },
+    {
+        "id": 20,
+        "name": "Raticate",
+        "evolution": null,
+        "image": "https://example.com/raticate.png",
+        "typePokemon": 5
+    },
+    {
+        "id": 21,
+        "name": "Spearow",
+        "evolution": "Fearow",
+        "image": "https://example.com/spearow.png",
+        "typePokemon": 9
+    },
+    {
+        "id": 22,
+        "name": "Fearow",
+        "evolution": null,
+        "image": "https://example.com/fearow.png",
+        "typePokemon": 9
+    },
+    {
+        "id": 23,
+        "name": "Ekans",
+        "evolution": "Arbok",
+        "image": "https://example.com/ekans.png",
+        "typePokemon": 10
+    },
+    {
+        "id": 24,
+        "name": "Arbok",
+        "evolution": null,
+        "image": "https://example.com/arbok.png",
+        "typePokemon": 10
+    },
+    {
+        "id": 25,
+        "name": "Pikachu",
+        "evolution": "Raichu",
+        "image": "https://example.com/pikachu.png",
+        "typePokemon": 6
+    },
+    {
+        "id": 26,
+        "name": "Raichu",
+        "evolution": null,
+        "image": "https://example.com/raichu.png",
+        "typePokemon": 6
+    },
+    {
+        "id": 27,
+        "name": "Sandshrew",
+        "evolution": "Sandslash",
+        "image": "https://example.com/sandshrew.png",
+        "typePokemon": 8
+    },
+    {
+        "id": 28,
+        "name": "Sandslash",
+        "evolution": null,
+        "image": "https://example.com/sandslash.png",
+        "typePokemon": 8
+    },
+    {
+        "id": 29,
+        "name": "Nidoran♀️",
+        "evolution": "Nidorina",
+        "image": "https://example.com/nidoran-f.png",
+        "typePokemon": 7
+    },
+    {
+        "id": 30,
+        "name": "Nidorina",
+        "evolution": "Nidoqueen",
+        "image": "https://example.com/nidorina.png",
+        "typePokemon": 7
+    }
+]
