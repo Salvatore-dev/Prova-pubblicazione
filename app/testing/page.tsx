@@ -24,16 +24,16 @@ function Page() {
       </Article_FT>
       <div className='flex flex-col gap-1'>
         {contentArray.map((el, index)=>(
-            <Elaborate_paragraph key={index} text={el}></Elaborate_paragraph>
+          <Elaborate_paragraph key={index} data_text={el}/>
         ))}
       </div>
       
     </div>
   )
 }
-function prepare_content(str: string) {
-  const contentArray = str.split(/\r\n/).map(string=> string!='')
+// function prepare_content(str: string) {
+//   const contentArray = str.split(/\r\n/).map(string=> string!='')
 
-}
+// }
 
 export default Page

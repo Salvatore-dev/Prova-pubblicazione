@@ -1,11 +1,10 @@
-"use client"
 import React from 'react'
 
-const regex_note = /\[\^\d+\].$/;
+const regex_note = new RegExp(/\[\^\d+\].$/);
 
-function Elaborate_paragraph({text}: {text: string}) {
+function Elaborate_paragraph({data_text}: {data_text: string}) {
     
-    const text_to_elaborate = text.trim()
+    const text_to_elaborate = data_text.trim()
     
     if (text_to_elaborate.startsWith('>')) {
         const cite = text_to_elaborate.substring(text_to_elaborate.search('cite=')+5, text_to_elaborate.length).trim()
@@ -31,7 +30,7 @@ function Elaborate_paragraph({text}: {text: string}) {
         )
     }
   return (
-    <p className='bg-neutral-200'>{text}</p>
+    <p className='bg-neutral-200'>{data_text}</p>
   )
 }
 
