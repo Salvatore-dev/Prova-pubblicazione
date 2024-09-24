@@ -6,7 +6,7 @@ const regex_note = new RegExp(/\[\^\d+\].$/);
 function Elaborate_paragraph({data_text}: {data_text: string}) {
     
     const text_to_elaborate = data_text.trim()
-    console.log('text to elaborate', text_to_elaborate);
+    //console.log('text to elaborate', text_to_elaborate);
     
     
     if (text_to_elaborate.startsWith('>')) {
@@ -15,9 +15,9 @@ function Elaborate_paragraph({data_text}: {data_text: string}) {
         
         const citation = text_to_elaborate.substring(0, text_to_elaborate.search('cite=')).trim()
         if (regex_note.test(citation)) {
-            const{text_simple, note}= get_note_text(citation)
+            const{text_simple, note_number}= get_note_text(citation)
             return(
-                <blockquote cite={cite} ><p>{text_simple.replace('>', '')}<sup>{note}</sup>.</p></blockquote>
+                <blockquote cite={cite} ><p>{text_simple.replace('>', '')}<sup>{note_number}</sup>.</p></blockquote>
             )
         }else return (
             <p>correggere citazione: {text_to_elaborate}</p>
@@ -27,9 +27,9 @@ function Elaborate_paragraph({data_text}: {data_text: string}) {
     if (regex_note.test(text_to_elaborate)) {
         //const note = text_to_elaborate.substring(text_to_elaborate.search(regex_note)+2, text_to_elaborate.length -2) 
         //const text_simple = text_to_elaborate.replace(regex_note, '')
-        const{text_simple, note}= get_note_text(text_to_elaborate)
+        const{text_simple, note_number}= get_note_text(text_to_elaborate)
         return (
-            <p>{text_simple}<sup>{note}</sup>.</p>
+            <p>{text_simple}<sup>{note_number}</sup>.</p>
         )
     }
   return (
@@ -37,12 +37,12 @@ function Elaborate_paragraph({data_text}: {data_text: string}) {
   )
 }
 
-function get_note_text(text:  string) : {text_simple: string, note: string} {
-        const note = text.substring(text.search(regex_note)+2, text.length -2) 
+function get_note_text(text:  string) : {text_simple: string, note_number: string} {
+        const note_number = text.substring(text.search(regex_note)+2, text.length -2) 
         const text_simple = text.replace(regex_note, '')
         return {
             text_simple,
-            note
+            note_number
         }
 }
 

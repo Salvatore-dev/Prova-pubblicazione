@@ -84,12 +84,20 @@
 // const transformed = string1.replace(regex, '');
 // console.log( transformed );
 
-function getArray() {
-    return['ciao', '33232', 'kmaskskama', ''].map(el=>{
-        if (el!='') {
-            return el
-        }
-    })
-}
+function prepare_array(contents, param_word) {
+    let body_article = contents
+    let notes = []
+    if (contents.includes(param_word)) {
+      body_article = contents.slice(0, contents.indexOf(param_word))
+      notes = contents.slice(contents.indexOf(param_word)+1)
+    }
+    return {
+      body_article: body_article,
+      notes: notes
+    }
+  }
+const Array_string = ['ciao', 'casa', 'albero', 'cigno', 'cavallo', 'leone', 'baracca']
+const param_word = 'leone'
+const { body_article, notes } = prepare_array(Array_string, param_word)
 
-console.log(getArray());
+console.log(body_article, notes);

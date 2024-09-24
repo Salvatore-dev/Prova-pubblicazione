@@ -10,7 +10,7 @@ Un altro vantaggio è l'integrazione semplice con React, che consente di usare c
 Markdown è una scelta naturale per la documentazione tecnica. Aziende come GitHub stanno passando sempre più a Markdown per la loro documentazione: dai un'occhiata al loro post sul blog su come hanno migrato la loro documentazione formattata in Markdown su Jekyll . Se scrivi documentazione per un prodotto o un servizio, dai un'occhiata a questi utili strumenti:
 Read the Docs può generare un sito web di documentazione dai tuoi file Markdown open source. Basta collegare il tuo repository GitHub al loro servizio e inviare: Read the Docs fa il resto. Hanno anche un servizio per entità commerciali .
 MkDocs è un generatore di siti statici semplice e veloce, orientato alla creazione di documentazione di progetto. I file sorgente della documentazione sono scritti in Markdown e configurati con un singolo file di configurazione YAML. MkDocs ha diversi temi integrati , tra cui un porting del tema di documentazione Read the Docs per l'uso con MkDocs. Uno dei temi più recenti è MkDocs Material .
-Docusaurus è un generatore di siti statici progettato esclusivamente per creare siti web di documentazione. Supporta traduzioni, ricerche e versioning. \n
+Docusaurus è un generatore di siti statici progettato esclusivamente per creare siti web di documentazione. Supporta traduzioni, ricerche e versioning.
 VuePress è un generatore di siti statici basato su Vue e ottimizzato per la scrittura di documentazione tecnica.
 Jekyll è stato menzionato in precedenza nella sezione sui siti web, ma è anche una buona opzione per generare un sito web di documentazione da file Markdown. Se segui questa strada, assicurati di dare un'occhiata al tema di documentazione di Jekyll[^234].
 1. uno
@@ -27,4 +27,12 @@ Qualcuno disse:
 
 Here's a sentence with a footnote[^1].
 
-[^1]: This is the footnote.
+
+NOTES
+
+[^1]: This is the footnote. E qui pu' iniziare una citazione: >"citazione estesa racchiusa in virgolette", o punto e lla nota continua fino al punto.
+[^2]: This is the footnote.[title](https://www.example.com)
+[^3]: >"Inizia una citazione racchiusa in virgolette", o punto e lla nota continua. ad un certo punto abbiamo un link [parola che indentifica la destinazione](https://www.example.com).
+[^4]: Qui c'e' solo testo.
+[^5]: assa a
+[^6]: Cf. Autore A., nome del testo, casa editrice, 2021 Citta, pagg.

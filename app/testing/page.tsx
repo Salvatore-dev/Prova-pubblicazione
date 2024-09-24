@@ -20,7 +20,7 @@ export default async function Page() {
 
   // Divide il contenuto in paragrafi basati su diversi tipi di fine riga (Windows, Unix, ecc.)
   const contentArray = content.split(/\r\n|\r|\n/).filter(line => line.trim() !== '');
-  console.log(contentArray);
+  //console.log(contentArray);
   
 
   return (
