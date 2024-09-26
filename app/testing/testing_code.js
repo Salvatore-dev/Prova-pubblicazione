@@ -84,20 +84,93 @@
 // const transformed = string1.replace(regex, '');
 // console.log( transformed );
 
-function prepare_array(contents, param_word) {
-    let body_article = contents
-    let notes = []
-    if (contents.includes(param_word)) {
-      body_article = contents.slice(0, contents.indexOf(param_word))
-      notes = contents.slice(contents.indexOf(param_word)+1)
-    }
-    return {
-      body_article: body_article,
-      notes: notes
-    }
-  }
-const Array_string = ['ciao', 'casa', 'albero', 'cigno', 'cavallo', 'leone', 'baracca']
-const param_word = 'leone'
-const { body_article, notes } = prepare_array(Array_string, param_word)
+// function prepare_array(contents, param_word) {
+//     let body_article = contents
+//     let notes = []
+//     if (contents.includes(param_word)) {
+//       body_article = contents.slice(0, contents.indexOf(param_word))
+//       notes = contents.slice(contents.indexOf(param_word)+1)
+//     }
+//     return {
+//       body_article: body_article,
+//       notes: notes
+//     }
+//   }
+// const Array_string = ['ciao', 'casa', 'albero', 'cigno', 'cavallo', 'leone', 'baracca']
+// const param_word = 'leone'
+// const { body_article, notes } = prepare_array(Array_string, param_word)
 
-console.log(body_article, notes);
+// console.log(body_article, notes);
+
+// prove per regex link .md
+
+// const text_t = 'This is the footnote.[title](https://www.example.com)'
+// const text = "Questo è un esempio con l'URL (https://www.example.com) incluso nel testo.";
+// const text_L = `sto sctivendo all'impoovviso prevedo un link [testo visibile del link](https://www.gli-animali-della-foresta.eu)`
+// const regex_address_link = /\(https:\/\/www\.[^\)]+\)/;
+// const regex_text_link = /\[.+?\]/;
+// const regex_total = /\[(.+?)\]\((https:\/\/www\.[^\)]+)\)/;
+// const match = regex_address_link.exec(text_L);
+// const match2 = regex_text_link.exec(text_t)
+// const match3 = regex_total.exec(text_L)
+
+// if (match3) {
+//   const matchText = match3[0]; // La corrispondenza trovata
+//   const startIndex = match3.index; // Indice di inizio della corrispondenza
+//   const endIndex = startIndex + matchText.length; // Indice di fine della corrispondenza
+  
+//   console.log("Corrispondenza trovata:", matchText);
+//   console.log("Inizio:", startIndex);
+//   console.log("Fine:", endIndex);
+//    // Testo visibile del link
+//    const visibleText = match3[1];
+//    console.log("Testo visibile:", visibleText);
+   
+//    // URL del link
+//    const url = match3[2];
+//    console.log("URL:", url)
+// }
+
+const condition_1 = false
+const condition_2 = true
+
+if (condition_1 || condition_2) {
+  console.log('Almeno una vera:', condition_1, condition_2);
+  
+  if (condition_1 && condition_2) {
+    console.log('Entrambe vere:', condition_1, condition_2);
+  } else if (condition_1) {
+    console.log('Solo condizione 1 vera:', condition_1);
+  } else {
+    console.log('Solo condizione 2 vera:', condition_2);
+  }
+  
+} else {
+  console.log('Entrambe false:', condition_1, condition_2);
+}
+
+
+/// gestire tre condizioni
+// if (condition_1 || condition_2 || condition_3) {
+//   console.log('Almeno una vera:', condition_1, condition_2, condition_3);
+  
+//   if (condition_1 && condition_2 && condition_3) {
+//     console.log('Tutte e tre vere:', condition_1, condition_2, condition_3);
+//   } else if (condition_1 && condition_2) {
+//     console.log('Solo condizione 1 e 2 vere:', condition_1, condition_2);
+//   } else if (condition_1 && condition_3) {
+//     console.log('Solo condizione 1 e 3 vere:', condition_1, condition_3);
+//   } else if (condition_2 && condition_3) {
+//     console.log('Solo condizione 2 e 3 vere:', condition_2, condition_3);
+//   } else if (condition_1) {
+//     console.log('Solo condizione 1 vera:', condition_1);
+//   } else if (condition_2) {
+//     console.log('Solo condizione 2 vera:', condition_2);
+//   } else {
+//     console.log('Solo condizione 3 vera:', condition_3);
+//   }
+  
+// } else {
+//   console.log('Tutte false:', condition_1, condition_2, condition_3);
+// }
+
