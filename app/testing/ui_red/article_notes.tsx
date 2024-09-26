@@ -1,14 +1,12 @@
-import { match } from 'assert';
 import React from 'react'
 
-
-
+import style from '@/app/testing/ui_red/article.notes.module.css'
 
 
 function Article_notes({ notes }: { notes: string[] }) {
   const Notes = notes
   return (
-    <section className='mt-0'>{
+    <section className={style.notes}>{
       Notes.map((note, i) => (
         <Note_single key={'foot_note' + i} note={note} />
       ))
@@ -16,10 +14,7 @@ function Article_notes({ notes }: { notes: string[] }) {
   )
 }
 
-const regex_note = new RegExp(/\[\^\d+\]:$/);
-
-// const regex_link = /\[\w+\]/;
-// const regex_link1 = /\(https:\/\/www\.[^\)]+\)/
+//const regex_note = new RegExp(/\[\^\d+\]:$/);
 
 
 
@@ -56,30 +51,75 @@ function Note_single({ note }: { note: string }) {
       // console.log("Corrispondenza trovata:", fullMatch_text);
       // console.log("Citazione:", quotedText);
       // console.log("URL di cite:", cite_ref);
-      console.log('indice citation: ' + startIndex_citation + ', indice link: ' + startIndex_link);
+      // console.log('indice citation: ' + startIndex_citation + ', indice link: ' + startIndex_link);
 
-      if (startIndex_citation< startIndex_link) {
-
-        return(
-          <div className='flex flex-wrap gap-[0.2em] m-0 items-baseline text-xs'>
-            <p><sup>{note_number}</sup> {text_simple.substring(0,startIndex_citation)}</p>
-            <blockquote cite={cite_ref}>
-              <p className='p-0 m-0'>{`"${citation_text.replace(">", '')}"`}</p>
-            </blockquote>
-            <p>{text_simple.substring(endIndex_citation, startIndex_link)}</p>
-            <a target='_blank' href={url_link}> {' ' +visibleText_link}</a>
-            <p>{text_simple.substring(endIndex_link)}</p>
+      if (startIndex_citation < startIndex_link) {
+        return (
+          <div>
+            <span><sup>{note_number}</sup>{text_simple.substring(0, startIndex_citation)}</span>
+            <span>
+              <blockquote cite={cite_ref}>
+                <span>{`"${citation_text.replace(">", '')}".`}</span>
+              </blockquote>
+            </span>
+            <span>{text_simple.substring(endIndex_citation, startIndex_link)}</span>
+            <a target='_blank' href={url_link} > {' ' + visibleText_link}</a>
+            <span>{text_simple.substring(endIndex_link)}</span>
+          </div>
+        )
+      } else if (startIndex_citation > startIndex_link) {
+        return (
+          <div >
+            <span><sup>{note_number}</sup>{text_simple.substring(0, startIndex_link)}</span>
+            <a target='_blank' href={url_link} > {' ' + visibleText_link}</a>
+            <span>{text_simple.substring(endIndex_link, startIndex_citation)}</span>
+            <span>
+              <blockquote cite={cite_ref} >
+                <span>{`"${citation_text.replace(">", '')}".`}</span>
+              </blockquote>
+            </span>
+            <span>{text_simple.substring(endIndex_citation)}</span>
           </div>
         )
       }
-      
+
+    } else if (!match_citation && match_link) {
+      const matchText_link = match_link[0]
+      const startIndex_link = match_link.index; // Indice di inizio della corrispondenza
+      const endIndex_link = startIndex_link + matchText_link.length; // Indice di fine della corrispondenza
+      const visibleText_link = match_link[1];
+      const url_link = match_link[2];
+      return (
+        <div >
+          <span><sup>{note_number}</sup>{text_simple.substring(0, startIndex_link)}</span>
+          <a target='_blank' href={url_link}> {' ' + visibleText_link}</a>
+          <span>{text_simple.substring(endIndex_link)}</span>
+        </div>
+      )
+    } else if (!match_link && match_citation) {
+      const fullMatch_text = match_citation[0]; // La corrispondenza completa
+      const startIndex_citation = match_citation.index
+      const endIndex_citation = startIndex_citation + fullMatch_text.length
+      const citation_text = match_citation[1]; // La citazione tra i doppi apici
+      const cite_ref = match_citation[2]; // Il contenuto dell'attributo cite
+      return (
+        <div >
+          <span><sup>{note_number}</sup>{text_simple.substring(0, startIndex_citation)}</span>
+          <span>
+            <blockquote cite={cite_ref} >
+              <span>{`"${citation_text.replace(">", '')}".`}</span>
+            </blockquote>
+          </span>
+          <span>{text_simple.substring(endIndex_citation)}</span>
+        </div>
+      )
     }
   }
 
   return (
-    <>
-      <p className='text-xl'><sup>{note_number}</sup>{text_simple}</p>
-    </>
+    <div>
+      <p><sup>{note_number}</sup>{text_simple}</p>
+    </div>
   )
 }
 
@@ -88,7 +128,6 @@ function get_note_text(text: string): { text_simple: string, note_number: string
   const regex_note = /\[\^\d+\]:/;
   const found = text.match(regex_note);
   // console.log(found);
-
   const text_simple = text.replace(regex_note, '')
   if (found) {
     const regex_number = /\d/
@@ -96,7 +135,6 @@ function get_note_text(text: string): { text_simple: string, note_number: string
     if (number) {
       note_number = number[0]
     }
-
   }
   return {
     text_simple: text_simple.trim(),

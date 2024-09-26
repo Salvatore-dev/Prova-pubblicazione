@@ -30,9 +30,10 @@ Here's a sentence with a footnote[^1].
 
 NOTES
 
-[^1]: This is the footnote. E qui pu' iniziare una citazione: >"citazione estesa racchiusa in virgolette"  cite=una frase qualsiasi o un riferimento on line, o punto e lla nota continua fino al punto.
-[^2]: This is the footnote.[title](https://www.example.com)
-[^3]: Casella di posta. Il tizio disse: >"Inizia una citazione racchiusa in virgolette" cite="cioaoaassa asa", infatti cosi fece. Ad esempio anche [il giornale tal dei tali disse lo stesso](https://www.example.com).
+[^1]: This is the footnote. E qui pu' iniziare una citazione: >"citazione estesa racchiusa in virgolette"  cite="una frase qualsiasi o un riferimento on line, o punto e lla nota continua fino al punto"
+[^2]: This is the footnote.[title](https://www.example.com).
+[^3]: Casella di posta. Il tizio disse: >"Inizia una citazione racchiusa in virgolette" cite="cioaoaassa asa" Infatti cosi fece. Ad esempio anche [il giornale tal dei tali disse lo stesso](https://www.example.com).
 [^4]: Qui c'e' solo testo.
-[^5]: assa a
+[^5]: Un altra citazione. [ecco un link](https://www.example.com). Poi del testo e una citazione: >"ciao sono una citazione" cite="riferimento alla citazione" Ultimo testo.
 [^6]: Cf. Autore A., nome del testo, casa editrice, 2021 Citta, pagg.
+[^7]: Provo un altra nota. Inizio una citazione: >"ecco una citazione. Sara piu grande e deve finire con il punto." cite="il testo per la cite" Inizio una nuova frare e poi la chiudo. [quimi serve un link](https://www.example.com).
