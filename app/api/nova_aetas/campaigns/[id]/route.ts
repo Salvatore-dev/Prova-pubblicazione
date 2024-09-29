@@ -6,16 +6,20 @@ import { isConvertibleToNumber } from "@/app/lib/Nova_aetas/data";
 import { Result_campaign, Inventory, HERO, Injury, Skill, Conquest, Hero, Treasury, Mission, Campaign_data } from "@/app/lib/Nova_aetas/definitions";
 import { verifySession } from "@/app/lib/dal"
 import { unstable_noStore as noStore } from 'next/cache';
+import { redirect } from "next/navigation";
 
 export async function GET(Request: NextRequest, params: { params: { id: string, item: string } }): Promise<NextResponse> { // esempio di get funzionanate
     const session = await verifySession()
-
+    noStore()
     // Check if the user is authenticated
     if (!session.isAuth) {
         // User is not authenticated
+         console.log('non autenticato', session);
+         redirect('/')
         return new NextResponse(null, { status: 401 })
+        
     }
-    noStore()
+   
     const id = params.params.id.trim()
     if (!isConvertibleToNumber(id)) {
         console.log('campaing_id not valid number');
@@ -25,8 +29,6 @@ export async function GET(Request: NextRequest, params: { params: { id: string, 
     //const id_campaign = 1 // per il momento non abilito la creazione campagna e la scelta della stessa. Successivamente da implementare una reicrca get con parametro id
     try {
         console.log('FETCHING campaign_data');
-
-
         const campaign_results: Result_campaign[] = await sql_Elephant`
         SELECT
             campaigns.name,
@@ -64,7 +66,6 @@ export async function GET(Request: NextRequest, params: { params: { id: string, 
         console.log(campaign_results);
         if (campaign_results.length <= 0) {
             console.log('campagna inesistente');
-
             return new NextResponse(JSON.stringify(null))
         }
 
@@ -85,7 +86,7 @@ export async function GET(Request: NextRequest, params: { params: { id: string, 
                     name: el.treasury_name,
                     campaign_id: el.campaign_id,
                     quantity: el.treasury_quantity,
-                    puchase: el.treasury_purchase,
+                    purchase: el.treasury_purchase,
                     sale: el.treasury_sale,
                     icon: el.treasury_icon
                 }
@@ -94,7 +95,6 @@ export async function GET(Request: NextRequest, params: { params: { id: string, 
             //console.log(treasure);
             campaign_schedule.treasury = [...treasure]
         }
-
 
         //console.log(prova);
 
@@ -173,9 +173,6 @@ export async function GET(Request: NextRequest, params: { params: { id: string, 
             campaign_schedule,
             heroes
         }
-
-
-
         return new NextResponse(JSON.stringify(dataToSend))
 
     } catch (error) {

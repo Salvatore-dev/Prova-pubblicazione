@@ -123,7 +123,7 @@ export type Treasury = {
     name: string | null,
     campaign_id: number | null,
     quantity: number,
-    puchase: number | null,
+    purchase: number | null,
     sale: number | null,
     icon: string | null
 }
