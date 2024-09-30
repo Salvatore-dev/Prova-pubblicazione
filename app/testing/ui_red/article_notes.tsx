@@ -2,6 +2,7 @@ import React from 'react'
 
 import style from '@/app/testing/ui_red/article.notes.module.css'
 
+import { regex_link } from '@/app/(ReD)/lib/data_red'
 
 function Article_notes({ notes }: { notes: string[] }) {
   const Notes = notes
@@ -14,15 +15,12 @@ function Article_notes({ notes }: { notes: string[] }) {
   )
 }
 
-//const regex_note = new RegExp(/\[\^\d+\]:$/);
-
-
 
 function Note_single({ note }: { note: string }) {
   const Note = note.trim()
   const { text_simple, note_number } = get_note_text(Note)
   //console.log(text_simple, note_number);
-  const regex_link = /\[(.+?)\]\((https:\/\/www\.[^\)]+)\)/;
+  //const regex_link = /\[(.+?)\]\((https:\/\/www\.[^\)]+)\)/;
   const match_link = regex_link.exec(text_simple)
 
   const regex_citetion = />\s*"(.*?)"\s+cite="(.*?)"/

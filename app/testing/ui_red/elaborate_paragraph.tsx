@@ -1,18 +1,16 @@
 import React from 'react'
-import { regex_note, regex_link, regex_image } from '@/app/(ReD)/lib/data_red';
-//const regex_note = new RegExp(/\[\^\d+\].$/);
-import image from '@/public/image/pexel/esempio-1.jpeg'
+import { regex_note, regex_link, regex_local_link, regex_image } from '@/app/(ReD)/lib/data_red';
+
 
 function Elaborate_paragraph({ data_text }: { data_text: string }) {
 
     const text_to_elaborate = data_text.trim()
     //console.log('text to elaborate', text_to_elaborate);
-
+    
 
     if (text_to_elaborate.startsWith('>')) {
         const cite = text_to_elaborate.substring(text_to_elaborate.search('cite=') + 5, text_to_elaborate.length).trim()
         //console.log(cite);
-
         const citation = text_to_elaborate.substring(0, text_to_elaborate.search('cite=')).trim()
         if (regex_note.test(citation)) {
             const { text_simple, note_number } = get_note_text(citation)
@@ -22,7 +20,6 @@ function Elaborate_paragraph({ data_text }: { data_text: string }) {
         } else return (
             <p>correggere citazione: {text_to_elaborate}</p>
         )
-
     }
     if (regex_note.test(text_to_elaborate)) {
         //const note = text_to_elaborate.substring(text_to_elaborate.search(regex_note)+2, text_to_elaborate.length -2) 
@@ -37,15 +34,37 @@ function Elaborate_paragraph({ data_text }: { data_text: string }) {
         if (match_image) {
             const description = match_image[1]; // La stringa tra le parentesi quadre []
             const url = match_image[2]; // La stringa tra le parentesi tonde ()
-
-            return (
+            const endIndex_Image = match_image.length
+            const match_link = regex_link.exec(text_to_elaborate.substring(endIndex_Image))
+            if (match_link) {
+                const visibleText_link = match_link[1];
+                const url_link = match_link[2];
+                return (
+                    <figure>
+                        <img src={url}
+                            alt={description} />
+                        <figcaption>{description}<span><a target='_blank' href={url_link} >{visibleText_link}</a></span></figcaption>
+                    </figure>
+                )
+            } else return (
                 <figure>
                     <img src={url}
                         alt={description} />
-                        <figcaption>{description}</figcaption>
+                    <figcaption>{description}</figcaption>
                 </figure>
             )
         }
+    }
+    const match_local_link = regex_local_link.exec(text_to_elaborate)
+    if (!text_to_elaborate.startsWith('!') && match_local_link) {
+        const matchText_link = match_local_link[0]
+        const startIndex_link = match_local_link.index; // Indice di inizio della corrispondenza
+        const endIndex_link = startIndex_link + matchText_link.length; // Indice di fine della corrispondenza
+        const visibleText_link = match_local_link[1];
+        const url_link = match_local_link[2];
+        return(
+            <p className=' bg-yellow-500'>{text_to_elaborate.substring(0, startIndex_link)}<span><a target='_blank' href={url_link}> {' ' + visibleText_link}</a>{text_to_elaborate.substring(endIndex_link)}</span></p>
+        )
     }
     return (
         <p className='bg-neutral-200'>{text_to_elaborate}</p>
