@@ -1,5 +1,6 @@
 import React from 'react'
 import { regex_note, regex_link, regex_local_link, regex_image } from '@/app/(ReD)/lib/data_red';
+import Link from 'next/link';
 
 
 function Elaborate_paragraph({ data_text }: { data_text: string }) {
@@ -15,7 +16,7 @@ function Elaborate_paragraph({ data_text }: { data_text: string }) {
         if (regex_note.test(citation)) {
             const { text_simple, note_number } = get_note_text(citation)
             return (
-                <blockquote cite={cite} ><p>{text_simple.replace('>', '')}<sup>{note_number}</sup>.</p></blockquote>
+                <blockquote cite={cite} ><p className=' antialiased text-justify'>{text_simple.replace('>', '')}<sup>{note_number}</sup>.</p></blockquote>
             )
         } else return (
             <p>correggere citazione: {text_to_elaborate}</p>
@@ -26,7 +27,7 @@ function Elaborate_paragraph({ data_text }: { data_text: string }) {
         //const text_simple = text_to_elaborate.replace(regex_note, '')
         const { text_simple, note_number } = get_note_text(text_to_elaborate)
         return (
-            <p>{text_simple}<sup>{note_number}</sup>.</p>
+            <p className=' antialiased text-justify'>{text_simple}<sup>{note_number}</sup>.</p>
         )
     }
     if (text_to_elaborate.startsWith('!')) {
@@ -43,14 +44,14 @@ function Elaborate_paragraph({ data_text }: { data_text: string }) {
                     <figure>
                         <img src={url}
                             alt={description} />
-                        <figcaption>{description}<span><a target='_blank' href={url_link} >{visibleText_link}</a></span></figcaption>
+                        <figcaption className=' rounded-b-sm bg-black text-white p-1 text-right antialiased'>{description}<span><a className=' text-zinc-400 no-underline hover:underline' target='_blank' href={url_link} >{visibleText_link}</a></span></figcaption>
                     </figure>
                 )
             } else return (
                 <figure>
                     <img src={url}
                         alt={description} />
-                    <figcaption>{description}</figcaption>
+                    <figcaption className=' rounded-b-sm bg-zinc-200 p-1 text-right antialiased'>{description}</figcaption>
                 </figure>
             )
         }
@@ -63,11 +64,11 @@ function Elaborate_paragraph({ data_text }: { data_text: string }) {
         const visibleText_link = match_local_link[1];
         const url_link = match_local_link[2];
         return(
-            <p className=' bg-yellow-500'>{text_to_elaborate.substring(0, startIndex_link)}<span><a target='_blank' href={url_link}> {' ' + visibleText_link}</a>{text_to_elaborate.substring(endIndex_link)}</span></p>
+            <p className=' antialiased text-justify'>{text_to_elaborate.substring(0, startIndex_link)}<span><Link className=' m-0 p-0 text-ReD-500 no-underline hover:underline' target='_blank' href={url_link}> {' ' + visibleText_link}</Link>{text_to_elaborate.substring(endIndex_link)}</span></p>
         )
     }
     return (
-        <p className='bg-neutral-200'>{text_to_elaborate}</p>
+        <p className=' antialiased text-justify'>{text_to_elaborate}</p>
     )
 }
 

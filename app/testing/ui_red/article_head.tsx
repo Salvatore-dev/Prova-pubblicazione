@@ -20,7 +20,6 @@ function Article_head({image_head}:{image_head: StaticImageData}) {
             <div className=' relative w-full h-[200px] sm:h-[250px] md:h-[350px] lg:h-[600px]'>
                 <Image className=' bg-center object-cover' fill src={image_head} alt='Foto / immagine articolo' />
             </div>
-            
         </header>
     )
 }

@@ -7,7 +7,7 @@ import { regex_link } from '@/app/(ReD)/lib/data_red'
 function Article_notes({ notes }: { notes: string[] }) {
   const Notes = notes
   return (
-    <section className={style.notes}>{
+    <section className=' mt-0 text-[0.6rem] md:text-[0.8rem] lg:text-[1rem] m-0 mx-auto p-0 mb-3 w-[95%] md:w-[80%] lg:w-[70%] xl:w-[65%]'>{
       Notes.map((note, i) => (
         <Note_single key={'foot_note' + i} note={note} />
       ))
@@ -53,26 +53,26 @@ function Note_single({ note }: { note: string }) {
 
       if (startIndex_citation < startIndex_link) {
         return (
-          <div>
-            <span><sup>{note_number}</sup>{text_simple.substring(0, startIndex_citation)}</span>
+          <div className=' flex align-baseline gap-1 flex-wrap p-0 mt-0 mb-[0.3em] md:mb-2 lg:mb-3 antialiased text-justify'>
+            <span><sup className=' mr-2'>{note_number}</sup>{text_simple.substring(0, startIndex_citation)}</span>
             <span>
-              <blockquote cite={cite_ref}>
+              <blockquote className=' m-0 p-0 inline' cite={cite_ref}>
                 <span>{`"${citation_text.replace(">", '')}".`}</span>
               </blockquote>
             </span>
             <span>{text_simple.substring(endIndex_citation, startIndex_link)}</span>
-            <a target='_blank' href={url_link} > {' ' + visibleText_link}</a>
+            <a className=' p-0 inline text-ReD-500 no-underline hover:underline' target='_blank' href={url_link} > {' ' + visibleText_link}</a>
             <span>{text_simple.substring(endIndex_link)}</span>
           </div>
         )
       } else if (startIndex_citation > startIndex_link) {
         return (
-          <div >
-            <span><sup>{note_number}</sup>{text_simple.substring(0, startIndex_link)}</span>
-            <a target='_blank' href={url_link} > {' ' + visibleText_link}</a>
+          <div className='flex align-baseline gap-1 flex-wrap p-0 mt-0 mb-[0.3em] md:mb-2 lg:mb-3 antialiased text-justify' >
+            <span><sup className=' mr-2'>{note_number}</sup>{text_simple.substring(0, startIndex_link)}</span>
+            <a className=' inline p-0 text-ReD-500 no-underline hover:underline' target='_blank' href={url_link} > {' ' + visibleText_link}</a>
             <span>{text_simple.substring(endIndex_link, startIndex_citation)}</span>
             <span>
-              <blockquote cite={cite_ref} >
+              <blockquote className=' m-0 p-0 inline' cite={cite_ref} >
                 <span>{`"${citation_text.replace(">", '')}".`}</span>
               </blockquote>
             </span>
@@ -88,11 +88,11 @@ function Note_single({ note }: { note: string }) {
       const visibleText_link = match_link[1];
       const url_link = match_link[2];
       return (
-        <div >
-          <span><sup>{note_number}</sup>{text_simple.substring(0, startIndex_link)}</span>
-          <a target='_blank' href={url_link}> {' ' + visibleText_link}</a>
+        <p className=' mt-0 p-0 mb-[0.3em] md:mb-2 lg:mb-3 antialiased text-justify'>
+          <span><sup className='mr-2'>{note_number}</sup>{text_simple.substring(0, startIndex_link)}</span>
+          <a className=' inline p-0 text-ReD-500 no-underline hover:underline' target='_blank' href={url_link}> {' ' + visibleText_link}</a>
           <span>{text_simple.substring(endIndex_link)}</span>
-        </div>
+        </p>
       )
     } else if (!match_link && match_citation) {
       const fullMatch_text = match_citation[0]; // La corrispondenza completa
@@ -101,10 +101,10 @@ function Note_single({ note }: { note: string }) {
       const citation_text = match_citation[1]; // La citazione tra i doppi apici
       const cite_ref = match_citation[2]; // Il contenuto dell'attributo cite
       return (
-        <div >
-          <span><sup>{note_number}</sup>{text_simple.substring(0, startIndex_citation)}</span>
+        <div className='flex align-baseline gap-1 flex-wrap p-0 mt-0 mb-[0.3em] md:mb-2 lg:mb-3  antialiased text-justify'>
+          <span><sup className='mr-2'>{note_number}</sup>{text_simple.substring(0, startIndex_citation)}</span>
           <span>
-            <blockquote cite={cite_ref} >
+            <blockquote className='m-0 p-0 inline' cite={cite_ref} >
               <span>{`"${citation_text.replace(">", '')}".`}</span>
             </blockquote>
           </span>
@@ -115,8 +115,8 @@ function Note_single({ note }: { note: string }) {
   }
 
   return (
-    <div>
-      <p><sup>{note_number}</sup>{text_simple}</p>
+    <div className='flex align-baseline gap-1 p-0 mt-0 mb-[0.3em] md:mb-2 lg:mb-3'>
+      <p className='m-0 p-0 mb-[0.1em] antialiased text-justify'><sup className='mr-2'>{note_number}</sup>{text_simple}</p>
     </div>
   )
 }

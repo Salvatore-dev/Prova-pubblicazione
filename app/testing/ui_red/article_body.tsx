@@ -11,11 +11,12 @@ function Article_body({content}: {content: string[]}) {
 
   return (
     <>
-    <section className='m-0 p-0'>
+    <section className='m-0 mx-auto p-0 pt-4 w-[95%] md:w-[80%] lg:w-[70%] xl:w-[65%]'>
     {body_article.map((string, i)=>(
         <Elaborate_paragraph key={i} data_text={string} />
     ))}
     </section>
+    <hr className=' py-2 m-0 mx-auto p-0 pt-3 w-[95%] md:w-[80%] lg:w-[70%] xl:w-[65%]' />
     {notes.length>0 && <Article_notes notes={notes} />}
     </>
     

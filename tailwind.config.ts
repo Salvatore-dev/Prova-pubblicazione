@@ -62,6 +62,9 @@ const config: Config = {
           800: "#5f5c0c",
           900: "#4c4000"
         },
+        ReD: {
+          500: "#0066cc"
+        }
       },
       fontFamily: {
         sans: [

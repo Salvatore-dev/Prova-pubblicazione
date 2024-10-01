@@ -1,12 +1,13 @@
 .notes {
     margin-top: 0;
+    font-size: 0.75rem;
 }
 
-.notes>div {
+.notes > div {
     display: flex;
     align-items: baseline;
     /* Allinea gli elementi alla linea di base */
-    font-size: 0.75rem;
+    /* font-size: 0.75rem; */
     /* text-xs in Tailwind è 12px, quindi 0.75rem */
     gap: 0.2rem;
     /* Gap di 0.2em tra gli elementi */
@@ -14,7 +15,8 @@
     /* Permette il wrapping degli elementi quando non c'è spazio */
     padding: 0;
     margin: 0;
-    margin-bottom: 1em;
+    margin-bottom: 0.1em;
+    
 }
 
 .notes blockquote {
@@ -23,23 +25,28 @@
     display: inline;
 }
 
-.notes>a {
+.notes > a {
     display: inline;
+    padding: 0;
 }
 
 .notes sup {
     margin-right: 0.5rem;
 }
 
-.notes p {
+.notes > p {
     margin: 0;
     padding: 0;
+    margin-bottom: 0.1em;
 }
 
 @media (min-width: 768px) {
     .notes {
         font-size: 0.875rem;
         /* text-sm in Tailwind è 14px, quindi 0.875rem */
+    }
+    .notes > p {
+        margin-bottom: 0.3em;
     }
 }
 
@@ -48,5 +55,11 @@
     .notes {
         font-size: 1rem;
         /* text-base in Tailwind è 16px, quindi 1rem */
+    }
+    .notes > p {
+        margin-bottom: 0.6em;
+    }
+    .notes > div {
+        margin-bottom: 0.6em;
     }
 }
