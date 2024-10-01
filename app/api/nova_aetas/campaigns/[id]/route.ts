@@ -14,12 +14,12 @@ export async function GET(Request: NextRequest, params: { params: { id: string, 
     // Check if the user is authenticated
     if (!session.isAuth) {
         // User is not authenticated
-         console.log('non autenticato', session);
-         redirect('/')
+        console.log('non autenticato', session);
+        redirect('/')
         return new NextResponse(null, { status: 401 })
-        
+
     }
-   
+
     const id = params.params.id.trim()
     if (!isConvertibleToNumber(id)) {
         console.log('campaing_id not valid number');
@@ -136,39 +136,86 @@ export async function GET(Request: NextRequest, params: { params: { id: string, 
             campaign_schedule.conquests = [...conquest]
         }
         // se non trova nessun eroe associato a campagna da array vuoto
-        const heroes_campaign: Hero[] = await sql_Elephant`
-        SELECT *
+        const result_heroes = await sql_Elephant`
+        SELECT 
+            heroes.campaign_id AS campaign_id,
+            heroes.id AS hero_id,
+            heroes.name AS hero_name,
+            heroes.players AS hero_players,
+            heroes.class AS hero_class,
+            heroes.liaison AS hero_liaison,
+            heroes.note AS hero_note,
+            heroes.destiny AS hero_destiny,
+            heroes.spent AS hero_spent,
+            heroes.earned AS hero_earned,
+            heroes.hero_conquests AS hero_conquests,
+            heroes.hero_strengthenings AS hero_strengthenings,
+            serious_injuries.id AS injury_id,
+            serious_injuries.name AS injury_name,
+            serious_injuries.popolini AS injury_popolini,
+            skills.id AS skill_id,
+            skills.name AS skill_name,
+            skills.experience AS skill_experience
         FROM heroes
+        LEFT JOIN serious_injuries ON serious_injuries.hero_id = heroes.id
+        LEFT JOIN skills ON skills.hero_id = heroes.id
         WHERE heroes.campaign_id = ${id_campaign};
+    `;
 
-        `
-        console.log(heroes_campaign);
+        // Trasformiamo i dati raggruppandoli per eroe
+        const heroesMap: { [key: number]: HERO } = {};
 
-        const heroes: HERO[] = await Promise.all(
-            heroes_campaign.map(async (el) => {
-                const injuries: Injury[] = await sql_Elephant`
-                SELECT*
-                FROM serious_injuries
-                WHERE serious_injuries.hero_id = ${el.id};
-                `
-                const skills: Skill[] = await sql_Elephant`
-                SELECT*
-                FROM skills
-                WHERE skills.hero_id = ${el.id};
-                `
-                // const upgrades : Upgrades[] = await sql_Elephant`
-                // SELECT*
-                // FROM  upgrades
-                // WHERE upgrades.hero_id= ${el.id};
-                // `
-                return {
-                    ...el,
-                    injuries: injuries,
-                    skills: skills,
-                    //upgrades: upgrades
+        result_heroes.forEach(row => {
+            if (!heroesMap[row.hero_id]) {
+                heroesMap[row.hero_id] = {
+                    campaign_id: row.campaign_id,
+                    id: row.hero_id,
+                    name: row.hero_name,
+                    players: row.hero_players,
+                    class: row.hero_class,
+                    liaison: row.hero_liaison,
+                    note: row.hero_note,
+                    destiny: row.hero_destiny,
+                    spent: row.hero_spent,
+                    earned: row.hero_earned,
+                    hero_conquests: row.hero_conquests,
+                    hero_strengthenings: row.hero_strengthenings,
+                    injuries: [],
+                    skills: []
                 };
-            })
-        )
+            }
+
+            // Se ci sono ferite (injuries), aggiungile all'eroe
+            if (!heroesMap[row.hero_id].injuries) {
+                heroesMap[row.hero_id].injuries = [];
+            }
+            if (row.injury_id) {
+                heroesMap[row.hero_id].injuries.push({
+                    id: row.injury_id,
+                    name: row.injury_name,
+                    popolini: row.injury_popolini,
+                    hero_id: row.hero_id
+                });
+            }
+
+            // Se ci sono abilità (skills), aggiungile all'eroe
+            if (!heroesMap[row.hero_id].skills) {
+                heroesMap[row.hero_id].skills = [];
+            }
+            if (row.skill_id) {
+                heroesMap[row.hero_id].skills.push({
+                    id: row.skill_id,
+                    name: row.skill_name,
+                    experience: row.skill_experience,
+                    hero_id: row.hero_id
+                });
+            }
+
+        });
+
+        // Convertiamo la mappa in un array di HERO
+        const heroes: HERO[] = Object.values(heroesMap);
+
         const dataToSend = {
             campaign_schedule,
             heroes

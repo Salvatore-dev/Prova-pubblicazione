@@ -37,18 +37,10 @@ export type Skill ={
     experience: number,
     hero_id: number
 }
-// export type Upgrades ={
-//     id: number,
-//     name: string,
-//     icon: string,
-//     value: boolean,
-//     hero_id: number
 
-// }
 export interface HERO extends Hero {
-    injuries: Injury[] | null,
-    skills: Skill[] | null,
-    //upgrades: Upgrades[] | null
+    injuries: Injury[],
+    skills: Skill[],
 }
 
 
