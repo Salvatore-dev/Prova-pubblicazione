@@ -2,7 +2,6 @@ import React from 'react';
 import Article_FT from './ui_red/articleFT';
 import Article_head from './ui_red/article_head';
 import Article_body from './ui_red/article_body';
-import image_head from '@/public/image/napoli_citta.jpeg';
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
@@ -16,18 +15,23 @@ export default async function Page() {
   const fileContents = fs.readFileSync(filePath, 'utf8');
   
   // Usa gray-matter per estrarre il frontmatter e il contenuto
-  const { content } = matter(fileContents);
+  const { content, data } = matter(fileContents);
+  const dataCreazione = data.date
+  const image_head1 = data.image 
+  //console.log(dataCreazione, typeof dataCreazione);
+  
 
   // Divide il contenuto in paragrafi basati su diversi tipi di fine riga (Windows, Unix, ecc.)
   const contentArray = content.split(/\r\n|\r|\n/).filter(line => line.trim() !== '');
   //console.log(contentArray);
+  console.log(data);
   
 
   return (
     <div>
       <h1>Testing...</h1>
       <Article_FT>
-        <Article_head image_head={image_head} />
+        <Article_head image_head={image_head1} date={dataCreazione} />
         <Article_body content={contentArray} />
       </Article_FT>
     </div>

@@ -7,7 +7,7 @@ import { regex_link } from '@/app/(ReD)/lib/data_red'
 function Article_notes({ notes }: { notes: string[] }) {
   const Notes = notes
   return (
-    <section className=' mt-0 text-[0.6rem] md:text-[0.8rem] lg:text-[1rem] m-0 mx-auto p-0 mb-3 w-[95%] md:w-[80%] lg:w-[70%] xl:w-[65%]'>{
+    <section className=' mt-0 text-[0.7rem] md:text-[0.8rem] lg:text-[1rem] m-0 mx-auto p-0 mb-3 w-[95%] md:w-[80%] lg:w-[70%] xl:w-[65%]'>{
       Notes.map((note, i) => (
         <Note_single key={'foot_note' + i} note={note} />
       ))

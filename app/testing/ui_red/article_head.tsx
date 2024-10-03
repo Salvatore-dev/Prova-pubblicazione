@@ -6,23 +6,33 @@ import Image from 'next/image'
 
 const data_attuale = addDate() // dovrebbe arrivare una data dal Db in questo fromato sotto quindi memorizzare la data in origine utilizzando questo formato
 
-const date_ISO = convertToISODate(data_attuale)
 
-function Article_head({image_head}:{image_head: StaticImageData}) {
+function Article_head({ image_head, date }: { image_head: string, date: Date }) {
+    console.log(convertDateToItalianString(date), 'data 1', convertDateString(date), "data2");
+    const date_ISO = convertDateString(date)
+    const data_attuale = convertDateToItalianString(date)
     return (
         <header>
-            <div className='flex justify-start text-lg antialiased'>
-                <p className=' font-mono font-semibold uppercase'>Concilio Vaticano II</p>
-                <p className=' font-light text-neutral-600'><span className='mx-2'>|</span><time dateTime={date_ISO}>{data_attuale.replaceAll('_', ' ')}</time></p>
+            <div className="flex justify-start text-lg antialiased">
+                <p className="font-mono font-semibold uppercase">Concilio Vaticano II</p>
+                <p className="font-light text-neutral-600">
+                    <span className="mx-2">|</span>
+                    <time dateTime={date_ISO}>{data_attuale.replaceAll("_", " ")}</time>
+                </p>
             </div>
             <h1>Il titolo articolo</h1>
-            <p className=' text-justify'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae, soluta! Aperiam numquam, eligendi, beatae nobis in nemo non deleniti eius eaque velit, et id similique mollitia consequatur repellendus veniam odio.</p>
-            <div className=' relative w-full h-[200px] sm:h-[250px] md:h-[350px] lg:h-[600px]'>
-                <Image className=' bg-center object-cover' fill src={image_head} alt='Foto / immagine articolo' />
-            </div>
+            <p className="text-justify">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae, soluta! Aperiam numquam, eligendi, beatae nobis in nemo non deleniti eius eaque velit, et id similique mollitia consequatur repellendus veniam odio.
+            </p>
+            {/* Contenitore per l'immagine come sfondo */}
+            <div
+                className="relative w-full h-[200px] sm:h-[250px] md:h-[350px] lg:h-[600px] bg-center bg-cover"
+                style={{ backgroundImage: `url(${image_head})` }}
+            ></div>
         </header>
-    )
+    );
 }
+
 
 function addDate(): string {
     return new Date().toLocaleString("it-IT", {
@@ -50,6 +60,31 @@ function addDate(): string {
     // Restituisci la stringa nel formato ISO 8601
     return `${anno.trim()}-${meseISO}-${giornoISO}`;
 }
+
+function convertDateToItalianString(date: Date): string {
+    // Definisci i mesi in italiano
+    const mesi: string[] = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'];
+
+    // Estrai il giorno, mese e anno dall'oggetto Date
+    const giorno: number = date.getDate();
+    const mese: string = mesi[date.getMonth()]; // getMonth() restituisce un valore da 0 a 11
+    const anno: number = date.getFullYear();
+
+    // Restituisci la data nel formato "12 settembre 2024"
+    return `${giorno} ${mese} ${anno}`;
+}
+function convertDateString(date: Date): string {
+    
+    // Estrai il giorno, mese e anno dall'oggetto Date
+    const giorno: string = date.getDate().toString().padStart(2, '0');
+    const mese: string = date.getMonth().toString().padStart(2, '0'); // getMonth() restituisce un valore da 0 a 11
+    const anno: number = date.getFullYear();
+
+    // Restituisci la data nel formato "12 settembre 2024"
+    return `${anno}-${mese}-${giorno}`;
+}
+
+
 
 // Esempio di utilizzo
 // const data: string = "12 settembre 2024";

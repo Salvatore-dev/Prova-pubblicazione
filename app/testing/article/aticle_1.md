@@ -1,8 +1,13 @@
 ---
 slug: articolo-1
 author: Mario Rossi
-date: 2024-09-21
+section: Next.js e Markdown
+date: 2024-10-03
 title: "Un'introduzione a Next.js"
+subTitle: Un esempio di utilisso di file markdown. Con varie casistiche.
+tags: ["Next.js", "Markdown", "File Markdown", "Learning"]
+lastDate: 2024-10-03
+image: ./image/napoli_citta.jpeg
 ---
 Next.js è un framework React che offre funzionalità come il rendering lato server e la generazione di siti statici[^1].
 Next.js consente di eseguire il rendering di una pagina lato server, il che migliora il SEO e permette di generare pagine statiche per migliorare le performance.
