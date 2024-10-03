@@ -31,7 +31,7 @@ export default async function Page() {
     <div>
       <h1>Testing...</h1>
       <Article_FT>
-        <Article_head image_head={image_head1} date={dataCreazione} />
+        <Article_head image_head={image_head1} date={dataCreazione} title={data.title} />
         <Article_body content={contentArray} />
       </Article_FT>
     </div>

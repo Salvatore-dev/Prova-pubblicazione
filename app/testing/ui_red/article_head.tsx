@@ -4,11 +4,11 @@ import style from '@/app/testing/article_header.module.css'
 import { StaticImageData } from 'next/image';
 import Image from 'next/image'
 
-const data_attuale = addDate() // dovrebbe arrivare una data dal Db in questo fromato sotto quindi memorizzare la data in origine utilizzando questo formato
+//const data_attuale = addDate() // dovrebbe arrivare una data dal Db in questo fromato sotto quindi memorizzare la data in origine utilizzando questo formato
 
 
-function Article_head({ image_head, date }: { image_head: string, date: Date }) {
-    console.log(convertDateToItalianString(date), 'data 1', convertDateString(date), "data2");
+function Article_head({ image_head, date, title }: { image_head: string, date: Date, title: string }) {
+    //console.log(convertDateToItalianString(date), 'data 1', convertDateString(date), "data2");
     const date_ISO = convertDateString(date)
     const data_attuale = convertDateToItalianString(date)
     return (
@@ -20,7 +20,7 @@ function Article_head({ image_head, date }: { image_head: string, date: Date }) 
                     <time dateTime={date_ISO}>{data_attuale.replaceAll("_", " ")}</time>
                 </p>
             </div>
-            <h1>Il titolo articolo</h1>
+            <h1>{title}</h1>
             <p className="text-justify">
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae, soluta! Aperiam numquam, eligendi, beatae nobis in nemo non deleniti eius eaque velit, et id similique mollitia consequatur repellendus veniam odio.
             </p>
