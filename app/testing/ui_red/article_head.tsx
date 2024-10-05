@@ -21,7 +21,7 @@ function Article_head({ image_head, modifiedDate, title, subTitle, section }: { 
                         <time dateTime={date_ISO}>{data_attuale.replaceAll("_", " ")}</time>
                     </p>
                 </div>
-                <h1 className='text-xxl font-bold md:text-4xl'>{title}</h1>
+                <h1 className=' text-2xl font-bold md:text-4xl'>{title}</h1>
                 <p className="text-justify text-xl md:text-2xl font-light">{subTitle}</p>
             </div>
 

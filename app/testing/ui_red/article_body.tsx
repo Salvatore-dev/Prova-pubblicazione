@@ -11,7 +11,7 @@ function Article_body({content}: {content: string[]}) {
 
   return (
     <>
-    <section className='m-0 mx-auto p-0 pt-4 w-[95%] md:w-[80%] lg:w-[70%] xl:w-[65%]'>
+    <section className='m-0 mx-auto p-0 pt-4 w-[95%] md:w-[80%] lg:w-[70%] xl:w-[65%] text-base md:text-lg xl:text-xl'>
     {body_article.map((string, i)=>(
         <Elaborate_paragraph key={i} data_text={string} />
     ))}
