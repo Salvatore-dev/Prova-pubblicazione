@@ -1,20 +1,20 @@
 ---
 slug: articolo-1
 author: Mario Rossi
-section: Next.js e Markdown
-date: 2024-09-17
 title: "Esempi Markdown"
 subTitle: Un esempio di utilisso di file markdown. Con varie casistiche.
+creationDate: 2024-09-17
+section: Next.js e Markdown
 tags: ["Next.js", "Markdown", "File Markdown", "Learning"]
-lastDate: 2024-09-17
-image: ./image/napoli_citta.jpeg
+modifiedDate: 2024-09-17
+image: ["./image/napoli_citta.jpeg", "text_alt e description image", "(by Pexels)", "https://www.pexels.com/it-it/foto/mare-spiaggia-costa-montagna-17311064/"]
 ---
 Next.js è un framework React che offre funzionalità come il rendering lato server e la generazione di siti statici[^1].
 Next.js consente di eseguire il rendering di una pagina lato server, il che migliora il SEO e permette di generare pagine statiche per migliorare le performance.
 Un altro vantaggio è l'integrazione semplice con React, che consente di usare componenti dinamici.
 Markdown è una scelta naturale per la documentazione tecnica. Aziende come GitHub stanno passando sempre più a Markdown per la loro documentazione: dai un'occhiata al loro post sul blog su come hanno migrato la loro documentazione formattata in Markdown su Jekyll . Se scrivi documentazione per un prodotto o un servizio, dai un'occhiata a questi utili strumenti:
 Read the Docs può generare un sito web di documentazione dai tuoi file Markdown open source. Basta collegare il tuo repository GitHub al loro servizio e inviare: Read the Docs fa il resto. Hanno anche un servizio per entità commerciali .
-![Una statua del Budda. ](./image/buddismo.jpeg) [Immagine fornita da pexels](https://www.pexels.com/it-it/foto/formazione-rocciosa-marrone-e-grigia-5769435/)
+![Una statua del Budda. ](./image/buddismo.jpeg) [(Pexels)](https://www.pexels.com/it-it/foto/formazione-rocciosa-marrone-e-grigia-5769435/)
 MkDocs è un generatore di siti statici semplice e veloce, orientato alla creazione di documentazione di progetto. I file sorgente della documentazione sono scritti in Markdown e configurati con un singolo file di configurazione YAML. MkDocs ha diversi temi integrati , tra cui un porting del tema di documentazione Read the Docs per l'uso con MkDocs. Uno dei temi più recenti è MkDocs Material .
 Docusaurus è un generatore di siti statici progettato esclusivamente per creare siti web di documentazione. Supporta traduzioni, ricerche e versioning.
 VuePress è un generatore di siti statici basato su Vue e ottimizzato per la scrittura di documentazione tecnica.
