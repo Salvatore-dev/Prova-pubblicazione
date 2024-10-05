@@ -28,7 +28,7 @@ const SocialShare: React.FC<SocialShareProps> = ({ url, title }) => {
         rel="noopener noreferrer"
         aria-label="Share on X"
       >
-        <FaTwitter size={30} />
+        <FaTwitter className=" text-black" size={30} />
       </a>
 
       {/* WhatsApp */}

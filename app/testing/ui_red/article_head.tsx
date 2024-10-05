@@ -13,8 +13,8 @@ import { usePathname } from 'next/navigation';
 function Article_head({ image_head, modifiedDate, title, subTitle, section }: { image_head: string[], modifiedDate: Date, title: string, subTitle: string, section: string }) {
     //console.log(convertDateToItalianString(date), 'data 1', convertDateString(date), "data2");
     const date_ISO = convertDateString(modifiedDate)
-    const data_attuale = convertDateToItalianString(modifiedDate)
-    const url_article = usePathname()
+    const data_attuale =  convertDateToItalianString(modifiedDate) 
+    const url_article = 'https://prova-pubblicazione.vercel.app' + usePathname()
     return (
         <header className='md:w-[90%] m-auto mt-3'>
             <div className='md:w-[95%] m-auto'>
