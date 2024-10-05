@@ -2,7 +2,7 @@
 slug: articolo-1
 author: Mario Rossi
 title: "Esempi Markdown"
-subTitle: Un esempio di utilisso di file markdown. Con varie casistiche.
+subTitle: Un esempio di utilizzo di file markdown. Con varie casistiche.
 creationDate: 2024-09-17
 section: Next.js e Markdown
 tags: ["Next.js", "Markdown", "File Markdown", "Learning"]

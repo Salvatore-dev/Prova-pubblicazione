@@ -1,8 +1,11 @@
+"use client"
 import React from 'react'
 
 import style from '@/app/testing/article_header.module.css'
 import { StaticImageData } from 'next/image';
 import Image from 'next/image'
+import SocialShare from './share_social';
+import { usePathname } from 'next/navigation';
 
 //const data_attuale = addDate() // dovrebbe arrivare una data dal Db in questo fromato sotto quindi memorizzare la data in origine utilizzando questo formato
 
@@ -11,6 +14,7 @@ function Article_head({ image_head, modifiedDate, title, subTitle, section }: { 
     //console.log(convertDateToItalianString(date), 'data 1', convertDateString(date), "data2");
     const date_ISO = convertDateString(modifiedDate)
     const data_attuale = convertDateToItalianString(modifiedDate)
+    const url_article = usePathname()
     return (
         <header className='md:w-[90%] m-auto mt-3'>
             <div className='md:w-[95%] m-auto'>
@@ -21,8 +25,8 @@ function Article_head({ image_head, modifiedDate, title, subTitle, section }: { 
                         <time dateTime={date_ISO}>{data_attuale.replaceAll("_", " ")}</time>
                     </p>
                 </div>
-                <h1 className=' text-2xl font-bold md:text-4xl'>{title}</h1>
-                <p className="text-justify text-xl md:text-2xl font-light">{subTitle}</p>
+                <h1 className=' text-2xl font-bold md:text-4xl mb-2'>{title}</h1>
+                <p className="text-justify text-xl md:text-2xl font-light mb-2">{subTitle}</p>
             </div>
 
             {/* Contenitore per l'immagine come sfondo */}
@@ -35,6 +39,9 @@ function Article_head({ image_head, modifiedDate, title, subTitle, section }: { 
                     alt={image_head[1]} />
                 <figcaption className=' rounded-b-sm bg-black text-white p-1 text-right text-sm md:text-base antialiased'>{image_head[1]} {image_head[3] && <span><a className=' text-zinc-400 no-underline hover:underline' target='_blank' href={image_head[3]} >{image_head[2]}</a></span>}</figcaption>
             </figure>
+            <div>
+                <SocialShare title={title} url={url_article} />
+            </div>
         </header>
     );
 }
