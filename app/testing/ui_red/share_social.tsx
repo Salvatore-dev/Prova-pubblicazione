@@ -1,4 +1,4 @@
-import { FaFacebook, FaTwitter, FaTelegram, FaWhatsapp, FaReddit } from "react-icons/fa";
+import { FaFacebook, FaTwitter, FaTelegram, FaWhatsapp, FaReddit, FaLinkedin } from "react-icons/fa";
 
 interface SocialShareProps {
   url: string; // L'URL dell'articolo da condividere
@@ -49,6 +49,15 @@ const SocialShare: React.FC<SocialShareProps> = ({ url, title }) => {
         aria-label="Share on Telegram"
       >
         <FaTelegram size={30} />
+      </a>
+      {/* LinkedIn */}
+      <a
+        href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Share on LinkedIn"
+      >
+        <FaLinkedin size={30} />
       </a>
 
       {/* Reddit */}
