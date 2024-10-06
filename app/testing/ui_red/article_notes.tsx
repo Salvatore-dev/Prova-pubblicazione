@@ -1,7 +1,5 @@
 import React from 'react'
 
-import style from '@/app/testing/ui_red/article.notes.module.css'
-
 import { regex_link } from '@/app/(ReD)/lib/data_red'
 
 function Article_notes({ notes }: { notes: string[] }) {
@@ -116,7 +114,7 @@ function Note_single({ note }: { note: string }) {
 
   return (
     <div className='flex align-baseline gap-1 p-0 mt-0 mb-[0.3em] md:mb-2 lg:mb-3'>
-      <p className='m-0 p-0 mb-[0.1em] antialiased text-justify'><sup className='mr-2'>{note_number}</sup>{text_simple}</p>
+      <p className={`m-0 p-0 mb-[0.1em] antialiased text-justify ${!note_number && 'mr-0'}`}>{note_number&&<sup className='mr-2'>{note_number}</sup>}{text_simple}</p>
     </div>
   )
 }

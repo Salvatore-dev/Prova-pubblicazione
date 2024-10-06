@@ -41,7 +41,7 @@ export default async function Page() {
   return (
     <>
       <Article_FT>
-        <Article_head title={title} section={section} subTitle={subTitle} modifiedDate={modifiedDate} image_head={image} />
+        <Article_head author={author} title={title} section={section} subTitle={subTitle} creationDate={creationDate} modifiedDate={modifiedDate} image_head={image} />
         <Article_body content={contentArray} />
       </Article_FT>
     </>

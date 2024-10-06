@@ -49,7 +49,14 @@
 // const dataISO2 = convertToISODate(data2)
 // console.log(dataISO2);
 
-
+// function addDate(): string {
+//   return new Date().toLocaleString("it-IT", {
+//       day: "2-digit",
+//       month: "long",
+//       year: "numeric",
+//       timeZone: "Europe/Rome",
+//   }).replaceAll(' ', '_');
+// }
 
 // function addDate1() {
 //     return new Date().toLocaleString("it-IT", {

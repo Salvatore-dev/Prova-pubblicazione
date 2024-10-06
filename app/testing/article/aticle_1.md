@@ -1,12 +1,12 @@
 ---
 slug: articolo-1
-author: Mario Rossi
+author: redazione
 title: "Esempi Markdown"
 subTitle: Un esempio di utilizzo di file markdown. Con varie casistiche.
-creationDate: 2024-09-17
+creationDate: 2023-10-04
 section: Next.js e Markdown
 tags: ["Next.js", "Markdown", "File Markdown", "Learning"]
-modifiedDate: 2024-09-17
+modifiedDate: 2024-04-21
 image: ["./image/napoli_citta.jpeg", "text_alt e description image", "(by Pexels)", "https://www.pexels.com/it-it/foto/mare-spiaggia-costa-montagna-17311064/"]
 ---
 Next.js è un framework React che offre funzionalità come il rendering lato server e la generazione di siti statici[^1].
@@ -45,3 +45,7 @@ NOTES
 [^5]: Un altra citazione. [ecco un link](https://www.example.com). Poi del testo e una citazione: >"ciao sono una citazione" cite="riferimento alla citazione" Ultimo testo.
 [^6]: Cf. Autore A., nome del testo, casa editrice, 2021 Citta, pagg.
 [^7]: Provo un altra nota. Inizio una citazione: >"ecco una citazione. Sara piu grande e deve finire con il punto." cite="il testo per la cite" Inizio una nuova frare e poi la chiudo. [quimi serve un link](https://www.example.com).
+
+BIBLIOGRAFIA (eventuale)
+Autore, titolo, editore, citta data.
+[^8]: una prova
