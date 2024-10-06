@@ -44,7 +44,7 @@ function Elaborate_paragraph({ data_text }: { data_text: string }) {
                     <figure className='my-4'>
                         <img src={url}
                             alt={description} />
-                        <figcaption className=' rounded-b-sm bg-black text-white text-sm md:text-base p-1 text-right antialiased'>{description}<span><a className=' text-zinc-400 no-underline hover:underline' target='_blank' href={url_link} >{visibleText_link}</a></span></figcaption>
+                        <figcaption className=' rounded-b-sm bg-black text-white text-sm md:text-base p-1 text-right antialiased'>{description}<span><a className=' text-zinc-400 underline md:no-underline md:hover:underline' target='_blank' href={url_link} >{visibleText_link}</a></span></figcaption>
                     </figure>
                 )
             } else return (
@@ -64,7 +64,7 @@ function Elaborate_paragraph({ data_text }: { data_text: string }) {
         const visibleText_link = match_local_link[1];
         const url_link = match_local_link[2];
         return(
-            <p className=' antialiased text-justify'>{text_to_elaborate.substring(0, startIndex_link)}<span><Link className=' m-0 p-0 text-ReD-500 no-underline hover:underline' target='_blank' href={url_link}> {' ' + visibleText_link}</Link>{text_to_elaborate.substring(endIndex_link)}</span></p>
+            <p className=' antialiased text-justify'>{text_to_elaborate.substring(0, startIndex_link)}<span><Link className=' m-0 p-0 text-ReD-500 underline md:no-underline md:hover:underline' target='_blank' href={url_link}> {' ' + visibleText_link}</Link>{text_to_elaborate.substring(endIndex_link)}</span></p>
         )
     }
     return (
