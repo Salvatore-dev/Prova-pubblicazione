@@ -7,19 +7,21 @@ import Nav from 'react-bootstrap/Nav';
 import { Offcanvas } from 'react-bootstrap';
 import Image from 'next/image';
 import logo from '@/public/Salvatore-Tosich-logo.png'
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
 type LinksContent = {
     name: string,
     url: string
 }
 const linksHeader: LinksContent[] = [
-    { name: "Home", url: "/" },
     { name: "Testing", url: "/testing" },
     { name: "Ricerca foto", url: "/photo_research" },
-    { name: "ReD", url: "/blog"},
-    {name : `Nova Aetas`, url: `/nova_aetas`},
-    {name : "Signup", url : "/signup"},
-    {name : "Login", url : "/login"},
+    { name: `Nova Aetas`, url: `/nova_aetas` },
+    { name: "Login", url: "/login" },
+];
+
+const linksReD: LinksContent[] = [
+    { name: 'Testing article', url: '/blog/testing_article' }
 ]
 
 function NewHeader() {
@@ -39,7 +41,7 @@ function NewHeader() {
                                 className=" rounded-full"
                             />{' '}
                             <span className='text-xs md:text-xl'>Salvatore Tosich Web Developer</span>
-                            </Navbar.Brand>
+                        </Navbar.Brand>
                         <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
                         <Navbar.Offcanvas
                             id={`offcanvasNavbar-expand-${expand}`}
@@ -52,7 +54,21 @@ function NewHeader() {
                                 </Offcanvas.Title>
                             </Offcanvas.Header>
                             <Offcanvas.Body className='bg-slate-200 md:bg-amber-100 text-black opacity-70 md:opacity-100'>
+
                                 <Nav className="justify-content-end flex-grow-1 pe-3 font-semibold lg:text-lg">
+                                    <Nav.Link href='/'>Home</Nav.Link>
+                                    <NavDropdown
+                                        title="Testing ReD"
+                                        id={`offcanvasNavbarDropdown-expand-${expand}`}
+                                    >
+                                        {linksReD.map((link, y) => (
+                                            <NavDropdown.Item key={`link_ReD_${y}`} href={link.url}>{link.name}</NavDropdown.Item>
+                                        ))}
+                                        <NavDropdown.Divider />
+                                        <NavDropdown.Item href="/blog/tags_text_learning">
+                                            Esempi tags per articolo
+                                        </NavDropdown.Item>
+                                    </NavDropdown>
                                     {linksHeader.map((el, i) => (
                                         <Nav.Link href={el.url} key={'link_' + i}>{el.name}</Nav.Link>
                                     ))}

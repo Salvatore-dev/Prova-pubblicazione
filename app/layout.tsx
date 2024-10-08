@@ -30,7 +30,7 @@ export default function RootLayout({
 
     
       <body className={roboto.className + ''}>
-        <header className=' sticky top-0 w-full z-[999] overflow-hidden'>
+        <header className=' sticky top-0 w-full z-[999] overflow-visible'>
           <NewHeader />
         </header>
 
