@@ -21,7 +21,8 @@ const linksHeader: LinksContent[] = [
 ];
 
 const linksReD: LinksContent[] = [
-    { name: 'Testing article', url: '/blog/testing_article' }
+    { name: 'Testing article', url: '/blog/testing_article' },
+    {name: 'Aggiungi articolo', url: '/blog/add_article'}
 ]
 
 function NewHeader() {

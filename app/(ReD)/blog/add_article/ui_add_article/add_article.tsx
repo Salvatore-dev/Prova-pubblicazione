@@ -17,7 +17,7 @@ type Article_head_data = {
     image: string[]
   }
 
-export default function MarkdownFileReader() {
+export default function FileUploader() {
   const [fileContent, setFileContent] = useState<string | null>(null);
   const [metadata_article, setMetadata_article] = useState<Article_head_data | null>(null);
   const [result_send, setResult_send] = useState<string>('Pronto!')
