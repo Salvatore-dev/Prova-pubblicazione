@@ -294,7 +294,7 @@ function List_Types(props : Tailwind_list_learning) {
           <p className=' font-semibold'>{props.description}</p>
           <p className=' font-light'>Comando tailwind: <span className=' font-semibold'>{props.tailwindClass}</span>; corrisponde a css: <span className=' italic'>{props.cssProperty}</span></p>
         </div>
-        <p className={`${props.tailwindClass} bg-neutral-100`}>{Lorem}</p>
+        <p className={`${props.tailwindClass} bg-neutral-100 overflow-scroll`}>{Lorem}</p>
       </div>
       
     )
