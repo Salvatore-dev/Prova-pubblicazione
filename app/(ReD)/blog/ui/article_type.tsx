@@ -4,7 +4,7 @@ import style from '@/app/(ReD)/blog/ui/article.module.css'
 // aside si pone al fianco del p successivo
 function Article_type_tag_esempi() {
     return (
-        <article className='w-[90%] m-auto overflow-auto'>
+        <article className='w-[90%] m-auto'>
             <h1>Modello html articolo</h1>
             <div className=' bg-neutral-200'>
                 <p>Per un aside all&apos;interno di una articolo:</p>
