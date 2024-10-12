@@ -1,12 +1,12 @@
 ---
-slug: testing2
+slug: testing5
 author: redazione
-title: "Esempi Markdown e prova di utilizzo"
+title: "Esempio per prova utilizzo chiamata 3.2"
 subTitle: Un esempio di utilizzo di file markdown. Con varie casistiche.
-creationDate: 2024-09-04
+creationDate: 2019-09-06
 section: Next.js e Markdown
 tags: ["Next.js", "Markdown", "File Markdown", "Learning", "Database"]
-modifiedDate: 2024-10-04
+modifiedDate: 2024-10-12
 image: ["../image/napoli_citta.jpeg", "text_alt e description image", "(by Pexels)", "https://www.pexels.com/it-it/foto/mare-spiaggia-costa-montagna-17311064/"]
 ---
 Next.js è un framework React che offre funzionalità come il rendering lato server e la generazione di siti statici[^1].

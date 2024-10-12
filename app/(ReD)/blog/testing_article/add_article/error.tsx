@@ -16,7 +16,7 @@ export default function Error({
  
   return (
     <div className=' w-[80%] m-auto bg-slate-400 rounded-2xl p-6'>
-      <h2 className='text-red-500 mb-7'>Something went wrong!</h2>
+      <h2 className='text-red-500 mb-7'>Qualcosa e&apo; storto!</h2>
       <button
       className='text-black'
         onClick={

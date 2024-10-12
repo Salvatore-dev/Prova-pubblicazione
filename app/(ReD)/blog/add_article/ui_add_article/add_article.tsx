@@ -50,7 +50,7 @@ export default function FileUploader() {
   }
 
   return (
-    <div className=' w-[95%] m-auto bg-slate-300'>
+    <div className=' w-[95%] m-auto bg-slate-300 min-h-screen'>
       <h1>Carica un file Markdown</h1>
       <input className='bg-yellow-200' type="file" accept=".md" onChange={handleFileChange} />
 

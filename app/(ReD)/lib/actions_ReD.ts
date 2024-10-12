@@ -30,20 +30,12 @@ export async function AddMetadata_article(data: Article_head_data): Promise<stri
 
     // Inizio della transazione
     await sql_Elephant.begin(async (sqlTransaction) => {
-      
-      // // 1. Verifica se lo slug esiste già
-      // const existingArticle = await sqlTransaction`SELECT * FROM articles WHERE slug = ${slug}`;
-      // console.log(existingArticle);
-      
-      // if (existingArticle.length >= 1) {
-      //   console.log('Slug esistente:', slug); // Log quando lo slug esiste
-      //   return `Slug già esistente: ${slug}. Cambialo prima di continuare.`;
-      // }
 
       // 2. Inserimento dell'articolo
+        // inserisco solo le prime due stringhe di array image, source e alt. il resto e' sul file
       const New_article = await sqlTransaction`
         INSERT INTO articles (slug, author, title, subtitle, creation_date, section, modified_date, image)
-        VALUES (${slug}, ${author}, ${title}, ${subTitle}, ${creationDate}, ${section}, ${modifiedDate}, ${JSON.stringify(image)})
+        VALUES (${slug}, ${author}, ${title}, ${subTitle}, ${creationDate}, ${section}, ${modifiedDate}, ${JSON.stringify(image.slice(0,2))})
         RETURNING id;
       `;
       const articleId = New_article[0].id;
@@ -79,3 +71,34 @@ export async function AddMetadata_article(data: Article_head_data): Promise<stri
   }
 }
 
+export async function LastArticles() {
+
+  try {
+    const last_articles : Last_articles[] = await sql_Elephant`
+    SELECT slug, title, subtitle, section, image
+    FROM articles
+    ORDER BY modified_date DESC
+    LIMIT 15;
+    `
+    console.log(last_articles);
+
+    if (last_articles.length >=1) {
+
+      return last_articles
+    } else return null
+    
+    
+  } catch (error) {
+    console.log(error);
+    return null
+  }
+  
+}
+
+type Last_articles = {
+  slug: string;
+  title: string;
+  subtitle: string;
+  section: string;
+  image: string;
+}
