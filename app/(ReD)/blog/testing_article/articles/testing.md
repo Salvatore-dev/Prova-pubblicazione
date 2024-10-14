@@ -44,6 +44,6 @@ NOTES
 [^6]: Cf. Autore A., nome del testo, casa editrice, 2021 Citta, pagg.
 [^7]: Provo un altra nota. Inizio una citazione: >"ecco una citazione. Sara piu grande e deve finire con il punto." cite="il testo per la cite" Inizio una nuova frare e poi la chiudo. [quimi serve un link](https://www.example.com).
 
-BIBLIOGRAFIA (eventuale)
+Bibliografia
 Autore, titolo, editore, citta data.
-[^8]: una prova
+Autore, titolo, editore, citta data.
