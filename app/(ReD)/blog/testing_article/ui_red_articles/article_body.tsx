@@ -16,7 +16,7 @@ function Article_body({content, path}: {content: string[], path? : string}) {
         <Elaborate_paragraph key={i} data_text={string} path={path} />
     ))}
     </section>
-    <hr className=' py-2 m-0 mx-auto p-0 pt-3 w-[95%] md:w-[80%] lg:w-[70%] xl:w-[65%]' />
+    <hr className=' py-2 my-2 mx-auto p-0 pt-3 w-[95%] md:w-[80%] lg:w-[70%] xl:w-[65%]' />
     {notes.length>0 && <Article_notes notes={notes} />}
     </>
     

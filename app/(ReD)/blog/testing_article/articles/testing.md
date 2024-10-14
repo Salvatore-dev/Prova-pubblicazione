@@ -22,12 +22,13 @@ VuePress è un generatore di siti statici basato su Vue e ottimizzato per la scr
 Jekyll è stato menzionato in precedenza nella sezione sui siti web, ma è anche una buona opzione per generare un sito web di documentazione da file Markdown. Se segui questa strada, assicurati di dare un'occhiata al tema di documentazione di Jekyll[^234].
 ![una bella immagine da internet. ](https://images.pexels.com/photos/539746/pexels-photo-539746.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1) [Immagine fonita da pexels](https://www.pexels.com/it-it/)
 
->citazione di un testo [^2]. cite=una stringa, un url ad una risorda web oppure un messaggio per le citazioni usate. dettagli poi ripresi e ampliati sotto sotto nelle note al numero corrispondente.
+Spesso per implementare velocemente una interfaccia grafica occorre una libreira che ti facilita il compito. Ad esempio possiamo usare "Flobite" una libreria molto utile. Infatti:
+>"Flowbite is an open-source library of UI components based on the utility-first Tailwind CSS framework featuring dark mode support, a Figma design system, templates, and more" [^2]. cite=Sito di Flowbite, in questo caso. una stringa, un url ad una risorda web oppure un messaggio per le citazioni usate. dettagli poi ripresi e ampliati sotto sotto nelle note al numero corrispondente.
 
 cioa
 Inizio un paragrafo, senza note finali, non mi interessano. pero voglio rimandare ad una pagina del [login](./login). Continuo il mio discorso
 Qualcuno disse:
->verra' un giorno[^3].  cite=un personaggio dei promessi sposi.
+>"verra' un giorno"[^3].  cite=un personaggio dei promessi sposi.
 >L'implementazione di String.prototype.search()per sé è molto semplice: richiama semplicemente il Symbol.searchmetodo dell'argomento con la stringa come primo parametro[^4]. cite=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/search
 
 Here's a sentence with a footnote[^1].
@@ -36,7 +37,7 @@ Here's a sentence with a footnote[^1].
 NOTES
 
 [^1]: This is the footnote. E qui pu' iniziare una citazione: >"citazione estesa racchiusa in virgolette"  cite="una frase qualsiasi o un riferimento on line, o punto e lla nota continua fino al punto"
-[^2]: This is the footnote.[title](https://www.example.com).
+[^2]: Dal sito di [Flowbite](https://www.flowbite.com/docs/getting-started/quickstart/).
 [^3]: Casella di posta. Il tizio disse: >"Inizia una citazione racchiusa in virgolette" cite="cioaoaassa asa" Infatti cosi fece. Ad esempio anche [il giornale tal dei tali disse lo stesso](https://www.example.com).
 [^4]: Qui c'e' solo testo.
 [^5]: Un altra citazione. [ecco un link](https://www.example.com). Poi del testo e una citazione: >"ciao sono una citazione" cite="riferimento alla citazione" Ultimo testo.

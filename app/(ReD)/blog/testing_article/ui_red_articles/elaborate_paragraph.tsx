@@ -2,7 +2,8 @@ import React from 'react'
 import { regex_note, regex_link, regex_local_link, regex_image } from '@/app/(ReD)/lib/data_red';
 import Link from 'next/link';
 
-const css_tailwind_base = 'antialiased text-justify py-1 leading-snug indent-4 hyphens-auto'
+const css_tailwind_base_paragraph = 'antialiased text-justify py-1 leading-relaxed indent-4 hyphens-auto'
+
 function Elaborate_paragraph({ data_text, path }: { data_text: string, path?: string }) {
 
     const text_to_elaborate = data_text.trim()
@@ -16,10 +17,10 @@ function Elaborate_paragraph({ data_text, path }: { data_text: string, path?: st
         if (regex_note.test(citation)) {
             const { text_simple, note_number } = get_note_text(citation)
             return (
-                <blockquote cite={cite} ><p className={`${css_tailwind_base}`}>{text_simple.replace('>', '')}<sup>{note_number}</sup>.</p></blockquote>
+                <blockquote cite={cite} ><p className={`${css_tailwind_base_paragraph} italic w-[90%] m-auto`}>{text_simple.replace('>', '')}<sup> {note_number}</sup>.</p></blockquote>
             )
         } else return (
-            <p className={`${css_tailwind_base}`}>correggere citazione: {text_to_elaborate}</p>
+            <p className={`${css_tailwind_base_paragraph}`}>correggere citazione: {text_to_elaborate}</p>
         )
     }
     if (regex_note.test(text_to_elaborate)) {
@@ -27,7 +28,7 @@ function Elaborate_paragraph({ data_text, path }: { data_text: string, path?: st
         //const text_simple = text_to_elaborate.replace(regex_note, '')
         const { text_simple, note_number } = get_note_text(text_to_elaborate)
         return (
-            <p className={`${css_tailwind_base}`}>{text_simple}<sup>{note_number}</sup>.</p>
+            <p className={`${css_tailwind_base_paragraph}`}>{text_simple}<sup>{note_number}</sup>.</p>
         )
     }
     if (text_to_elaborate.startsWith('!')) {
@@ -65,11 +66,11 @@ function Elaborate_paragraph({ data_text, path }: { data_text: string, path?: st
         const visibleText_link = match_local_link[1];
         const url_link = match_local_link[2];
         return(
-            <p className={`${css_tailwind_base}`}>{text_to_elaborate.substring(0, startIndex_link)}<span><Link className=' m-0 p-0 text-ReD-500 underline md:no-underline md:hover:underline' target='_blank' href={url_link}> {' ' + visibleText_link}</Link>{text_to_elaborate.substring(endIndex_link)}</span></p>
+            <p className={`${css_tailwind_base_paragraph}`}>{text_to_elaborate.substring(0, startIndex_link)}<span><Link className=' m-0 p-0 text-ReD-500 underline md:no-underline md:hover:underline' target='_blank' href={url_link}> {' ' + visibleText_link}</Link>{text_to_elaborate.substring(endIndex_link)}</span></p>
         )
     }
     return (
-        <p className={`${css_tailwind_base}`}>{text_to_elaborate}</p>
+        <p className={`${css_tailwind_base_paragraph}`}>{text_to_elaborate}</p>
     )
 }
 
