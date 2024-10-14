@@ -3,7 +3,7 @@ import { regex_note, regex_link, regex_local_link, regex_image } from '@/app/(Re
 import Link from 'next/link';
 
 
-function Elaborate_paragraph({ data_text }: { data_text: string }) {
+function Elaborate_paragraph({ data_text, path }: { data_text: string, path?: string }) {
 
     const text_to_elaborate = data_text.trim()
     //console.log('text to elaborate', text_to_elaborate);
@@ -34,7 +34,8 @@ function Elaborate_paragraph({ data_text }: { data_text: string }) {
         const match_image = text_to_elaborate.match(regex_image)
         if (match_image) {
             const description = match_image[1]; // La stringa tra le parentesi quadre []
-            const url = match_image[2]; // La stringa tra le parentesi tonde ()
+            let url = match_image[2]; // La stringa tra le parentesi tonde ()
+            if (path&& !url.startsWith('https')) url = path + match_image[2] // nel caso delle chiamate in rotte dinamiche distanti di una cartella rispetto il default. nel caso rivedere metodo piu appropiato
             const endIndex_Image = match_image.length
             const match_link = regex_link.exec(text_to_elaborate.substring(endIndex_Image))
             if (match_link) {

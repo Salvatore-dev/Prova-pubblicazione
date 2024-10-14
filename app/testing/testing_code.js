@@ -138,23 +138,23 @@
 //    console.log("URL:", url)
 // }
 
-const condition_1 = false
-const condition_2 = true
+// const condition_1 = false
+// const condition_2 = true
 
-if (condition_1 || condition_2) {
-  console.log('Almeno una vera:', condition_1, condition_2);
+// if (condition_1 || condition_2) {
+//   console.log('Almeno una vera:', condition_1, condition_2);
   
-  if (condition_1 && condition_2) {
-    console.log('Entrambe vere:', condition_1, condition_2);
-  } else if (condition_1) {
-    console.log('Solo condizione 1 vera:', condition_1);
-  } else {
-    console.log('Solo condizione 2 vera:', condition_2);
-  }
+//   if (condition_1 && condition_2) {
+//     console.log('Entrambe vere:', condition_1, condition_2);
+//   } else if (condition_1) {
+//     console.log('Solo condizione 1 vera:', condition_1);
+//   } else {
+//     console.log('Solo condizione 2 vera:', condition_2);
+//   }
   
-} else {
-  console.log('Entrambe false:', condition_1, condition_2);
-}
+// } else {
+//   console.log('Entrambe false:', condition_1, condition_2);
+// }
 
 
 /// gestire tre condizioni
@@ -181,3 +181,10 @@ if (condition_1 || condition_2) {
 //   console.log('Tutte false:', condition_1, condition_2, condition_3);
 // }
 
+const arr = ['ciao', 'hello', 'rione', 'giovaninastri']
+
+const agg = '../'
+
+const r = agg + arr[0]
+arr[0] = r
+console.log(arr);

@@ -1,7 +1,7 @@
 ---
-slug: testing
+slug: testing2
 author: redazione
-title: "Esempio per prova utilizzo chiamata"
+title: "Esempio per prova utilizzo chiamata 3.2"
 subTitle: Un esempio di utilizzo di file markdown. Con varie casistiche.
 creationDate: 2019-09-06
 section: Next.js e Markdown

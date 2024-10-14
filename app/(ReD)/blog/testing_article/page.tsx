@@ -7,18 +7,8 @@ import matter from 'gray-matter';
 import Article_FT from './ui_red_articles/articleFT'
 import Article_head from './ui_red_articles/article_head'
 import Article_body from './ui_red_articles/article_body'
-
-type Article_head_data = {
-    slug: string,
-    author : string,
-    title: string,
-    subTitle: string,
-    creationDate: Date,
-    section: string,
-    tags : string[],
-    modifiedDate: Date,
-    image: string[]
-  }
+import Article_tags from './ui_red_articles/article_tags';
+import { Article_head_data } from '../../lib/definitions';
 
   // Questo è un componente server-side per Next.js 13 App Router
 export default async function Page() {
@@ -45,6 +35,7 @@ export default async function Page() {
         <Article_FT>
           <Article_head author={author} title={title} section={section} subTitle={subTitle} creationDate={creationDate} modifiedDate={modifiedDate} image_head={image} />
           <Article_body content={contentArray} />
+          <Article_tags tags={tags}/>
         </Article_FT>
       </>
     );

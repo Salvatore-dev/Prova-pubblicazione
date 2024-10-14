@@ -4,7 +4,7 @@ import Elaborate_paragraph from './elaborate_paragraph'
 import Article_notes from './article_notes'
 
 const note_keyword = "NOTES"
-function Article_body({content}: {content: string[]}) {
+function Article_body({content, path}: {content: string[], path? : string}) {
     const array_strings = content
    
     const {body_article, notes} = prepare_array(array_strings, note_keyword)
@@ -13,7 +13,7 @@ function Article_body({content}: {content: string[]}) {
     <>
     <section aria-label='body of article' className='m-0 mx-auto p-0 pt-4 w-[95%] md:w-[80%] lg:w-[70%] xl:w-[65%] text-base md:text-lg xl:text-xl'>
     {body_article.map((string, i)=>(
-        <Elaborate_paragraph key={i} data_text={string} />
+        <Elaborate_paragraph key={i} data_text={string} path={path} />
     ))}
     </section>
     <hr className=' py-2 m-0 mx-auto p-0 pt-3 w-[95%] md:w-[80%] lg:w-[70%] xl:w-[65%]' />

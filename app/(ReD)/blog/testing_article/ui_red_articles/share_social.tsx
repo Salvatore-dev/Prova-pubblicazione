@@ -15,7 +15,7 @@ const SocialShare: React.FC<SocialShareProps> = ({ url, title }) => {
   const encodedTitle = encodeURIComponent(title);
 
   return (
-    <>
+    <section role="Navbar delle icone social" className="m-0 my-2 p-0">
       <hr />
       <h4 className=" text-xl">Condividi l&apos;articolo: </h4>
       <nav style={{ display: "flex", gap: "10px" }}>
@@ -106,7 +106,7 @@ const SocialShare: React.FC<SocialShareProps> = ({ url, title }) => {
         </button>
       </nav>
       <hr />
-    </>
+    </section>
 
   );
 };

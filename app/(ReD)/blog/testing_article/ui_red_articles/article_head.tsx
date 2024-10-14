@@ -34,12 +34,10 @@ function Article_head({ image_head, modifiedDate, title, subTitle, section, auth
                     alt={image_head[1]} />
                 <figcaption className=' rounded-b-sm bg-black text-white p-1 text-right text-sm md:text-base antialiased'>{image_head[1]} {image_head[3] && <span><a className=' text-zinc-400 underline md:no-underline md:hover:underline' target='_blank' href={image_head[3]} >{image_head[2]}</a></span>}</figcaption>
             </figure>
-            <div className='m-0 p-0'>
+            <div className='m-0 my-2 p-0'>
                 <p className='m-0 p-0'>Ultima modifica: <time dateTime={date_ISO_lastUpdate}>{dateLastUpdate}</time>. {author !='redazione'&& <span>By <span className=' font-semibold'>{author}</span></span>} </p>
             </div>
-            <div>
                 <SocialShare title={title} url={url_article} />
-            </div>
         </header>
     );
 }

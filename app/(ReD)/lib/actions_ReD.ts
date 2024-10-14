@@ -2,17 +2,19 @@
 import sql_Elephant from "@/app/lib/test/connectpostgre"
 import { sql } from "@vercel/postgres"
 
-type Article_head_data = {
-  slug: string,
-  author: string,
-  title: string,
-  subTitle: string,
-  creationDate: Date,
-  section: string,
-  tags: string[],
-  modifiedDate: Date,
-  image: string[]
-}
+import { Article_head_data, Last_articles } from "./definitions"
+
+// type Article_head_data = {
+//   slug: string,
+//   author: string,
+//   title: string,
+//   subTitle: string,
+//   creationDate: Date,
+//   section: string,
+//   tags: string[],
+//   modifiedDate: Date,
+//   image: string[]
+// }
 
 export async function AddMetadata_article(data: Article_head_data): Promise<string> {
   const { slug, author, title, subTitle, creationDate, section, tags, modifiedDate, image } = data;
@@ -75,7 +77,7 @@ export async function LastArticles() {
 
   try {
     const last_articles : Last_articles[] = await sql_Elephant`
-    SELECT slug, title, subtitle, section, image
+    SELECT slug, title, subtitle, section, modified_date, image
     FROM articles
     ORDER BY modified_date DESC
     LIMIT 15;
@@ -95,10 +97,10 @@ export async function LastArticles() {
   
 }
 
-type Last_articles = {
-  slug: string;
-  title: string;
-  subtitle: string;
-  section: string;
-  image: string;
-}
+// type Last_articles = {
+//   slug: string;
+//   title: string;
+//   subtitle: string;
+//   section: string;
+//   image: string;
+// }
