@@ -15,8 +15,8 @@ const SocialShare: React.FC<SocialShareProps> = ({ url, title }) => {
   const encodedTitle = encodeURIComponent(title);
 
   return (
-    <section role="Navbar delle icone social" className="m-0 my-2 p-0">
-      <hr />
+    <section role="Navbar delle icone social" className="m-0 p-0">
+      <hr className="mb-2"/>
       <h4 className=" text-xl">Condividi l&apos;articolo: </h4>
       <nav style={{ display: "flex", gap: "10px" }}>
         {/* Facebook */}
@@ -105,7 +105,7 @@ const SocialShare: React.FC<SocialShareProps> = ({ url, title }) => {
           <PiPrinterFill color={color_icon} size={size_icon} />
         </button>
       </nav>
-      <hr />
+      <hr className="mt-2" />
     </section>
 
   );
