@@ -17,7 +17,7 @@ const SocialShare: React.FC<SocialShareProps> = ({ url, title }) => {
   return (
     <section role="Navbar delle icone social" className="m-0 p-0">
       <hr className="mb-2"/>
-      <h4 className=" text-xl">Condividi l&apos;articolo: </h4>
+      <h4 className=" text-xl pb-1">Condividi l&apos;articolo: </h4>
       <nav style={{ display: "flex", gap: "10px" }}>
         {/* Facebook */}
         <a
