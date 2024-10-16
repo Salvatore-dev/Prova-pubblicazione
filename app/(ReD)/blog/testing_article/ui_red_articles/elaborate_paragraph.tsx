@@ -17,7 +17,7 @@ function Elaborate_paragraph({ data_text, path }: { data_text: string, path?: st
         if (regex_note.test(citation)) {
             const { text_simple, note_number } = get_note_text(citation)
             return (
-                <blockquote cite={cite} ><p className={`${css_tailwind_base_paragraph} italic w-[90%] m-auto`}>{text_simple.replace('>', '')}<sup> {note_number}</sup>.</p></blockquote>
+                <blockquote cite={cite} ><p className={`${css_tailwind_base_paragraph} italic w-[90%] m-auto text-sm md:text-base`}>{text_simple.replace('>', '')}<sup> {note_number}</sup>.</p></blockquote>
             )
         } else return (
             <p className={`${css_tailwind_base_paragraph}`}>correggere citazione: {text_to_elaborate}</p>

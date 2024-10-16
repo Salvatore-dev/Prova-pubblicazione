@@ -1,12 +1,12 @@
 ---
 slug: testing4
 author: redazione
-title: "Esempio per prova utilizzo chiamata 3.2"
+title: "Esempio per prova utilizzo chiamata 4"
 subTitle: Un esempio di utilizzo di file markdown. Con varie casistiche.
-creationDate: 2019-09-06
+creationDate: 2002-04-06
 section: Next.js e Markdown
 tags: ["Next.js", "Markdown", "File Markdown", "Learning", "Database"]
-modifiedDate: 2024-10-12
+modifiedDate: 2021-12-20
 image: ["../image/napoli_citta.jpeg", "text_alt e description image", "(by Pexels)", "https://www.pexels.com/it-it/foto/mare-spiaggia-costa-montagna-17311064/"]
 ---
 Next.js è un framework React che offre funzionalità come il rendering lato server e la generazione di siti statici[^1].
@@ -43,6 +43,6 @@ NOTES
 [^6]: Cf. Autore A., nome del testo, casa editrice, 2021 Citta, pagg.
 [^7]: Provo un altra nota. Inizio una citazione: >"ecco una citazione. Sara piu grande e deve finire con il punto." cite="il testo per la cite" Inizio una nuova frare e poi la chiudo. [quimi serve un link](https://www.example.com).
 
-BIBLIOGRAFIA (eventuale)
+BIBLIOGRAFIA
 Autore, titolo, editore, citta data.
 [^8]: una prova
