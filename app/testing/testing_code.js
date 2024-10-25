@@ -188,3 +188,103 @@ const agg = '../'
 const r = agg + arr[0]
 arr[0] = r
 console.log(arr);
+
+
+const article_md = {
+    slug: 'articolo-esempio',
+    author: 'Mario Rossi',
+    title: 'Il mio primo articolo',
+    subTitle: 'Un articolo di prova',
+    creationDate: new Date('2024-01-01T10:00:00Z'), // Formato ISO
+    section: 'Tecnologia',
+    tags: ['tecnologia', 'programmazione'],
+    modifiedDate: new Date('2024-10-01T12:00:00Z'), // Formato ISO
+    image: ['image1.png', 'image2.png'],
+  };
+
+  const article_md2 = {
+    slug: 'articolo-esempio',
+    author: 'Mario Rossi',
+    title: 'Il mio primo articolo',
+    subTitle: 'Un articolo di prova',
+    creationDate: new Date('2024-01-01T10:00:00Z'), // Formato ISO
+    section: 'Tecnologia',
+    tags: ['tecnologia', 'programmazione!'],
+    modifiedDate: new Date('2024-10-01T12:00:00Z'), // Formato ISO
+    image: ['image1.png', 'image2.png'],
+  };
+
+function compareMetadata3(obj_md, obj_db) {
+    const keys_md = Object.keys(obj_md);
+    const keys_db = Object.keys(obj_db);
+  
+  
+    const result = {
+      check: false,
+      message: '',
+      differences: [], // Array per tenere traccia delle differenze
+    };
+  
+    // Controllo se il numero di chiavi è diverso
+    if (keys_md.length !== keys_db.length) {
+      result.message = 'I metadati non hanno lo stesso numero di campi';
+      return result;
+    }
+  
+    // Controllo se le chiavi corrispondono
+    const keysMatch = keys_md.every((key, index) => key === keys_db[index]);
+    if (!keysMatch) {
+      result.message = 'Le chiavi dei metadati non corrispondono';
+      return result;
+    }
+    const values_md = Object.values(obj_md).map(el => {
+      if(typeof el === 'string') return el
+      if (Array.isArray(el)) return el.toString().trim()
+      if (el instanceof Date) return el.toISOString().trim()  
+    });
+    const values_db = Object.values(obj_db).map(el => {
+      if(typeof el === 'string') return el
+      if (Array.isArray(el)) return el.toString().trim()
+      if (el instanceof Date) return el.toISOString().trim()  
+    });
+    // Controllo delle differenze nei valori
+    const differents = [];
+    for (let i = 0; i < keys_db.length; i++) {
+      if (values_md[i] !== values_db[i]) {
+        differents.push(keys_db[i]);
+      }
+    }
+  
+    if (differents.length > 0) {
+      // Differenze trovate, verifica dei campi critici: slug e creationDate
+      const message = `I valori di ${differents.toString()} sono differenti. `;
+      result.message = message;
+      result.differences = differents;
+  
+      if (obj_md.slug !== obj_db.slug) {
+        result.check = false;
+        result.message = message + `Non è possibile continuare, lo slug: ${obj_md.slug} deve essere lo stesso`;
+        return result;
+      }
+  
+      if (new Date(obj_md.creationDate).getTime() !== new Date(obj_db.creationDate).getTime()) {
+        result.check = false;
+        result.message = message + `Non è possibile continuare, la data di creazione: ${obj_md.creationDate.toDateString()} deve essere la stessa`;
+        return result;
+      }
+  
+      // Se lo slug e la creationDate sono corretti, possiamo procedere con l'update
+      result.check = true;
+      return result;
+    } else {
+      // I valori sono identici, non è necessario procedere con l'update
+      result.check = false;
+      result.message = 'I valori sono identici, aggiornamento non necessario';
+    }
+  
+    return result;
+  }
+  const w = ['']
+  console.log(compareMetadata3(article_md, article_md2), w.length);
+  
+  

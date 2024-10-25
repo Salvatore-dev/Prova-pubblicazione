@@ -23,6 +23,7 @@ function Elaborate_paragraph({ data_text, path }: { data_text: string, path?: st
             <p className={`${css_tailwind_base_paragraph}`}>correggere citazione: {text_to_elaborate}</p>
         )
     }
+
     if (regex_note.test(text_to_elaborate)) {
         //const note = text_to_elaborate.substring(text_to_elaborate.search(regex_note)+2, text_to_elaborate.length -2) 
         //const text_simple = text_to_elaborate.replace(regex_note, '')
@@ -31,7 +32,8 @@ function Elaborate_paragraph({ data_text, path }: { data_text: string, path?: st
             <p className={`${css_tailwind_base_paragraph}`}>{text_simple}<sup>{note_number}</sup>.</p>
         )
     }
-    if (text_to_elaborate.startsWith('!')) {
+
+    if (text_to_elaborate.startsWith('![')) {
         const match_image = text_to_elaborate.match(regex_image)
         if (match_image) {
             const description = match_image[1]; // La stringa tra le parentesi quadre []

@@ -1,13 +1,13 @@
 ---
 slug: testing6
 author: redazione
-title: "Testing 6 prova immagini"
-subTitle: Un esempio di utilizzo di file markdown. Con varie casistiche.
+title: "Testing 6 - Prova modifica metadata"
+subTitle: Un esempio di modifica ai metadati. Provo la modifica dei metadati e dei tags sopratutto.
 creationDate: 2019-09-06
-section: Next.js e Markdown
-tags: ["Next.js", "Markdown", "File Markdown", "Learning", "Database"]
-modifiedDate: 2024-10-15
-image: ["../image/napoli_citta.jpeg", "text_alt e description image", "(by Pexels)", "https://www.pexels.com/it-it/foto/mare-spiaggia-costa-montagna-17311064/"]
+section: Prove tags
+tags: ["Javascript", "Tags", "Figures", "Learning", "Gestione sql", "Database"]
+modifiedDate: 2024-10-20
+image: ["../image/database-prova.webp", "un immagine di un database", "(by Pexels)", "https://www.pexels.com/it-it/foto/occhiali-da-vista-neri-davanti-al-computer-portatile-577585/"]
 ---
 Next.js è un framework React che offre funzionalità come il rendering lato server e la generazione di siti statici[^1].
 Next.js consente di eseguire il rendering di una pagina lato server, il che migliora il SEO e permette di generare pagine statiche per migliorare le performance.
