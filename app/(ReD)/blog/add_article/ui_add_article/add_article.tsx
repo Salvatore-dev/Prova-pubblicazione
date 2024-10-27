@@ -80,7 +80,7 @@ export default function FileUploader() {
                 <td>{metadata_article.section}</td>
                 <td>{metadata_article.tags.join(', ')}</td>
                 <td>{metadata_article.modifiedDate.toDateString()}</td>
-                <td><Image className=' h-16' src={metadata_article.image[0]} alt={metadata_article.image[1]} /></td>
+                <td><Image width={100} height={64} className=' h-16' src={'/'+metadata_article.image[0]} alt={metadata_article.image[1]} /></td>
                 <td><Button variant='outline-warning' size='sm' onClick={()=>Send_metadata()} disabled={!metadata_article && true}>Inoltra articolo</Button></td>
                 <td>{result_send}</td>
               </tr>
