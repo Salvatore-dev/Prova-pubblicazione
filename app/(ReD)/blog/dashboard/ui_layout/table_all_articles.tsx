@@ -1,12 +1,14 @@
 "use client"
 import React from 'react'
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import { Metadata_allArticle } from '@/app/(ReD)/lib/definitions'
-import { Table } from 'react-bootstrap'
+import { Table, OverlayTrigger, Tooltip } from 'react-bootstrap'
 import { convertDateToItalianString } from '@/app/(ReD)/lib/data_red'
 
+type KeyIn = (a: string)=> void
 
-function Table_all_articles({data}: {data: Metadata_allArticle[] | string}) {
+function Table_all_articles({data, func, ascending}: {data: Metadata_allArticle[] | string, func: KeyIn, ascending : boolean}) {
   const [articles, setArticles] = useState<Metadata_allArticle[] | null>(null)
   const [resultGet, setResultGet] = useState<string | null>(null)
   const [keywords, setKeywords] = useState<string[] | null>(null)
@@ -18,8 +20,8 @@ function Table_all_articles({data}: {data: Metadata_allArticle[] | string}) {
       const k = Object.keys(data[0])
      setKeywords(k)
     }
-  }, [])
-  
+  }, [data])
+
   return (
     <>
     {resultGet && <h1 className='text-center text-2xl text-red-600 font-semibold'>{resultGet}</h1>}
@@ -29,7 +31,7 @@ function Table_all_articles({data}: {data: Metadata_allArticle[] | string}) {
         <tr>
          {
           keywords && keywords.map(el=>(
-            <th key={el}>{el}</th>
+            <th onClick={()=> func(el)} key={el}><button  className='cursor-pointer no-underline m-0 p-0'>{el}</button></th>
           ))
          }
         </tr>
@@ -39,7 +41,20 @@ function Table_all_articles({data}: {data: Metadata_allArticle[] | string}) {
           articles.map((article, i)=>(
             <tr key={`id article: ${i}`}>
               <td>{article.id}</td>
-              <td>{article.slug}</td>
+              <td>
+                <OverlayTrigger
+                key={`top`}
+                placement='top'
+                overlay={
+                  <Tooltip id={`tooltip-${'top'}`}>
+                    <strong>Vedi articolo</strong>
+                  </Tooltip>
+                }
+                >
+                  <Link className='underline text-blue-700' href={`/blog/testing_article/${article.slug}`}>{article.slug}</Link>
+                </OverlayTrigger>
+            
+                </td>
               <td>{article.author}</td>
               <td>{article.title}</td>
               <td>{article.subtitle}</td>

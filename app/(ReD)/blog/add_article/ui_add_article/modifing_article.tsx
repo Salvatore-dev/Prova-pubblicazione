@@ -49,7 +49,6 @@ const Modifing_article = () => {
         setMetadata_article(head_data);
         setResult_send('Pronto!')
       };
-
       reader.readAsText(file);
     }
   };
@@ -65,8 +64,6 @@ const Modifing_article = () => {
         const response = await upDate_article(id_article, metadata_article, message_update.differences)
         setResult_send(response)
       }
-        
-      
     }
   }
   useEffect(() => {
@@ -92,7 +89,10 @@ const Modifing_article = () => {
 
   return (
     <div className=' w-[95%] m-auto bg-slate-300 min-h-screen'>
-      <h1>Carica un file Markdown e confronta</h1>
+      <div>
+        <h1 className=' text-center text-[2.5rem]'>Modifica articolo</h1>
+        <p className='italic text-xl text-center'>Una volta modificato l'articolo sul file MD selezionalo e confronta i metadati eventualmente modifica sul database.</p>
+      </div>
       <input className='bg-yellow-200' type="file" onChange={handleFileChange} accept=".md" />
 
       {fileContent && (

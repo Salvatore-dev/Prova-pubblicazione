@@ -4,19 +4,7 @@ import { useState } from 'react';
 import matter from 'gray-matter';
 import { Table, Button } from 'react-bootstrap';
 import { AddMetadata_article } from '@/app/(ReD)/lib/actions_ReD';
-import { Article_head_data } from '@/app/(ReD)/lib/definitions';
-
-// type Article_head_data = {
-//     slug: string,
-//     author : string,
-//     title: string,
-//     subTitle: string,
-//     creationDate: Date,
-//     section: string,
-//     tags : string[],
-//     modifiedDate: Date,
-//     image: string[]
-//   }
+import { Article_head_data, Metadata_allArticle } from '@/app/(ReD)/lib/definitions';
 
 export default function FileUploader() {
   const [fileContent, setFileContent] = useState<string | null>(null);
