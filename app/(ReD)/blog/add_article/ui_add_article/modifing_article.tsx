@@ -91,7 +91,7 @@ const Modifing_article = () => {
     <div className=' w-[95%] m-auto bg-slate-300 min-h-screen'>
       <div>
         <h1 className=' text-center text-[2.5rem]'>Modifica articolo</h1>
-        <p className='italic text-xl text-center'>Una volta modificato l'articolo sul file MD selezionalo e confronta i metadati eventualmente modifica sul database.</p>
+        <p className='italic text-xl text-center'>Una volta modificato l&apos;articolo sul file MD selezionalo e confronta i metadati eventualmente modifica sul database.</p>
       </div>
       <input className='bg-yellow-200' type="file" onChange={handleFileChange} accept=".md" />
 
