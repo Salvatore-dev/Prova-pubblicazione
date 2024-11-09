@@ -1,3 +1,5 @@
+import { Metadata_allArticles } from "./definitions";
+
 
 export const regex_link = /\[(.+?)\]\((https:\/\/www\.[^\)]+)\)/;
 
@@ -29,3 +31,14 @@ export function convertDateToItalianString(date: Date): string {
     // Restituisci la data nel formato "12 settembre 2024"
     return `${giorno} ${mese} ${anno}`;
 }
+export function sort_Metadata_allArticles(array: Metadata_allArticles[], property: keyof Metadata_allArticles, ascending = true) {
+    return array.slice().sort((a,b)=>{
+      if (a[property] < b[property]) {
+        return ascending ? -1 : 1
+      } else if (a[property]> b[property]){
+        return ascending ? 1 : -1
+      } else {
+        return 0
+      }
+    })
+  }

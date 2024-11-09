@@ -2,7 +2,7 @@
 import sql_Elephant from "@/app/lib/test/connectpostgre"
 import { sql } from "@vercel/postgres"
 
-import { Article_head_data, Last_articles, Metadata_allArticle } from "./definitions"
+import { Article_head_data, Last_articles } from "./definitions"
 
 
 
@@ -269,25 +269,25 @@ export async function upDate_article(id_article: string, data: Article_head_data
             ON CONFLICT DO NOTHING;
           `;
         }
-       // console.log('tags in action', tags_in_action);
-        
+        // console.log('tags in action', tags_in_action);
+
         const article_tags_id_new = await sqlTransaction`
         SELECT tag_id FROM article_tags
         WHERE article_id = ${id_article}
         `
         const tags_id_new = article_tags_id_new.map((row) => row.tag_id) as string[];
         //console.log('tags id new', tags_id_new);
-        const tags_id_inAction= tags_in_action.map(tag=> tag.id)
+        const tags_id_inAction = tags_in_action.map(tag => tag.id)
         //console.log('tag id in action', tags_id_inAction);
-        
+
         // Rimuove i tag non più associati
         const tags_to_remove = tags_id_new.filter((tagId) => {
           const isIncluded = tags_id_inAction.includes(tagId);
-         // console.log(`Checking tagId: ${tagId}, included: ${isIncluded}`);
+          // console.log(`Checking tagId: ${tagId}, included: ${isIncluded}`);
           return !isIncluded;
-      });
-         // console.log('tags to remove', tags_to_remove);
-          
+        });
+        // console.log('tags to remove', tags_to_remove);
+
         if (tags_to_remove.length > 0) {
           for (const tag_id of tags_to_remove) {
             await sqlTransaction`
@@ -328,20 +328,124 @@ export async function upDate_article(id_article: string, data: Article_head_data
 }
 
 export async function get_all_articles() {
-  
+
   try {
     const response = await sql_Elephant`
     SELECT id, slug, author, title, subtitle, section, modified_date
     FROM articles;
     `
     console.log(response);
-    if (response && response.length >0) {
-     return response
+    if (response && response.length > 0) {
+      return response
     } else return `Errore nel server articoli non ottenuti`
-    
-    
+
+
   } catch (error) {
     console.log(error);
     return `Errore nel server articoli non ottenuti`
+  }
+}
+
+
+export async function get_tags() {
+  // richiamo i tags, il loro id, il nome e poi raggruppo in array i rifermenti agli articoli
+  try {
+    const tags = await sql_Elephant`
+    SELECT 
+        tags.id AS tag_id,
+        tags.tag_name,
+      COALESCE(ARRAY_AGG(article_tags.article_id) FILTER (WHERE article_tags.article_id IS NOT NULL), '{}') AS article_ids
+    FROM 
+      tags
+    LEFT JOIN 
+      article_tags 
+    ON 
+      tags.id = article_tags.tag_id
+    GROUP BY 
+      tags.id, tags.tag_name
+    ORDER BY 
+      tags.tag_name;
+    `
+    if (tags && tags.length > 0) {
+      return tags
+    } else return `Nessuna keyword trovata`
+  } catch (error) {
+    console.log(error);
+    return `Errore nel server`
+  }
+}
+
+export async function delete_tags(tag_id: number) {
+  try {
+    const result = await sql_Elephant`
+    DELETE FROM tags
+    WHERE id = ${tag_id}
+    RETURNING id, tag_name;
+    `
+    console.log(result);
+
+    if (result && result.length > 0) {
+      return result
+    }
+    return `Nessuna keyword trovata`
+  } catch (error) {
+    console.log(error);
+    return `errore nel server`
+  }
+}
+
+export async function update_tag(tag_id: number, keyword_update: string) {
+  if (keyword_update.length <= 2) return `La nuova keyword deve essere di almeno 3 caratteri!`
+  try {
+    const result = await sql_Elephant`
+     UPDATE tags
+        SET tag_name = ${keyword_update.toLowerCase()}
+      WHERE tags.id = ${tag_id}
+      RETURNING id, tag_name;
+    `
+    console.log(result);
+    if (result && result.length > 0) {
+      const data: {
+        id: number,
+        tag_name: string
+      } = {
+        id: result[0].id,
+        tag_name: result[0].tag_name
+      }
+      return data
+    } else return `Nessun tag modificato`
+
+
+  } catch (error) {
+    console.log(error);
+    return `Errore nel server: ${JSON.stringify(error)}`
+  }
+}
+
+export async function get_articles_by_ids(ids: number[]) {
+  
+  if(ids.length<=0) return `Nessun articolo richiesto. Controlla!`
+  const article_ids = ids
+  
+  try {
+    const articles = []
+    for (const id of article_ids) {
+      const result = await sql_Elephant`
+      SELECT id, slug, author, title, subtitle, section, modified_date
+      FROM articles
+      WHERE id = ${id};
+      `
+      if (result && result.length > 0) {
+        articles.push(result[0])
+      }
+    }
+    console.log(articles);
+    if (articles.length>0) {
+      return articles
+    } else return `Nessun articolo trovato!`
+    
+  } catch (error) {
+    console.log(error);
+    return `Errore nel server. Nessun Arrticolo ottenuto!`
   }
 }

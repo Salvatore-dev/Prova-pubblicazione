@@ -25,7 +25,7 @@ export type Compare_metadata = {
     differences: string[]
 }
 
-export type Metadata_allArticle = {
+export type Metadata_allArticles = {
     id: string,
     slug: string,
     author: string,
@@ -38,3 +38,9 @@ export type Links_content ={
     name: string,
     url: string
 }
+
+export type All_tags = {
+    tag_id : number,
+    tag_name : string,
+    article_ids: number[]
+  }

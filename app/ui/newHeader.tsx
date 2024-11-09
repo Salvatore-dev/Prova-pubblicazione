@@ -17,7 +17,7 @@ const linksHeader: LinksContent[] = [
     { name: "Testing", url: "/testing" },
     { name: "Ricerca foto", url: "/photo_research" },
     { name: `Nova Aetas`, url: `/nova_aetas` },
-    {name: `Dowloader`, url: `/downloader`},
+    {name: `Dashboard_ReD`, url: `/blog/dashboard`},
     { name: "Login", url: "/login" },
 ];
 

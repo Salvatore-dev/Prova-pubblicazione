@@ -2,14 +2,14 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Metadata_allArticle } from '@/app/(ReD)/lib/definitions'
+import { Metadata_allArticles } from '@/app/(ReD)/lib/definitions'
 import { Table, OverlayTrigger, Tooltip } from 'react-bootstrap'
 import { convertDateToItalianString } from '@/app/(ReD)/lib/data_red'
 
 type KeyIn = (a: string)=> void
-
-function Table_all_articles({data, func, ascending}: {data: Metadata_allArticle[] | string, func: KeyIn, ascending : boolean}) {
-  const [articles, setArticles] = useState<Metadata_allArticle[] | null>(null)
+// ascending puo servire se devo mostrare una freccia acendente o discendente
+function Table_all_articles({data, func, ascending}: {data: Metadata_allArticles[] | string, func: KeyIn, ascending : boolean}) {
+  const [articles, setArticles] = useState<Metadata_allArticles[] | null>(null)
   const [resultGet, setResultGet] = useState<string | null>(null)
   const [keywords, setKeywords] = useState<string[] | null>(null)
   useEffect(()=>{
