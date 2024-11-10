@@ -4,7 +4,7 @@ import { useState } from 'react';
 import matter from 'gray-matter';
 import { Table, Button } from 'react-bootstrap';
 import { AddMetadata_article } from '@/app/(ReD)/lib/actions_ReD';
-import { Article_head_data, Metadata_allArticle } from '@/app/(ReD)/lib/definitions';
+import { Article_head_data, Metadata_allArticles } from '@/app/(ReD)/lib/definitions';
 import Image from 'next/image';
 
 export default function FileUploader() {
