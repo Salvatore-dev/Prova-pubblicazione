@@ -1,6 +1,7 @@
 "use client"
 import React from 'react'
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import { Modal, Table, Form, Button, ModalBody } from 'react-bootstrap'
 import { convertDateToItalianString, sort_Metadata_allArticles } from '@/app/(ReD)/lib/data_red'
 import { All_tags, Metadata_allArticles } from '@/app/(ReD)/lib/definitions'
@@ -10,11 +11,12 @@ import { delete_tags, update_tag, get_articles_by_ids } from '@/app/(ReD)/lib/ac
 const Tags_panel = ({ data }: { data: All_tags[] }) => {
     const [tags, setTags] = useState(data)
     const [show_update, setShow_update] = useState(false);
-    //console.log(props, Array.isArray(props));
     const handleClose_update = () => setShow_update(false);
     const handleShow_update = () => setShow_update(true);
     const [tag_to_update, setTag_to_update] = useState<number | undefined>(undefined)
     const [message_update, setMessage_update] = useState('')
+    const [ascending_tags, setAscending_tags]= useState(false)
+    const [key_tags, setKey_tags] = useState<string[]| null>(null)
 
     const [show_articles_for_tags, setShow_articles_for_tags] = useState(false)
     const handleClose_articles_for_tags = () => setShow_articles_for_tags(false);
@@ -23,6 +25,14 @@ const Tags_panel = ({ data }: { data: All_tags[] }) => {
     const [articles, setArticles] = useState<Metadata_allArticles[] | null>(null)
     const [tag_show, setTag_show] = useState('')
     const [ascending_articles, setAscending_articles]= useState(false)
+    const [key_article, setKey_article] = useState<string[]| null>(null)
+
+    useEffect(()=>{
+        if(data) {
+            const k = Object.keys(data[0])
+            setKey_tags(k)
+        }
+    },[data])
 
     useEffect(() => {
         if (!show_update) {
@@ -35,6 +45,7 @@ const Tags_panel = ({ data }: { data: All_tags[] }) => {
         if (!show_articles_for_tags) {
             setArticles(null)
             setTag_show('')
+            setAscending_articles(false)
         }
     }, [show_articles_for_tags])
 
@@ -89,6 +100,8 @@ const Tags_panel = ({ data }: { data: All_tags[] }) => {
             alert(result)
         } else {
             setArticles(result)
+            const k = Object.keys(result[0])
+            setKey_article(k)
             setTag_show(tag)
             handleShow_articles_for_tags()
         }
@@ -101,20 +114,31 @@ const Tags_panel = ({ data }: { data: All_tags[] }) => {
           setArticles(sorted)
         }
       }
+
+      function handle_sort_tags(key: string){
+        const k = key as keyof All_tags
+        if (tags) {
+          setAscending_tags(prev=> !prev)
+          const sorted = sort_AllTags(tags, k, ascending_tags)
+          setTags(sorted)
+        }
+      }
     return (
         <div className='w-[95%] m-auto mt-4'>
             <Table striped bordered hover responsive>
                 <thead>
                     <tr>
-                        <th>Tag_id</th>
-                        <th>Tag_name</th>
-                        <th>Articoli correlati</th>
+                        <th>#</th>
+                        {key_tags && key_tags.map(key=>(
+                            <th key={`Key Tags: ${key}`}><button onClick={()=> handle_sort_tags(key)} className={`cursor-pointer no-underline m-0 p-0`}>{key}</button></th>
+                        ))}
                         <th>Azione</th>
                     </tr>
                 </thead>
                 <tbody>
                     {tags && tags.map((tag, index) => (
                         <tr key={index}>
+                            <td>{index+1}</td>
                             <td>{tag.tag_id}</td>
                             <td>{tag.tag_name}</td>
                             <td >
@@ -161,18 +185,18 @@ const Tags_panel = ({ data }: { data: All_tags[] }) => {
                     <Table striped bordered hover responsive>
                         <thead>
                             <tr>
-                                <th>Slug</th>
-                                <th>Autore</th>
-                                <th>Titolo</th>
-                                <th>Sottotitolo</th>
-                                <th>Sezione</th>
-                                <th>Ultima modifica</th>
+                                <th>#</th>
+                                {key_article && key_article.map(key=>(
+                                    <th key={`Key_article: ${key}`}><button onClick={()=>handle_sort_articles(key)} className={`cursor-pointer no-underline m-0 p-0`}>{key}</button></th>
+                                ))}
                             </tr>
                         </thead>
                         <tbody>
                             {articles && articles.map((art, i) => (
                                 <tr key={`articles by tag_${i}`}>
-                                    <td>{art.slug}</td>
+                                    <td>{i+1}</td>
+                                    <td>{art.id}</td>
+                                    <td><Link href={`./new_article/${art.slug}.md`} title='Vedi articolo' className='m-0 p-0 font-bold no-underline hover:underline text-green-700'>{art.slug}</Link></td>
                                     <td>{art.author}</td>
                                     <td>{art.title}</td>
                                     <td>{art.subtitle}</td>
@@ -193,5 +217,16 @@ const Tags_panel = ({ data }: { data: All_tags[] }) => {
     )
 }
 
+function sort_AllTags(array: All_tags[], property: keyof All_tags, ascending = true) {
+    return array.slice().sort((a,b)=>{
+      if (a[property] < b[property]) {
+        return ascending ? -1 : 1
+      } else if (a[property]> b[property]){
+        return ascending ? 1 : -1
+      } else {
+        return 0
+      }
+    })
+  }
 
 export default Tags_panel
