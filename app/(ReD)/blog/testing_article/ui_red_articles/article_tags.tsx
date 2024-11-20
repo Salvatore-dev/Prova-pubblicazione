@@ -16,7 +16,7 @@ function Article_tags({ tags }: { tags: string[] }) {
         {Tags.map((tag, i) => (
           <div key={i} className='m-0 p-0 flex items-center text-sm md:text-base lg:text-lg'>
             <LiaHashtagSolid color='blue' />
-            <Link className='underline md:no-underline md:hover:underline text-stone-800' title={`Cerca articoli correlati a ${tag}`} href={`../app/tags/${tag.toLowerCase()}`} key={i}>{tag}</Link>
+            <Link className='underline md:no-underline md:hover:underline text-stone-800' title={`Cerca articoli correlati a ${tag}`} href={`../articles_by_tag/${tag.toLowerCase()}`} key={i}>{tag}</Link>
           </div>
         ))}
       </nav>

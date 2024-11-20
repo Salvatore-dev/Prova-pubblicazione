@@ -2,18 +2,15 @@
 import React from 'react'
 import { LastArticles } from '../../lib/actions_ReD'
 
-import { Last_articles } from '../../lib/definitions';
+import { Article_module_type } from '../../lib/definitions';
 import { Article_module } from './article_module';
 
 import { useEffect, useState } from 'react'
 
 function LastArticle_byDate() {
 
-    const [articles, setArticles] = useState<Last_articles[] | null>(null)
-    const getData = async () => {
-        const response = await LastArticles()
-        return response
-    }
+    const [articles, setArticles] = useState<Article_module_type[] | null>(null)
+
     useEffect(() => {
         LastArticles().then((data) => {
             setArticles(data)

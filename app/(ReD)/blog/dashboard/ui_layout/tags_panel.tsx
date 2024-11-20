@@ -67,6 +67,7 @@ const Tags_panel = ({ data }: { data: All_tags[] }) => {
             setTag_to_update(id_tags)
         }
     }
+
     const send_update = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const formData = new FormData(e.currentTarget);

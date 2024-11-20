@@ -37,7 +37,7 @@ export async function signup(state: FormState, formData: FormData) {
         INSERT INTO users (name, email, password)
         VALUES (${name}, ${email}, ${hashedPassword})
         ON CONFLICT (email) DO NOTHING
-        RETURNING users.id
+        RETURNING*;
         `
         console.log(data);
         
@@ -52,11 +52,11 @@ export async function signup(state: FormState, formData: FormData) {
             }
         }
         console.log(user);
-        await createSession(user.id)
+        await createSession(user.id, user.role)
 
 
     } catch (error) {
-        console.log(error);
+        console.log("errore nella chiamata signup", error);
         
         return {
             message: ' Errore nella chiamata al database'
@@ -106,7 +106,7 @@ export async function login(state: FormStateLogin, formData: FormData) {
 
         const match = await bcrypt.compare(password, user.password);
         if (match) {
-           await createSession(user.id) 
+           await createSession(user.id, user.role)
         } else {
             return {
                 errors:{

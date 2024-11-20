@@ -11,7 +11,7 @@ export type Article_head_data = {
     image: string[]
 }
 
-export type Last_articles = {
+export type Article_module_type = {
     slug: string;
     title: string;
     subtitle: string;
@@ -19,6 +19,7 @@ export type Last_articles = {
     image: string;
     modified_date: Date
 }
+
 export type Compare_metadata = {
     check: boolean,
     message: string,
@@ -34,6 +35,7 @@ export type Metadata_allArticles = {
     section: string,
     modified_date: Date
 }
+
 export type Links_content ={
     name: string,
     url: string
@@ -44,3 +46,4 @@ export type All_tags = {
     tag_name : string,
     article_ids: number[]
   }
+

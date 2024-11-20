@@ -14,7 +14,7 @@ export const verifySession = cache(async () => {
     redirect('/login')
   }
  
-  return { isAuth: true, userId: session.userId }
+  return { isAuth: true, userId: session.userId, userRole: session.userRole }
 })
 
 export const getUser = cache(async ()=>{
@@ -35,6 +35,30 @@ export const getUser = cache(async ()=>{
         console.log(error);
         return null
       }
+})
+
+export const getAdmin = cache(async ()=>{
+  const session = await verifySession()
+  if (!session) return null
+      const user_id = session.userId as number
+      try {
+        const data = await sql_Elephant`
+        SELECT name, role
+        FROM users
+        WHERE id = ${user_id}
+        `
+        const user = data[0] as {
+          name: string,
+          role: string
+        } | null
+        console.log(user);
+        if (!user || user.role !== 'admin' ) return null
+        return user
+      } catch (error) {
+        console.log(error);
+        return null
+      }
+
 })
 
 // di seguito un esempio da adattare. una funzione da chiamare in un eventuale file dto o in un lay auto che bisognao di dati utente 

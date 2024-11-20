@@ -1,13 +1,13 @@
 ---
-slug: testing3
-author: redazione
-title: "Esempio per prova utilizzo chiamata 3"
-subTitle: Un esempio di utilizzo di file markdown. Con varie casistiche.
-creationDate: 2012-09-06
-section: Next.js e Markdown
-tags: ["Next.js", "Markdown", "File Markdown", "Learning", "Database", "autorizzation"]
-modifiedDate: 2024-11-20
-image: ["../image/napoli_citta.jpeg", "text_alt e description image", "(by Pexels)", "https://www.pexels.com/it-it/foto/mare-spiaggia-costa-montagna-17311064/"]
+slug: testing7
+author: redazione.10
+title: "Testing 7 - Prova modifica aggiungi tag"
+subTitle: Un esempio di modifica ai metadati. Provo la modifica dei metadati in ordine alla memorizzazione dei tags.
+creationDate: 2024-11-17
+section: Prove tags
+tags: ["SQL", "Tags", "Postegre", "Learning", "Gestione sql", "Database"]
+modifiedDate: 2024-11-17
+image: ["../image/database-prova.webp", "un immagine di un database", "(by Pexels)", "https://www.pexels.com/it-it/foto/occhiali-da-vista-neri-davanti-al-computer-portatile-577585/"]
 ---
 Next.js è un framework React che offre funzionalità come il rendering lato server e la generazione di siti statici[^1].
 Next.js consente di eseguire il rendering di una pagina lato server, il che migliora il SEO e permette di generare pagine statiche per migliorare le performance.

@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { Container, Navbar, Nav, Button, Form } from 'react-bootstrap';
 import { Metadata_allArticles, Links_content } from '@/app/(ReD)/lib/definitions';
 import { convertDateToItalianString, sort_Metadata_allArticles } from '@/app/(ReD)/lib/data_red';
-
+import { logout } from '@/app/actions/auth';
 import Table_all_articles from './table_all_articles';
 const pathDashboard = '/blog/dashboard'
 
@@ -42,22 +42,22 @@ const Navbar_dashboard = ({ data }: { data: Metadata_allArticles[] | string }) =
   }, [])
 
   function filter_articles(param: string) {
-    if (param=== ''&& typeof data !== 'string') {
+    if (param === '' && typeof data !== 'string') {
       setArticles(data)
     } else {
       if (data && typeof data !== 'string') {
-        const filtered_articles = data.filter(el=>convertDateToItalianString(el.modified_date).includes(param.toLowerCase()) || el.title.toLowerCase().includes(param.toLowerCase()) || el.subtitle.toLowerCase().includes(param.toLowerCase()) || el.section.toLowerCase().includes(param.toLowerCase())) as Metadata_allArticles[] // la filter esclude valori undefind
+        const filtered_articles = data.filter(el => convertDateToItalianString(el.modified_date).includes(param.toLowerCase()) || el.title.toLowerCase().includes(param.toLowerCase()) || el.subtitle.toLowerCase().includes(param.toLowerCase()) || el.section.toLowerCase().includes(param.toLowerCase())) as Metadata_allArticles[] // la filter esclude valori undefind
         //console.log(filtered_articles);
         if (filtered_articles.length === 0) {
           const r: Metadata_allArticles[] = [
             {
-              id : `0`,
-              slug : `Nullo`,
+              id: `0`,
+              slug: `Nullo`,
               author: `Nessuno`,
               title: `Non sono stati trovati articoli corrispondenti alla tua ricerca`,
               subtitle: `Prova a cercare qualcos'altro`,
               section: `Nessuna`,
-              modified_date : new Date(Date.now())
+              modified_date: new Date(Date.now())
             }
           ]
           setArticles(r)
@@ -65,53 +65,76 @@ const Navbar_dashboard = ({ data }: { data: Metadata_allArticles[] | string }) =
       }
     }
   }
-  function handle_sort(key: string){
+  function handle_sort(key: string) {
     const k = key as keyof Metadata_allArticles
     if (articles) {
-      setAscending(prev=> !prev)
+      setAscending(prev => !prev)
       const sorted = sort_Metadata_allArticles(articles, k, ascending)
       setArticles(sorted)
     }
   }
- 
+
 
   return (
-    <div>
-      <div className='flex flex-col md:flex-row justify-center  gap-2 items-center'>
-        <nav className='flex justify-around items-center gap-1 md:gap-3'>
-          {
-            Links_to_page.map((link, i) => (
-              <Link className={`m-0 p-2 text-center no-underline text-white bg-zinc-900 rounded-lg`} key={`link_${i}`} href={link.url}>{link.name}</Link>
-            ))
-          }
-          <button className='m-0 p-2 text-center no-underline text-white bg-zinc-900 rounded-lg'
-            onClick={() => setShow_table(value => !value)}
-          >{show_table? 'Nascondi tabella articoli': 'Vedi tabella articoli'}</button>
+    <div className="p-6 bg-gray-100">
+      <div className="flex flex-col md:flex-row justify-center gap-4 items-center">
+        {/* Navbar */}
+        <nav className="flex flex-wrap justify-around items-center gap-2 md:gap-4 bg-white shadow-md p-4 rounded-lg">
+          {Links_to_page.map((link, i) => (
+            <Link
+              className="px-4 py-2 text-center text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors"
+              key={`link_${i}`}
+              href={link.url}
+            >
+              {link.name}
+            </Link>
+          ))}
+          <button
+            className="px-4 py-2 text-center text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors"
+            onClick={() => setShow_table((value) => !value)}
+          >
+            {show_table ? 'Nascondi tabella articoli' : 'Vedi tabella articoli'}
+          </button>
+          <button
+            className="px-4 py-2 text-center text-sm font-medium text-white bg-red-600 hover:bg-red-700 rounded-lg transition-colors"
+            onClick={() => logout()}
+          >
+            Esci dalla sezione
+          </button>
         </nav>
-        {show_table && 
-        <Form className="d-flex">
-          <Form.Control
-            type="search"
-            placeholder="Cerca articolo"
-            className="me-2"
-            aria-label="Search"
-            onChange={(e) => filter_articles(e.currentTarget.value)}
-          />
-        </Form>}
       </div>
-      {show_table && articles && <Table_all_articles data={articles} func={handle_sort} ascending={ascending}/>}
+
+      {/* Form di ricerca e tabella */}
+      {show_table && (
+        <div className="mt-6 bg-white shadow-md rounded-lg p-6">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4">
+            {/* Form di ricerca */}
+            <Form className="w-full md:w-1/2">
+              <Form.Control
+                type="search"
+                placeholder="Cerca articolo"
+                className="p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600"
+                aria-label="Search"
+                onChange={(e) => filter_articles(e.currentTarget.value)}
+              />
+            </Form>
+          </div>
+
+          {/* Tabella degli articoli */}
+          {articles && (
+            <div className="mt-4">
+              <Table_all_articles
+                data={articles}
+                func={handle_sort}
+                ascending={ascending}
+              />
+            </div>
+          )}
+        </div>
+      )}
     </div>
+
   )
 }
-// function sort_Metadata_allArticles(array: Metadata_allArticles[], property: keyof Metadata_allArticles, ascending = true) {
-//   return array.slice().sort((a,b)=>{
-//     if (a[property] < b[property]) {
-//       return ascending ? -1 : 1
-//     } else if (a[property]> b[property]){
-//       return ascending ? 1 : -1
-//     } else {
-//       return 0
-//     }
-//   })
-// }
+
 export default Navbar_dashboard

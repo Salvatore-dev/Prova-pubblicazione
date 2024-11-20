@@ -1,11 +1,11 @@
 import React from "react"
 import Link from "next/link"
-import { Last_articles } from "../../lib/definitions"
+import { Article_module_type } from "../../lib/definitions"
 
 import { convertDateToItalianString } from "../../lib/data_red"
 
 
-export function Article_module({ article }: { article: Last_articles }) {
+export function Article_module({ article }: { article: Article_module_type }) {
 
     const { image, title, subtitle, modified_date, section, slug } = article
     const alt = JSON.parse(image)[1] as string

@@ -2,7 +2,9 @@
 import sql_Elephant from "@/app/lib/test/connectpostgre"
 import { sql } from "@vercel/postgres"
 
-import { Article_head_data, Last_articles } from "./definitions"
+import { getAdmin } from "@/app/lib/dal"
+
+import { Article_head_data, Article_module_type } from "./definitions"
 
 
 
@@ -13,7 +15,8 @@ interface Response_get_article {
 
 export async function AddMetadata_article(data: Article_head_data): Promise<string> {
   const { slug, author, title, subTitle, creationDate, section, tags, modifiedDate, image } = data;
-
+  const admin = await getAdmin()
+  if (!admin) return `Utente non autorizzato`
   try {
 
     // 1. Verifica se lo slug esiste già
@@ -36,18 +39,29 @@ export async function AddMetadata_article(data: Article_head_data): Promise<stri
         RETURNING id;
       `;
       const articleId = New_article[0].id;
+      console.log('step 1 ', New_article);
+      
 
       // 3. Gestione dei tag con `ON CONFLICT`
       for (const tag of tags) {
         const tagResult = await sqlTransaction`
-          INSERT INTO tags (tag_name) 
-          VALUES (${tag.toLowerCase()}) 
-          ON CONFLICT (tag_name) DO UPDATE SET tag_name = EXCLUDED.tag_name
-          RETURNING id;
-        `;
-
-        const tagId = tagResult[0].id;
-        console.log(tagId);
+            INSERT INTO tags (tag_name)
+            VALUES (${tag.toLowerCase()})
+            ON CONFLICT (tag_name) DO NOTHING
+            RETURNING id;
+          `;
+          let tagId;
+          if (tagResult.length > 0) {
+            tagId = tagResult[0].id;
+          } else {
+            // Recupera l'id del tag esistente
+            const existingTag = await sqlTransaction`
+              SELECT id FROM tags
+              WHERE tag_name = ${tag.toLowerCase()};
+            `;
+            tagId = existingTag[0].id;
+          }
+        console.log('step 2',tagId);
 
         // 4. Associazione del tag all'articolo
         const last_table = await sqlTransaction`
@@ -69,7 +83,7 @@ export async function AddMetadata_article(data: Article_head_data): Promise<stri
 export async function LastArticles() {
 
   try {
-    const last_articles: Last_articles[] = await sql_Elephant`
+    const last_articles: Article_module_type[] = await sql_Elephant`
     SELECT slug, title, subtitle, section, modified_date, image
     FROM articles
     ORDER BY modified_date DESC
@@ -213,6 +227,9 @@ export async function getArticle2(slug: string): Promise<Response_get_article | 
 }
 
 export async function upDate_article(id_article: string, data: Article_head_data, info_update: string[]): Promise<string> {
+  const admin = await getAdmin()
+  if (!admin) return `Utente non autorizzato`
+  
   const case_tag = 'tags';
   const check_tags = info_update.includes(case_tag);
   const { title, subTitle, modifiedDate, image, section, tags, author } = data;
@@ -252,7 +269,7 @@ export async function upDate_article(id_article: string, data: Article_head_data
             // Recupera l'id del tag esistente
             const existingTag = await sqlTransaction`
               SELECT id FROM tags
-              WHERE tag_name = ${tag};
+              WHERE tag_name = ${tag.toLowerCase()};
             `;
             tagId = existingTag[0].id;
             message += `Tag '${tag}' già esistente, associato all'articolo. `;
@@ -376,6 +393,8 @@ export async function get_tags() {
 }
 
 export async function delete_tags(tag_id: number) {
+  const admin = await getAdmin()
+  if (!admin) return `Utente non autorizzato`
   try {
     const result = await sql_Elephant`
     DELETE FROM tags
@@ -395,6 +414,8 @@ export async function delete_tags(tag_id: number) {
 }
 
 export async function update_tag(tag_id: number, keyword_update: string) {
+  const admin = await getAdmin()
+  if (!admin) return `Utente non autorizzato`
   if (keyword_update.length <= 2) return `La nuova keyword deve essere di almeno 3 caratteri!`
   try {
     const result = await sql_Elephant`
@@ -448,4 +469,38 @@ export async function get_articles_by_ids(ids: number[]) {
     console.log(error);
     return `Errore nel server. Nessun Arrticolo ottenuto!`
   }
+}
+
+export async function get_articles_by_tag(tag:string) {
+  const message_error = `Errore, per favore riprova!`
+
+  if (!tag || typeof tag !== 'string') return message_error
+   try {
+    const result : Article_module_type[] = await sql_Elephant`
+    SELECT 
+      slug,
+      title,
+      subtitle,
+      section,
+      image,
+     modified_date
+    FROM 
+      articles
+    JOIN 
+      article_tags ON articles.id = article_tags.article_id
+    JOIN 
+      tags ON article_tags.tag_id = tags.id
+    WHERE 
+      tags.tag_name = ${tag};
+    `
+    if (result && result.length>=1) {
+      return result
+    } else {
+      return `Nessun articolo trovato!`
+    }
+   } catch (error) {
+    console.log(error);
+    return message_error
+   }
+  
 }

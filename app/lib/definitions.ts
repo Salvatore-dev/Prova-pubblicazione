@@ -32,7 +32,8 @@ export type FormState =
 
 export type SessionPayload = {
     userId: string,
-    expiresAt: Date
+    expiresAt: Date,
+    userRole: string
 }
 
 export const LoginFormSchema = z.object({ // di seguito le opzioni di Zod
