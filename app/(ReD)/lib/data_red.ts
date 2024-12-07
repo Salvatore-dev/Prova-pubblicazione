@@ -1,6 +1,5 @@
 import { Metadata_allArticles } from "./definitions";
 
-
 export const regex_link = /\[(.+?)\]\((https:\/\/www\.[^\)]+)\)/;
 
 export const regex_note = new RegExp(/\[\^\d+\].$/);
@@ -42,3 +41,5 @@ export function sort_Metadata_allArticles(array: Metadata_allArticles[], propert
       }
     })
   }
+
+  export const articlesForPage = 3

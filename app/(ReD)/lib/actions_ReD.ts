@@ -6,6 +6,8 @@ import { getAdmin } from "@/app/lib/dal"
 
 import { Article_head_data, Article_module_type } from "./definitions"
 
+import { articlesForPage } from "./data_red"
+
 
 
 interface Response_get_article {
@@ -80,20 +82,20 @@ export async function AddMetadata_article(data: Article_head_data): Promise<stri
   }
 }
 
-export async function LastArticles() {
-
+export async function LastArticles(page: number) {
+  const offset = (page - 1) * articlesForPage;
   try {
     const last_articles: Article_module_type[] = await sql_Elephant`
     SELECT slug, title, subtitle, section, modified_date, image
     FROM articles
     ORDER BY modified_date DESC
-    LIMIT 15;
+    LIMIT ${articlesForPage} OFFSET ${offset};
     `
     console.log(last_articles);
 
     if (last_articles.length >= 1) {
 
-      return last_articles
+      return {last_articles, page}
     } else return null
 
 
@@ -503,4 +505,22 @@ export async function get_articles_by_tag(tag:string) {
     return message_error
    }
   
+}
+export async function count_latest_articles() {
+  try {
+    const result = await sql_Elephant`
+    SELECT COUNT(*) FROM articles;
+    `
+    console.log(result);
+    const n = parseInt(result[0].count,10)
+    if (Number.isNaN(n)) {
+      return 0
+    } else{
+      return Math.ceil(n/articlesForPage)
+    }
+    
+  } catch (error) {
+    console.log(error);
+    return 0
+  }
 }
