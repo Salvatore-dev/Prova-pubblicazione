@@ -36,14 +36,14 @@ export type Metadata_allArticles = {
     modified_date: Date
 }
 
-export type Links_content ={
+export type Links_content = {
     name: string,
     url: string
 }
 
 export type All_tags = {
-    tag_id : number,
-    tag_name : string,
+    tag_id: number,
+    tag_name: string,
     article_ids: number[]
-  }
+}
 

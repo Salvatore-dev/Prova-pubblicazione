@@ -59,4 +59,4 @@ export type FormStateLogin =
         }
         message?: string
     }
-    | undefined
+    | undefined;
